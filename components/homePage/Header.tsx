@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import BasicMenu from './BasicMenu'
 
@@ -34,17 +35,66 @@ function Header() {
       <BasicMenu />
       <div className=" sm:headerBorder hidden sm:block">
         <ul className="flex items-center gap-1 space-x-1 px-2  md:gap-5">
-          <li
-            className={`${
-              isScrolled
-                ? 'headerLinkScrolled'
-                : 'headerLinkScrolled headerLink'
-            }`}
-          >
-            Home
-          </li>
+          <Link href="/">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Home
+            </p>
+          </Link>
           <li className="headerSlash">/</li>
-          <li
+          <Link href="/schedules">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Schedules
+            </p>
+          </Link>
+          <li className="headerSlash">/</li>
+          <Link href="/table">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Tables
+            </p>
+          </Link>
+          <li className="headerSlash">/</li>
+          <Link href="/fields">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Field Location
+            </p>
+          </Link>
+          <li className="headerSlash">/</li>
+          <Link href="/contact">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Contact
+            </p>
+          </Link>
+          {/* <li
             className={`${
               isScrolled
                 ? 'headerLinkScrolled'
@@ -82,7 +132,7 @@ function Header() {
             }`}
           >
             Contact
-          </li>
+          </li> */}
         </ul>
       </div>
     </header>

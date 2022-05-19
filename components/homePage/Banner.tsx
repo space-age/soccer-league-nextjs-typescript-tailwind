@@ -8,12 +8,12 @@ function Banner() {
       className="
       flex h-[44vh] w-full flex-col justify-end space-y-2 pb-5 
       md:h-[66vh]
-      lg:h-[95vh]"
+      lg:h-[100vh] lg:space-y-4 lg:pb-16"
     >
       <div
         className="absolute top-0 left-0 -z-10 h-[44vh] w-full  
       md:h-[66vh]
-      lg:h-[95vh]"
+      lg:h-[100vh]"
       >
         <Image src={img} layout="fill" objectFit="cover" />
       </div>
