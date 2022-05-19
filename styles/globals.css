@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#fff] text-[#eceff1];
+  }
+
+  header {
+    @apply fixed top-0 left-0 z-50 flex w-full justify-start py-3 transition-all 
+    sm:justify-center;
+  }
+}
+
+/* custom class names */
+@layer components {
+  /* Header.tsx Component*/
+  .headerBorder {
+    @apply rounded-sm border-2 border-[#00838f] 
+    md:px-2 md:py-1 
+    lg:px-4 lg:py-2;
+  }
+
+  .headerLinkScrolled {
+    @apply cursor-pointer text-sm font-medium text-[#fff] transition duration-[.4s] hover:text-[#757575] 
+    md:text-xl 
+    lg:text-2xl;
+  }
+
+  .headerLink {
+    @apply text-[#263238] hover:text-[#9e9e9e];
+  }
+
+  .headerSlash {
+    @apply cursor-default font-medium text-black 
+    md:text-xl 
+    lg:text-2xl;
+  }
+}
