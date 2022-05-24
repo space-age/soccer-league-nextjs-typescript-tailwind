@@ -3,17 +3,24 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useRouter } from 'next/router'
 
-export default function BasicMenu() {
+interface Props {
+  isScrolled: boolean
+}
+
+export default function BasicMenu({ isScrolled }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
+  const router = useRouter()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  function handleClose(home: string) {
     setAnchorEl(null)
+    router.push(`/${home}`)
   }
 
   return (
@@ -27,7 +34,7 @@ export default function BasicMenu() {
           onClick={handleClick}
           className=" !text-black"
         >
-          <MenuIcon />
+          <MenuIcon className={`${isScrolled && 'text-white'}`} />
         </Button>
         <Menu
           id="basic-menu"
@@ -39,14 +46,20 @@ export default function BasicMenu() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem onClick={handleClose}>Home</MenuItem>
-          <MenuItem onClick={handleClose}>Schedules</MenuItem>
-          <MenuItem onClick={handleClose}>Standings</MenuItem>
-          <MenuItem onClick={handleClose}>Field Location</MenuItem>
-          <MenuItem onClick={handleClose}>Contact Us</MenuItem>
+          <MenuItem onClick={() => handleClose('')}>Home</MenuItem>
+          <MenuItem onClick={() => handleClose('schedules')}>
+            Schedules
+          </MenuItem>
+          <MenuItem onClick={() => handleClose('table')}>Standings</MenuItem>
+          <MenuItem onClick={() => handleClose('fields')}>
+            Field Location
+          </MenuItem>
+          <MenuItem onClick={() => handleClose('contact')}>Contact Us</MenuItem>
         </Menu>
       </div>
-      <h1 className="text-xl font-semibold text-black">Adult Soccer League</h1>
+      <h1 className={`${!isScrolled && 'text-black'} text-xl font-semibold`}>
+        Adult Soccer League
+      </h1>
     </div>
   )
 }

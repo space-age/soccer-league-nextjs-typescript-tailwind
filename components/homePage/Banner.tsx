@@ -1,21 +1,21 @@
 import Image from 'next/image'
-import img from '../../images/soccer-field.jpg'
+import img from '../../images/home-bg.jpg'
 
 function Banner() {
   return (
     <div
-      // bg-gradient-to-b from-white-100/30 to-[#222]
+      // bg-gradient-to-b from-white-100/30 to-[#222] h-[44vh]
       className="
-      flex h-[44vh] w-full flex-col justify-end space-y-2 pb-5 
+      flex h-[100vh] w-full flex-col justify-end space-y-2 pb-5 
       md:h-[66vh]
       lg:h-[100vh] lg:space-y-4 lg:pb-16"
     >
       <div
-        className="absolute top-0 left-0 -z-10 h-[44vh] w-full  
+        className="absolute top-0 left-0 -z-10  h-[100vh] w-full  
       md:h-[66vh]
       lg:h-[100vh]"
       >
-        <Image src={img} layout="fill" objectFit="cover" />
+        <Image src={img} layout="fill" objectFit="cover" alt="Soccer Field" />
       </div>
       <h1
         className="text-2xl font-extrabold 

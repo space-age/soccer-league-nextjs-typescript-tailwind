@@ -37,4 +37,25 @@
     md:text-xl 
     lg:text-2xl;
   }
+
+  /* Tables.tsx Component*/
+  .mainTable {
+    @apply w-full border-collapse font-mono capitalize text-[#424242] shadow-xl;
+  }
+
+  .mainTable thead {
+    @apply bg-[#f5f5f5] opacity-80;
+  }
+
+  .mainTable td,
+  th {
+    @apply px-2 py-4 text-center;
+  }
+
+  .mainTable tbody tr {
+    @apply border-b-2 border-[#eceff1] text-sm md:text-xl;
+  }
+  .mainTable-Form {
+    @apply h-5 w-5 rounded-full text-center text-sm font-bold leading-5 text-white md:h-8 md:w-8 md:text-lg md:leading-8;
+  }
 }

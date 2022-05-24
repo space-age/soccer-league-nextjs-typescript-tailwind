@@ -32,7 +32,10 @@ function Header() {
           className="cursor-pointer object-contain"
         />
       </div> */}
-      <BasicMenu />
+
+      {/* Basic Menu for Smaller Screens */}
+      <BasicMenu isScrolled={isScrolled} />
+
       <div className=" sm:headerBorder hidden sm:block">
         <ul className="flex items-center gap-1 space-x-1 px-2  md:gap-5">
           <Link href="/">
@@ -94,45 +97,6 @@ function Header() {
               Contact
             </p>
           </Link>
-          {/* <li
-            className={`${
-              isScrolled
-                ? 'headerLinkScrolled'
-                : 'headerLinkScrolled headerLink'
-            }`}
-          >
-            Schedules
-          </li>
-          <li className="headerSlash">/</li>
-          <li
-            className={`${
-              isScrolled
-                ? 'headerLinkScrolled'
-                : ' headerLinkScrolled headerLink'
-            }`}
-          >
-            Tables
-          </li>
-          <li className="headerSlash">/</li>
-          <li
-            className={`${
-              isScrolled
-                ? 'headerLinkScrolled'
-                : ' headerLinkScrolled headerLink'
-            }`}
-          >
-            Field Location
-          </li>
-          <li className="headerSlash">/</li>
-          <li
-            className={`${
-              isScrolled
-                ? 'headerLinkScrolled'
-                : 'headerLinkScrolled headerLink'
-            }`}
-          >
-            Contact
-          </li> */}
         </ul>
       </div>
     </header>
