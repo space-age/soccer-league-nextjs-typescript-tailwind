@@ -3,7 +3,7 @@ import Header from '../components/homePage/Header'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 import Contact from '../components/contactPage/Contact'
 
-import image from '../images/m.jpg'
+import image from '../images/contact-bg.jpg'
 
 function ContactPage() {
   return (
