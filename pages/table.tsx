@@ -2,8 +2,8 @@ import Head from 'next/head'
 import Header from '../components/homePage/Header'
 import Tables from '../components/tablesPage/Tables'
 import CommonBanner from '../components/commonComponents/CommonBanner'
-import TabsNavigation from '../components/tablesPage/Tabs/TabsNavigation'
-import CommonFooter from '../components/commonComponents/CommonFooter'
+// import TabsNavigation from '../components/tablesPage/Tabs/TabsNavigation'
+// import CommonFooter from '../components/commonComponents/CommonFooter'
 
 import image from '../images/table-bg.jpg'
 

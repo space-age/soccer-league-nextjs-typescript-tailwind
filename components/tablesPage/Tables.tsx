@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import TableRow from './TableRow'
 import * as myConstants from '../../Tables/week1'
 
