@@ -4,6 +4,7 @@ import CommonBanner from '../components/commonComponents/CommonBanner'
 import SheduleWeekList from '../components/schedulePage/SheduleWeekList'
 import CommonFooter from '../components/commonComponents/CommonFooter'
 import image from '../images/schedules-bg.jpg'
+import WeekScheduleDropdown from '../components/schedulePage/WeekScheduleDropdown'
 
 function Schedules() {
   return (
@@ -15,9 +16,10 @@ function Schedules() {
       <Header />
       <main className="relative pb-4 md:pb-10">
         <CommonBanner image={image} title="schedules" />
+        <WeekScheduleDropdown />
         <SheduleWeekList />
       </main>
-      <CommonFooter />
+      {/* <CommonFooter /> */}
     </div>
   )
 }

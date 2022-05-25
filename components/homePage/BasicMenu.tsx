@@ -20,7 +20,7 @@ export default function BasicMenu({ isScrolled }: Props) {
 
   function handleClose(home: string) {
     setAnchorEl(null)
-    router.push(`/${home}`)
+    if (home !== 'null') router.push(`/${home}`)
   }
 
   return (
@@ -40,7 +40,7 @@ export default function BasicMenu({ isScrolled }: Props) {
           id="basic-menu"
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          onClose={() => handleClose('null')}
           className="menu "
           MenuListProps={{
             'aria-labelledby': 'basic-button',
@@ -50,7 +50,7 @@ export default function BasicMenu({ isScrolled }: Props) {
           <MenuItem onClick={() => handleClose('schedules')}>
             Schedules
           </MenuItem>
-          <MenuItem onClick={() => handleClose('table')}>Standings</MenuItem>
+          <MenuItem onClick={() => handleClose('table')}>Tables</MenuItem>
           <MenuItem onClick={() => handleClose('fields')}>
             Field Location
           </MenuItem>

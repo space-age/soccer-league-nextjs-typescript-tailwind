@@ -20,7 +20,7 @@ function Table() {
         {/* <TabsNavigation /> */}
         <Tables />
       </main>
-      <CommonFooter />
+      {/* <CommonFooter /> */}
     </div>
   )
 }

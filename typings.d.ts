@@ -20,3 +20,9 @@ export interface Schedule {
   scoreB: string
   time: string
 }
+
+export interface Field {
+  id: number
+  fields: number[]
+  address: string
+}
