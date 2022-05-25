@@ -6,12 +6,12 @@ import CommonFooter from '../components/commonComponents/CommonFooter'
 import image from '../images/schedules-bg.jpg'
 import WeekScheduleDropdown from '../components/schedulePage/WeekScheduleDropdown'
 
-function Schedules() {
+function SchedulesPage() {
   return (
     <div className="h-screen ">
       <Head>
-        <title>Soccer Schedules</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Adult Soccer Schedules</title>
+        <link rel="icon" href="/ball.png" />
       </Head>
       <Header />
       <main className="relative pb-4 md:pb-10">
@@ -24,4 +24,4 @@ function Schedules() {
   )
 }
 
-export default Schedules
+export default SchedulesPage

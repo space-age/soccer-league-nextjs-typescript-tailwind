@@ -1,22 +1,24 @@
 import Head from 'next/head'
 import Header from '../components/homePage/Header'
 import CommonBanner from '../components/commonComponents/CommonBanner'
+import Contact from '../components/contactPage/Contact'
 
 import image from '../images/m.jpg'
 
-function Contact() {
+function ContactPage() {
   return (
-    <div className="relative h-screen lg:h-[140vh]">
+    <div className="relative h-screen ">
       <Head>
-        <title>Account Settings - Netflix</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Adult Soccer Contact</title>
+        <link rel="icon" href="/ball.png" />
       </Head>
       <Header />
-      <main className="relative pb-4 md:pb-10">
+      <main className="relative ">
         <CommonBanner image={image} title="Contact" />
+        <Contact />
       </main>
     </div>
   )
 }
 
-export default Contact
+export default ContactPage

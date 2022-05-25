@@ -7,12 +7,12 @@ import CommonFooter from '../components/commonComponents/CommonFooter'
 
 import image from '../images/table-bg.jpg'
 
-function Table() {
+function TablePage() {
   return (
     <div className="h-screen ">
       <Head>
-        <title>Soccer Tables</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Adult Soccer Tables</title>
+        <link rel="icon" href="/ball.png" />
       </Head>
       <Header />
       <main className="relative pb-4 md:pb-10">
@@ -25,4 +25,4 @@ function Table() {
   )
 }
 
-export default Table
+export default TablePage

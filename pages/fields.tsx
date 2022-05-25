@@ -4,12 +4,12 @@ import CommonBanner from '../components/commonComponents/CommonBanner'
 import image from '../images/fields-bg.jpg'
 import FieldContainer from '../components/fieldsPage/FieldContainer'
 
-function Fields() {
+function FieldsPage() {
   return (
-    <div className="relative h-screen lg:h-[140vh]">
+    <div className="relative h-screen">
       <Head>
-        <title>Account Settings - Netflix</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Adult Soccer Fields</title>
+        <link rel="icon" href="/ball.png" />
       </Head>
       <Header />
       <main className="relative pb-4 md:pb-10">
@@ -20,4 +20,4 @@ function Fields() {
   )
 }
 
-export default Fields
+export default FieldsPage

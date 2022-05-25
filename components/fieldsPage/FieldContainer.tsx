@@ -36,7 +36,7 @@ function FieldContainer() {
   ]
 
   return (
-    <div className="m-6 grid grid-cols-1 gap-4 text-lg md:grid-cols-2 md:gap-10 lg:text-xl">
+    <div className="m-6  grid grid-cols-1 gap-4 text-lg md:grid-cols-2 md:gap-10 lg:text-xl">
       {fields.map((field) => (
         <Field field={field} key={field.id} />
       ))}
