@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/ball.png" />
       </Head>
       <Header />
-      <main className="relative space-y-6 pl-4">
+      <main className="relative space-y-6 pl-2 sm:pl-4">
         <Banner />
         {/* <section className="space-y-24">
           {/* About */}
