@@ -52,42 +52,92 @@ export default function WeekScheduleDropdown() {
             className="hover:bg-[#cfd8dc]"
             onClick={() => handleClose()}
           >
-            Match Week 1
+            Week 1
           </MenuItem>
           <MenuItem
             className="hover:bg-[#cfd8dc]"
             onClick={() => handleClose()}
           >
-            Match Week 2
+            Week 2
           </MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 3</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 4</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 5</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 1</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 2</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 3</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 4</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 5</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 1</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 2</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 3</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 4</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 5</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 1</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 2</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 3</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 4</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 5</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 1</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 2</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 3</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 4</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 5</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 1</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 2</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 3</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 4</MenuItem>
-          <MenuItem onClick={() => handleClose()}>Match Week 5</MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 3
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 4
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 5
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 6
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 7
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 8
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 9
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 10
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 11
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 12
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 13
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 14
+          </MenuItem>
+          <MenuItem
+            className="hover:bg-[#cfd8dc]"
+            onClick={() => handleClose()}
+          >
+            Week 15
+          </MenuItem>
         </Menu>
       </div>
     </div>
