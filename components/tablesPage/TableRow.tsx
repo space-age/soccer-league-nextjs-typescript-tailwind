@@ -16,8 +16,8 @@ function TableRow({ team, index }: Props) {
       <td>{team.won}</td>
       <td>{team.drawn}</td>
       <td>{team.lost}</td>
-      <td className="hidden md:table-cell">{team.gf}</td>
-      <td className="hidden md:table-cell">{team.ga}</td>
+      <td>{team.gf}</td>
+      <td>{team.ga}</td>
       <td>{team.gd > 0 ? `+${team.gd}` : `${team.gd}`}</td>
       <td className="font-black">{team.points}</td>
       <td>

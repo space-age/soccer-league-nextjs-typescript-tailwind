@@ -27,9 +27,24 @@ function ScheduleWeekList() {
         </h1>
       </div>
       <TeamSchedule schedule={defaultSchedule} />
-      <div className="bg-[#37474f] py-1 sm:py-0"></div>
       <TeamSchedule schedule={test1} />
-      <div className="bg-[#37474f] py-1 sm:py-0"></div>
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
+      <TeamSchedule schedule={test1} />
     </div>
   )
 }

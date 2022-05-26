@@ -24,10 +24,8 @@ function Tables() {
             <th className="hidden lg:table-cell">Lost</th>
             <th className="lg:hidden">L</th>
 
-            <th className="hidden md:table-cell">GF</th>
-
-            <th className="hidden md:table-cell">GA</th>
-
+            <th>GF</th>
+            <th>GA</th>
             <th>GD</th>
 
             <th className="hidden md:table-cell">Points</th>
