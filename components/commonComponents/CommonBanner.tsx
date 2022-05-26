@@ -1,5 +1,4 @@
 import Image, { StaticImageData } from 'next/image'
-import img from '../../images/table-bg.jpg'
 
 interface Props {
   image: string | StaticImageData

@@ -4,11 +4,14 @@ import LanguageIcon from '@mui/icons-material/Language'
 
 function ContactInformation() {
   return (
-    <div className="flex flex-col gap-6 bg-[#fafafa] p-4 text-black md:gap-16 md:p-4 lg:gap-10 lg:p-6">
+    <div className="flex flex-col gap-6 bg-[#fafafa] p-4 text-black md:gap-8 lg:gap-6 lg:p-3">
       <h2 className="text-2xl font-bold tracking-wider md:text-3xl">
         Contact us for more information!
       </h2>
-      <div className="grid grid-cols-2 gap-2">
+      <p className="text-xl font-bold tracking-wider sm:text-2xl ">
+        We are located in Menifee, Ca
+      </p>
+      <div className="grid grid-cols-2 gap-2 tracking-wide	">
         <div className="flex flex-col gap-3 font-semibold md:text-lg lg:text-xl">
           <div className="flex flex-row gap-2 ">
             <PersonOutlineOutlinedIcon />
