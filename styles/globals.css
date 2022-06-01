@@ -58,4 +58,9 @@
   .mainTable-Form {
     @apply h-5 w-5 rounded-full text-center text-sm font-bold leading-5 text-white md:h-8 md:w-8 md:text-lg md:leading-8;
   }
+
+  /* login-master-creator.tsx */
+  .masterCreator--input {
+    @apply w-full rounded bg-[#333333] px-5 py-3.5 text-sm placeholder-[gray] outline-none focus:bg-[#454545];
+  }
 }

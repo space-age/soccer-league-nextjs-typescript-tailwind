@@ -51,6 +51,7 @@ export default function BasicMenu({ isScrolled }: Props) {
             Schedules
           </MenuItem>
           <MenuItem onClick={() => handleClose('table')}>Tables</MenuItem>
+          <MenuItem onClick={() => handleClose('teams')}>Teams</MenuItem>
           <MenuItem onClick={() => handleClose('fields')}>
             Field Location
           </MenuItem>

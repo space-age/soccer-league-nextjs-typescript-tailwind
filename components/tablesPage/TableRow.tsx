@@ -22,8 +22,9 @@ function TableRow({ team, index }: Props) {
       <td className="font-black">{team.points}</td>
       <td>
         <div className=" flex flex-row justify-center gap-2">
-          {team.form.map((result) => (
+          {team.form.map((result, index) => (
             <div
+              key={index}
               className={`mainTable-Form ${
                 result === 'l'
                   ? 'bg-[#f44336]'

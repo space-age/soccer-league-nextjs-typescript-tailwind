@@ -11,8 +11,8 @@ function Field({ field }: Props) {
       <div className="grid grid-cols-1 border-2 border-[#00838f] bg-[#eceff1] p-2 font-semibold lg:justify-items-center">
         <div className="flex flex-row items-center gap-5 text-[#00838f]  md:gap-10">
           <p className=" text-black ">Fields:</p>
-          {field.fields.map((fieldNumber) => (
-            <p>{fieldNumber}</p>
+          {field.fields.map((fieldNumber, index) => (
+            <p key={index}>{fieldNumber}</p>
           ))}
         </div>
         <div className="flex flex-row  py-2">
@@ -20,7 +20,7 @@ function Field({ field }: Props) {
           <a
             target="_blank"
             href={`https://www.google.com/maps/place/${field.address}`}
-            className=" px-2 text-[#00838f] hover:text-[#d32f2f]"
+            className=" px-2 text-[#00838f]  hover:text-[#d32f2f]"
           >
             {field.address}
           </a>

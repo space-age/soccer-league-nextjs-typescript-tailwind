@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import useAuth from '../../hooks/useAuth'
 import BasicMenu from './BasicMenu'
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const { user } = useAuth()
 
   useEffect(() => {
     const handlerScroll = () => {
@@ -32,7 +34,13 @@ function Header() {
           className="cursor-pointer object-contain"
         />
       </div> */}
-
+      {user && (
+        <div className="hidden items-center space-x-2 justify-self-start text-3xl text-black md:flex md:space-x-10 lg:pr-10">
+          <Link href="/master-creator">
+            <p className="cursor-pointer">Creator Mode</p>
+          </Link>
+        </div>
+      )}
       {/* Basic Menu for Smaller Screens */}
       <BasicMenu isScrolled={isScrolled} />
 
@@ -71,6 +79,18 @@ function Header() {
               }`}
             >
               Tables
+            </p>
+          </Link>
+          <li className="headerSlash">/</li>
+          <Link href="/teams">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Teams
             </p>
           </Link>
           <li className="headerSlash">/</li>
