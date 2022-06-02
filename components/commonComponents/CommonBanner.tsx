@@ -18,7 +18,14 @@ function TableBanner({ image, title }: Props) {
         className="absolute top-0 left-0 -z-10 h-[44vh] w-full  
    md:h-[46vh] lg:h-[60vh]"
       >
-        <Image src={image} layout="fill" objectFit="cover" alt="Soccer Field" />
+        <Image
+          src={image}
+          layout="fill"
+          objectFit="cover"
+          alt="Soccer Field"
+          placeholder="blur"
+          // priority={true}
+        />
       </div>
       <h1
         className=" pl-5 text-7xl

@@ -4,10 +4,9 @@ import SeasonTable from './SeasonsTable'
 
 function SeasonsDataContainer() {
   const divisions = [
-    { id: '1', division: 1 },
-    { id: '2', division: 2 },
+    { id: '1', division: 'Division 1' },
+    { id: '2', division: 'Division 2' },
   ]
-  const [checked, setChecked] = useState(true)
 
   const [currentTab, setCurrentTab] = useState('1')
 
@@ -42,10 +41,10 @@ function SeasonsDataContainer() {
           </button>
         </div>
 
-        <div id="1" className={`${currentTab === '1' ? '' : 'hidden'}`}>
+        <div className={`${currentTab === '1' ? '' : 'hidden'}`}>
           <SeasonTable />
         </div>
-        <div id="2" className={`${currentTab === '2' ? '' : 'hidden'}`}>
+        <div className={`${currentTab === '2' ? '' : 'hidden'}`}>
           hello world
         </div>
       </div>

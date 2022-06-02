@@ -37,7 +37,11 @@ function Header() {
       {user && (
         <div className="mr-10 !hidden  items-center space-x-10 justify-self-start  border-2 p-2 hover:bg-slate-600 xl:!flex">
           <Link href="/master-creator">
-            <p className="cursor-pointer text-3xl font-semibold  text-[black] hover:text-[white]">
+            <p
+              className={`${
+                isScrolled ? 'text-white' : 'text-black'
+              } cursor-pointer text-3xl font-semibold  hover:text-[white]`}
+            >
               Creator Mode
             </p>
           </Link>
@@ -125,7 +129,9 @@ function Header() {
         <div className="ml-10 !hidden items-center space-x-10 justify-self-start border-2 p-2  hover:bg-slate-600 xl:!flex">
           <button
             onClick={logout}
-            className="cursor-pointer text-3xl  font-semibold text-[black] hover:text-[white]"
+            className={`${
+              isScrolled ? 'text-white' : 'text-black'
+            } cursor-pointer text-3xl  font-semibold hover:text-[white]`}
           >
             Logout
           </button>
