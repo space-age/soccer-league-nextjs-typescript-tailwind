@@ -5,7 +5,7 @@ import BasicMenu from './BasicMenu'
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
 
   useEffect(() => {
     const handlerScroll = () => {
@@ -35,9 +35,11 @@ function Header() {
         />
       </div> */}
       {user && (
-        <div className="hidden items-center space-x-2 justify-self-start text-3xl text-black md:flex md:space-x-10 lg:pr-10">
+        <div className="mr-10 !hidden  items-center space-x-10 justify-self-start  border-2 p-2 hover:bg-slate-600 xl:!flex">
           <Link href="/master-creator">
-            <p className="cursor-pointer">Creator Mode</p>
+            <p className="cursor-pointer text-3xl font-semibold  text-[black] hover:text-[white]">
+              Creator Mode
+            </p>
           </Link>
         </div>
       )}
@@ -119,6 +121,16 @@ function Header() {
           </Link>
         </ul>
       </div>
+      {user && (
+        <div className="ml-10 !hidden items-center space-x-10 justify-self-start border-2 p-2  hover:bg-slate-600 xl:!flex">
+          <button
+            onClick={logout}
+            className="cursor-pointer text-3xl  font-semibold text-[black] hover:text-[white]"
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </header>
   )
 }

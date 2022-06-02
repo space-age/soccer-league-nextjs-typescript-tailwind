@@ -31,7 +31,7 @@ function LoginMasterCreator() {
   }
 
   return (
-    <div className="relative flex h-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
+    <div className="relative flex h-screen flex-col  md:items-center md:justify-center md:bg-transparent">
       <Head>
         <title>Adult Soccer League</title>
         <link rel="icon" href="/ball.png" />
@@ -39,14 +39,14 @@ function LoginMasterCreator() {
       <Image
         src={image}
         layout="fill"
-        className="-z-10 !hidden opacity-60 sm:!inline"
+        className="-z-10  opacity-60 sm:!inline"
         objectFit="cover"
       />
 
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="relative mt-24 space-y-8 bg-black/75 py-10 px-6 md:mt-0 md:max-w-md  md:px-14"
+        className="relative mt-24 !hidden space-y-8 bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14  xl:!block"
       >
         <h1 className="text-4xl">Sign In</h1>
         <div className="space-y-4">

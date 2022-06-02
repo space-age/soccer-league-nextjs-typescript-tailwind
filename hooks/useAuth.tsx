@@ -53,13 +53,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           // Not logged in...
           setUser(null)
           setLoading(true)
-          router.push('/login-master-creator')
+          // router.push('/login-master-creator')
         }
-
         setInitialLoading(false)
       }),
     [auth]
   )
+
   const signIn = async (email: string, password: string) => {
     setLoading(true)
 

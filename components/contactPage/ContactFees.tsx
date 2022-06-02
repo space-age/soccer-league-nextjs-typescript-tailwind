@@ -15,11 +15,15 @@ function ContactFees() {
           </h3>
           <p className="pb-1 font-semibold">
             Player registration:{' '}
-            <span className="font-extrabold text-[#00838f]">$20</span>
+            <span className="contactInformation--p-text font-extrabold">
+              $20
+            </span>
           </p>
           <p className="font-semibold">
             Team registration:{' '}
-            <span className="font-extrabold text-[#00838f]">$100</span>
+            <span className="contactInformation--p-text font-extrabold">
+              $100
+            </span>
           </p>
         </div>
         <div>
@@ -28,7 +32,9 @@ function ContactFees() {
           </h3>
           <p className="font-semibold">
             Match day referee fee:{' '}
-            <span className="font-extrabold text-[#00838f]">$100</span>
+            <span className="contactInformation--p-text font-extrabold">
+              $100
+            </span>
           </p>
         </div>
       </div>

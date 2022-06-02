@@ -15,29 +15,29 @@ function ContactInformation() {
         <div className="flex flex-col gap-3 font-semibold md:text-lg lg:text-xl">
           <div className="flex flex-row gap-2 ">
             <PersonOutlineOutlinedIcon />
-            <p className="text-[#00838f]">Luciano</p>
+            <p className="contactInformation--p-text">Luciano</p>
           </div>
           <div className="flex flex-row gap-2 ">
             <LanguageIcon />
-            <p className="text-[#00838f]">Spanish Speaker</p>
+            <p className="contactInformation--p-text">Spanish Speaker</p>
           </div>
           <div className="flex flex-row gap-2 ">
             <LocalPhoneOutlinedIcon />
-            <p className="text-[#00838f]">012-345-6789</p>
+            <p className="contactInformation--p-text">012-345-6789</p>
           </div>
         </div>
         <div className="flex flex-col gap-3  font-semibold md:text-lg lg:text-xl">
           <div className="flex flex-row gap-2 ">
             <PersonOutlineOutlinedIcon />
-            <p className="text-[#00838f]">Another</p>
+            <p className="contactInformation--p-text">Another</p>
           </div>
           <div className="flex flex-row gap-2 ">
             <LanguageIcon />
-            <p className="text-[#00838f]">English Speaker</p>
+            <p className="contactInformation--p-text">English Speaker</p>
           </div>
           <div className="flex flex-row gap-2 ">
             <LocalPhoneOutlinedIcon />
-            <p className="text-[#00838f]">987-654-3210</p>
+            <p className="contactInformation--p-text">987-654-3210</p>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import Header from '../components/homePage/Header'
 
 const Home: NextPage = () => {
   return (
-    // bg-gradient-to-b from-gray-900/30 to-[#010511]
     <div className="relative h-full lg:h-[100vh]">
       <Head>
         <title>Adult Soccer League</title>
@@ -18,8 +17,6 @@ const Home: NextPage = () => {
         <Banner />
         {/* <section className="space-y-24">
           {/* About */}
-        {/* <About />
-          <About /> */}
         {/* Subscribe to get notificaiton when new schedule is up */}
         {/* </section> */}
       </main>

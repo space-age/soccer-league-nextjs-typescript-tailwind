@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Header from '../components/homePage/Header'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 import SheduleWeekList from '../components/schedulePage/SheduleWeekList'
-// import CommonFooter from '../components/commonComponents/CommonFooter'
 import image from '../images/schedules-bg.jpg'
 import WeekScheduleDropdown from '../components/schedulePage/WeekScheduleDropdown'
 
@@ -19,7 +18,6 @@ function SchedulesPage() {
         <WeekScheduleDropdown />
         <SheduleWeekList />
       </main>
-      {/* <CommonFooter /> */}
     </div>
   )
 }
