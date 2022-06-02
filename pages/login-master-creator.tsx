@@ -22,7 +22,7 @@ function LoginMasterCreator() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm()
+  } = useForm<Inputs>()
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
