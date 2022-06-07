@@ -3,13 +3,6 @@ import AddSeason from './AddSeason'
 import DeleteSeason from './DeleteSeason'
 
 function SeasonsTabsOptionsContainer() {
-  const [enteredSeasonName, setEnteredSeasonName] = useState('')
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-    setEnteredSeasonName('')
-  }
-
   const Tabs = [
     { id: '1', name: 'Add a Season' },
     { id: '2', name: 'Delete a Season' },
@@ -40,7 +33,7 @@ function SeasonsTabsOptionsContainer() {
           ))}
         </div>
 
-        <div className={`${currentTab === '1' ? '' : 'hidden'} mt-3 ml-3`}>
+        <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-3`}>
           <AddSeason />
         </div>
         <div className={`${currentTab === '2' ? '' : 'hidden'} mt-3 ml-3 `}>

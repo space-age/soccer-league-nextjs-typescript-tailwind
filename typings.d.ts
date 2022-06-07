@@ -26,3 +26,8 @@ export interface Field {
   fields: number[]
   address: string
 }
+
+export interface AddedSeason {
+  seasonName: string
+  divisionsName: { name: string }[]
+}

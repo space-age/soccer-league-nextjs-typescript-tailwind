@@ -6,15 +6,15 @@ interface Props {
 }
 
 function Field({ field }: Props) {
-  const mainColor = '#00838f'
+  // const mainColor = '#00838f'
 
   return (
     <div className=" grid w-full  grid-cols-1	justify-items-stretch">
       <div
-        className={`grid grid-cols-1 border-2 border-[${mainColor}] bg-[#eceff1] p-2 font-semibold lg:justify-items-center`}
+        className={`grid grid-cols-1 border-2 border-[#00838f] bg-[#eceff1] p-2 font-semibold lg:justify-items-center`}
       >
         <div
-          className={`flex flex-row items-center gap-5 text-[${mainColor}]  md:gap-10`}
+          className={`flex flex-row items-center gap-5 text-[#00838f]  md:gap-10`}
         >
           <p className=" text-black ">Fields:</p>
           {field.fields.map((fieldNumber, index) => (
@@ -26,14 +26,14 @@ function Field({ field }: Props) {
           <a
             target="_blank"
             href={`https://www.google.com/maps/place/${field.address}`}
-            className={`px-2 text-[${mainColor}]  hover:text-[#d32f2f]`}
+            className={`px-2 text-[#00838f]  hover:text-[#d32f2f]`}
           >
             {field.address}
           </a>
         </div>
       </div>
       <div
-        className={`border-[${mainColor}] h-[2vh] border-2 border-t-0 bg-[#9ccc65]`}
+        className={`h-[2vh] border-2 border-t-0 border-[#00838f] bg-[#9ccc65]`}
       ></div>
     </div>
   )

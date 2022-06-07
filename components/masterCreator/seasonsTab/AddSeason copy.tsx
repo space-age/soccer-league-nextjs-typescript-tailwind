@@ -1,61 +1,42 @@
 import { valueToPercent } from '@mui/base'
 import { ChangeEvent, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
-import { modalState, submissionData } from '../../../atoms/modalAtoms'
-import { AddedSeason } from '../../../typings'
 
-// interface Inputs {
-//   seasonName: string
-//   divisionsName: { name: string }[]
-// }
+interface Inputs {
+  seasonName: string
+  divisionsName: string[]
+}
 
 function AddSeason() {
-  const [divisions, setDivisions] = useState([{ name: '' }])
-
   const MAX_NUMBER_DIVISIONS = 2
+
+  const [divisions, setDivisions] = useState([0])
+  const [counter, setCounter] = useState(1)
 
   const {
     register,
-    unregister,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
-  } = useForm<AddedSeason>({ shouldUnregister: true })
+  } = useForm()
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { value } = e.target
-    const list = [...divisions]
-    list[index].name = value
-    setDivisions(list)
-  }
-
-  const handleRemoveButton = (e: any, index: number) => {
-    e.preventDefault()
-    const list = [...divisions]
-    list.splice(index, 1)
-    setDivisions(list)
-    unregister(`divisionsName.${index}.name`)
+  const onSubmit = (data: any) => {
+    console.log(data)
   }
 
   const handleAddButton = (e: any) => {
     e.preventDefault()
-    const list = [...divisions, { name: '' }]
-    setDivisions(list)
+    setDivisions((prevDivisions) => [...prevDivisions, counter])
+    setCounter((prevCounter) => prevCounter + 1)
   }
 
-  const [finalData, setFinalData] = useRecoilState(submissionData)
-  const [showModal, setShowModal] = useRecoilState(modalState)
+  const handleRemoveButton = (e: any, index: number) => () => {
+    e.preventDefault()
+    console.log('hello removal')
+    setDivisions((prevIndexes) => [
+      ...prevIndexes.filter((item) => item !== index),
+    ])
 
-  const onSubmit: SubmitHandler<AddedSeason> = async (data: AddedSeason) => {
-    setFinalData(data)
-    setShowModal(true)
-    setDivisions([{ name: '' }])
-    reset({ seasonName: '', divisionsName: [{ name: '' }] })
+    setCounter((prevCounter) => prevCounter - 1)
   }
 
   return (
@@ -74,27 +55,29 @@ function AddSeason() {
             // onChange={(e) => setEnteredSeasonName(e.target.value)}
             className="ml-[1.4rem] px-1 tracking-wider placeholder:tracking-wider"
             maxLength={30}
+            // name="seasonName"
+            // ref={register}
             {...register('seasonName', { required: true })}
           />
         </label>
-        {divisions.map((division, index) => {
+
+        {divisions.map((index) => {
+          // const fieldName = `divisions[${index}]`
           return (
             <div key={index} className="flex gap-2 tracking-wider">
               <div>
                 <label className="font-semibold">
                   Division name:
                   <input
+                    // value={division.name}
                     placeholder={`Division ${index + 1}`}
                     className="ml-2 px-1 tracking-wider placeholder:tracking-wider"
+                    // onChange={(e) => handleInputChange(e, index)}
                     maxLength={30}
-                    {...register(`divisionsName.${index}.name`, {
-                      onChange: (e) => handleInputChange(e, index),
-                      required: true,
-                      value: division.name,
-                    })}
                     type="text"
-                    onChange={(e) => handleInputChange(e, index)}
-                    value={division.name}
+                    // name={`divisions[${index}].${index}`}
+                    // ref={register}
+                    {...register('Seaso', { required: true })}
                   />
                 </label>
               </div>
@@ -135,5 +118,3 @@ function AddSeason() {
     </div>
   )
 }
-
-export default AddSeason
