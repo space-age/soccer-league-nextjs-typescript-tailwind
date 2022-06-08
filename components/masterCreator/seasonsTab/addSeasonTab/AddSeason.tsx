@@ -2,9 +2,13 @@ import { setDoc, doc, getDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import { modalState, submissionData } from '../../../atoms/modalAtoms'
-import { db } from '../../../firebase'
-import { AddedSeason } from '../../../typings'
+import {
+  modalState,
+  submissionData,
+} from '../../../../atoms/addSeasonModalAtoms'
+import { db } from '../../../../firebase'
+import { AddedSeason } from '../../../../typings'
+import ShowAddSeasonModal from './ShowAddSeasonModal'
 
 function AddSeason() {
   const Default_Division_Name = 'Division 1'
@@ -94,6 +98,11 @@ function AddSeason() {
             {...register('seasonName', { required: true })}
           />
         </label>
+        {errors.seasonName && (
+          <p className=" text-[13px] font-light  text-orange-500">
+            *** Please enter a season name
+          </p>
+        )}
         {divisions.map((division, index) => {
           return (
             <div key={index} className="flex gap-2 tracking-wider">
@@ -137,6 +146,7 @@ function AddSeason() {
           Add Season
         </button>
       </form>
+      {showModal && <ShowAddSeasonModal />}
     </div>
   )
 }

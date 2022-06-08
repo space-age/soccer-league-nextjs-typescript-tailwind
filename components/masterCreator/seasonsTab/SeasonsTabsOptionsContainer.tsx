@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import AddSeason from './AddSeason'
-import DeleteSeason from './DeleteSeason'
+import AddSeason from './addSeasonTab/AddSeason'
+import DeleteSeason from './deleteSeasonTab/DeleteSeason'
 
 function SeasonsTabsOptionsContainer() {
   const Tabs = [
@@ -36,7 +36,7 @@ function SeasonsTabsOptionsContainer() {
         <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-3`}>
           <AddSeason />
         </div>
-        <div className={`${currentTab === '2' ? '' : 'hidden'} mt-3 ml-3 `}>
+        <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
           <DeleteSeason />
         </div>
       </div>

@@ -32,7 +32,7 @@ export default function SeasonDropdown() {
           className=" bg-[#eeeeee] !text-black"
         >
           <h2 className="text-md font-semibold text-black sm:text-lg">
-            Match Week 1
+            Season
             <span>
               <ArrowDropDownOutlinedIcon />
             </span>

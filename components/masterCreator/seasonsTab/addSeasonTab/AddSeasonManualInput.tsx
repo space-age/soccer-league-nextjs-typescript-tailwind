@@ -11,9 +11,12 @@ import { setDoc, doc } from 'firebase/firestore'
 import { ChangeEvent, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import { modalState, submissionData } from '../../../atoms/modalAtoms'
-import { db } from '../../../firebase'
-import { AddedSeason } from '../../../typings'
+import {
+  modalState,
+  submissionData,
+} from '../../../../atoms/addSeasonModalAtoms'
+import { db } from '../../../../firebase'
+import { AddedSeason } from '../../../../typings'
 
 // interface Inputs {
 //   seasonName: string
