@@ -1,19 +1,18 @@
-import { valueToPercent } from '@mui/base'
-import { ChangeEvent, useState } from 'react'
+import { setDoc, doc, getDoc } from 'firebase/firestore'
+import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 import { modalState, submissionData } from '../../../atoms/modalAtoms'
+import { db } from '../../../firebase'
 import { AddedSeason } from '../../../typings'
 
-// interface Inputs {
-//   seasonName: string
-//   divisionsName: { name: string }[]
-// }
-
 function AddSeason() {
-  const [divisions, setDivisions] = useState([{ name: '' }])
-
+  const Default_Division_Name = 'Division 1'
   const MAX_NUMBER_DIVISIONS = 2
+
+  const [divisions, setDivisions] = useState([
+    { name: `${Default_Division_Name}` },
+  ])
 
   const {
     register,
@@ -22,17 +21,7 @@ function AddSeason() {
     watch,
     reset,
     formState: { errors },
-  } = useForm<AddedSeason>({ shouldUnregister: true })
-
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { value } = e.target
-    const list = [...divisions]
-    list[index].name = value
-    setDivisions(list)
-  }
+  } = useForm<AddedSeason>()
 
   const handleRemoveButton = (e: any, index: number) => {
     e.preventDefault()
@@ -44,7 +33,7 @@ function AddSeason() {
 
   const handleAddButton = (e: any) => {
     e.preventDefault()
-    const list = [...divisions, { name: '' }]
+    const list = [...divisions, { name: `Division ${divisions.length + 1}` }]
     setDivisions(list)
   }
 
@@ -52,10 +41,41 @@ function AddSeason() {
   const [showModal, setShowModal] = useRecoilState(modalState)
 
   const onSubmit: SubmitHandler<AddedSeason> = async (data: AddedSeason) => {
-    setFinalData(data)
-    setShowModal(true)
-    setDivisions([{ name: '' }])
-    reset({ seasonName: '', divisionsName: [{ name: '' }] })
+    const newData = {
+      seasonName: data.seasonName,
+      divisionsName: divisions.map((division, index) => {
+        return { name: division.name }
+      }),
+    }
+
+    const docSnap = await getDoc(
+      doc(db, 'Seasons', newData.seasonName.toUpperCase())
+    )
+    if (docSnap.exists()) {
+      alert('Season Name Found, please enter a different Season Name!')
+    } else {
+      await setDoc(doc(db, 'Seasons', newData!.seasonName.toUpperCase()), {})
+      newData.divisionsName.map(async (division) => {
+        await setDoc(
+          doc(
+            db,
+            'Seasons',
+            newData!.seasonName.toUpperCase(),
+            'Divisions',
+            division.name.toUpperCase()!
+          ),
+          {}
+        )
+      })
+      setFinalData(newData)
+      setShowModal(true)
+    }
+
+    setDivisions([{ name: `${Default_Division_Name}` }])
+    reset({
+      seasonName: '',
+      divisionsName: [{ name: `${Default_Division_Name}` }],
+    })
   }
 
   return (
@@ -68,10 +88,7 @@ function AddSeason() {
           Season name:
           <input
             type="text"
-            // name="seasonName"
             placeholder="Season Name"
-            // value={enteredSeasonName}
-            // onChange={(e) => setEnteredSeasonName(e.target.value)}
             className="ml-[1.4rem] px-1 tracking-wider placeholder:tracking-wider"
             maxLength={30}
             {...register('seasonName', { required: true })}
@@ -81,25 +98,10 @@ function AddSeason() {
           return (
             <div key={index} className="flex gap-2 tracking-wider">
               <div>
-                <label className="font-semibold">
-                  Division name:
-                  <input
-                    placeholder={`Division ${index + 1}`}
-                    className="ml-2 px-1 tracking-wider placeholder:tracking-wider"
-                    maxLength={30}
-                    {...register(`divisionsName.${index}.name`, {
-                      onChange: (e) => handleInputChange(e, index),
-                      required: true,
-                      value: division.name,
-                    })}
-                    type="text"
-                    onChange={(e) => handleInputChange(e, index)}
-                    value={division.name}
-                  />
-                </label>
+                <label className="font-semibold">{division.name}</label>
               </div>
               <div>
-                {divisions.length !== 1 && (
+                {divisions.length - 1 === index && divisions.length !== 1 && (
                   <button
                     className="content-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
                     onClick={(e) => handleRemoveButton(e, index)}
@@ -111,6 +113,7 @@ function AddSeason() {
             </div>
           )
         })}
+
         {divisions.length < MAX_NUMBER_DIVISIONS && (
           <button
             onClick={handleAddButton}
@@ -119,12 +122,14 @@ function AddSeason() {
             Add Division
           </button>
         )}
+
         <p className="text-sm">
           *** Max number of divisions allowed per season:{' '}
           <span className="text-lg font-bold text-[#b71c1c]">
             {MAX_NUMBER_DIVISIONS}
           </span>
         </p>
+
         <button
           type="submit"
           className="mt-2 w-[30%] justify-self-center rounded bg-[#00838f] px-1 font-bold tracking-wider text-white hover:bg-[#006064]"

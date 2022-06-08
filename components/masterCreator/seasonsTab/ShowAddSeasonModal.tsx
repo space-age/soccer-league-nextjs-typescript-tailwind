@@ -15,7 +15,7 @@ function ShowAddSeasonModal() {
     <MuiModal
       open={showModal}
       onClose={handleClose}
-      className="mx-auto my-auto h-[50%] w-[25%] border-2 border-black bg-[#64b5f6] p-4"
+      className="mx-auto my-auto h-[40%] w-[25%] border-2 border-black bg-[#64b5f6] p-4"
     >
       <div className="text-xl font-semibold text-white">
         <h2>Submission has been completed!</h2>
@@ -24,19 +24,21 @@ function ShowAddSeasonModal() {
         <div className="p-5">
           <p className="pb-5">
             Season name:{' '}
-            <span className="text-yellow-300">{data?.seasonName}</span>
+            <span className="capitalize text-yellow-300">
+              {data?.seasonName}
+            </span>
           </p>
-
+          <p>Divisions:</p>
           {data?.divisionsName.map((division, index) => (
-            <p key={index}>
-              Division {index}:{' '}
-              <span className="text-yellow-300">{division.name}</span>
+            <p key={index} className="pl-8 text-yellow-300">
+              {division.name}
+              {/* <span className="text-yellow-300"> {division.name}</span> */}
             </p>
           ))}
         </div>
-        <p className="text-red-400">
+        {/* <p className="pt-10 text-sm text-red-400">
           Click anywhere outside the window to close
-        </p>
+        </p> */}
       </div>
     </MuiModal>
   )
