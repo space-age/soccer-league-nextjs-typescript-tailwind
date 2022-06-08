@@ -8,15 +8,20 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import useSeasonList from '../../../../hooks/useSeasonList'
 import SeasonList from '../SeasonList'
 import ShowRemoveSeasonModal from './ShowRemoveSeasonModal'
+import { useState } from 'react'
 
 function DeleteSeason() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveSeason)
   const data = useRecoilValue(selectedSeason)
 
+  const [deleteSelected, setDeletedSelected] = useState(true)
   const handleDeleteSeason = () => {
     if (!data || data.length === 0) {
-      return
-    } else setShowModal(true)
+      setDeletedSelected(false)
+    } else {
+      setDeletedSelected(true)
+      setShowModal(true)
+    }
   }
 
   return (
@@ -32,6 +37,9 @@ function DeleteSeason() {
       <div className="mt-3  py-2">
         <p className="text-xl">Select season to delete:</p>
         <SeasonList />
+        {!deleteSelected && (
+          <p className="text-sm text-[red]">*** Please select a season</p>
+        )}
         <button
           onClick={handleDeleteSeason}
           className="mt-2 w-[18%] content-start justify-self-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
