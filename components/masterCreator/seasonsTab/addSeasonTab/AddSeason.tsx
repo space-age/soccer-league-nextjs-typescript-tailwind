@@ -55,13 +55,16 @@ function AddSeason() {
     if (docSnap.exists()) {
       alert('Season Name Found, please enter a different Season Name!')
     } else {
-      await setDoc(doc(db, 'Seasons', newData!.seasonName.toUpperCase()), {})
+      await setDoc(
+        doc(db, 'Seasons', newData!.seasonName.toUpperCase().trim()),
+        {}
+      ) //had to set season name first or else it will not be modifyable in firebase
       newData.divisionsName.map(async (division) => {
         await setDoc(
           doc(
             db,
             'Seasons',
-            newData!.seasonName.toUpperCase(),
+            newData!.seasonName.toUpperCase().trim(),
             'Divisions',
             division.name.toUpperCase()!
           ),
