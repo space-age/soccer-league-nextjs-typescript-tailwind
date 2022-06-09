@@ -1,9 +1,6 @@
 import MuiModal from '@mui/material/Modal'
 
-import {
-  modalState,
-  submissionData,
-} from '../../../../atoms/addSeasonModalAtoms'
+import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 function ShowAddSeasonModal() {

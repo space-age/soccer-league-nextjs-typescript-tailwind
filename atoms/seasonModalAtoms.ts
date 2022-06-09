@@ -10,3 +10,8 @@ export const submissionData = atom<AddedSeason | null>({
   key: 'submissionData',
   default: null,
 })
+
+export const modalStateRemoveSeason = atom<boolean>({
+  key: 'modalStateRemoveSeason',
+  default: false,
+})

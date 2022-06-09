@@ -1,9 +1,7 @@
 import MuiModal from '@mui/material/Modal'
 
-import {
-  modalStateRemoveSeason,
-  selectedSeason,
-} from '../../../../atoms/removeSeasonModalAtoms'
+import { selectedSeason } from '../../../../atoms/seasonAtoms'
+import { modalStateRemoveSeason } from '../../../../atoms/seasonModalAtoms'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { deleteDoc, doc } from 'firebase/firestore'

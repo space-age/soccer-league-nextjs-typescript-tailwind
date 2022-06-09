@@ -1,18 +1,16 @@
-import {
-  modalStateRemoveSeason,
-  selectedSeason,
-} from '../../../../atoms/removeSeasonModalAtoms'
+import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
+import { modalStateRemoveSeason } from '../../../../atoms/seasonModalAtoms'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 import useSeasonList from '../../../../hooks/useSeasonList'
-import SeasonList from '../SeasonList'
+import SeasonList from '../../commonComponents/seasonsData/SeasonList'
 import ShowRemoveSeasonModal from './ShowRemoveSeasonModal'
 import { useState } from 'react'
 
 function DeleteSeason() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveSeason)
-  const data = useRecoilValue(selectedSeason)
+  const data = useRecoilValue(selectedDivision)
 
   const [deleteSelected, setDeletedSelected] = useState(true)
   const handleDeleteSeason = () => {

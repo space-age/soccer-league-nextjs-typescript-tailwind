@@ -8,9 +8,6 @@ interface SeasonList {
 function useSeasonList() {
   const [list, setList] = useState<SeasonList[] | DocumentData[]>([])
 
-  // const snapshot = await db.collection('Seasons').get()
-  // return snapshot.docs.map(doc => doc.data());
-
   useEffect(() => {
     return onSnapshot(collection(db, 'Seasons'), (snapshot) => {
       setList(

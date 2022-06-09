@@ -18,9 +18,13 @@ import ArrowButton from '../components/masterCreator/masterCreatorMain/ArrowButt
 import TabPanel from '../components/masterCreator/masterCreatorMain/TabPanel'
 
 import useAuth from '../hooks/useAuth'
+import Head from 'next/head'
+
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
+
+import { useRecoilState } from 'recoil'
+import { selectedSeason, selectedDivision } from '../atoms/seasonAtoms'
 
 function a11yProps(index: number) {
   return {
@@ -39,7 +43,13 @@ function MainHead() {
 }
 export default function VerticalTabs() {
   const [value, setValue] = useState(0)
+
+  const [season, setSeason] = useRecoilState(selectedSeason)
+  const [division, setDivision] = useRecoilState(selectedDivision)
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setSeason('')
+    setDivision('')
     setValue(newValue)
   }
 

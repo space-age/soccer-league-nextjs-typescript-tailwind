@@ -31,3 +31,15 @@ export interface AddedSeason {
   seasonName: string
   divisionsName: { name: string }[]
 }
+
+export interface AddedTeam {
+  teams: { name: string }[]
+}
+
+export interface TeamData {
+  name: string
+  gamesPlayed: string[]
+  goalsScored: number[]
+  goalsAgainst: number[]
+  teamAgainst: string[]
+}

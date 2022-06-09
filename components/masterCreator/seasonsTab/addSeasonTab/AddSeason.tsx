@@ -2,10 +2,7 @@ import { setDoc, doc, getDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
-import {
-  modalState,
-  submissionData,
-} from '../../../../atoms/addSeasonModalAtoms'
+import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { db } from '../../../../firebase'
 import { AddedSeason } from '../../../../typings'
 import ShowAddSeasonModal from './ShowAddSeasonModal'
