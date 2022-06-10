@@ -48,8 +48,8 @@ export default function VerticalTabs() {
   const [division, setDivision] = useRecoilState(selectedDivision)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setSeason('')
-    setDivision('')
+    setSeason('') //will restart the season in dropdown selection in all app
+    setDivision('') //will restart the division in dropdown selection in all app
     setValue(newValue)
   }
 

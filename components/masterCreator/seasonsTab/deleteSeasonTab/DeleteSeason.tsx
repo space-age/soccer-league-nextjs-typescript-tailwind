@@ -29,8 +29,8 @@ function DeleteSeason() {
         as Teams, Schedules, Tables.{' '}
       </h2>
       <h3 className="text-lg text-[red]">
-        A warning window with a final deletion verification will be prompted
-        once delete is click to do a final confirmation on the deletion.
+        A warning window with a final deletion verification will be prompted.
+        Once delete is click to do a final confirmation on the deletion.
       </h3>
       <div className="mt-3  py-2">
         <p className="text-xl">Select season to delete:</p>

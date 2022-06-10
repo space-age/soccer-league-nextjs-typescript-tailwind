@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { selectedDivision, selectedSeason } from '../../../atoms/seasonAtoms'
 import AddTeam from './addTeamTab/AddTeam'
+import DeleteTeam from './deleteTeamTab/DeleteTeam'
 
 function TeamsTabsOptionsContainer() {
   const Tabs = [
@@ -9,7 +12,12 @@ function TeamsTabsOptionsContainer() {
 
   const [currentTab, setCurrentTab] = useState(Tabs[0].id)
 
+  const [season, setSeason] = useRecoilState(selectedSeason)
+  const [division, setDivision] = useRecoilState(selectedDivision)
+
   const handlerTabButton = (e: any) => {
+    setSeason('') //will restart the season in dropdown selection in all app
+    setDivision('') //will restart the division in dropdown selection in all app
     setCurrentTab(e.target.id)
   }
 
@@ -36,7 +44,7 @@ function TeamsTabsOptionsContainer() {
           <AddTeam />
         </div>
         <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
-          {/* <DeleteSeason /> */}
+          <DeleteTeam />
         </div>
       </div>
     </div>
