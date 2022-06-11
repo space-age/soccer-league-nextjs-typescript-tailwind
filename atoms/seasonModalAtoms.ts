@@ -15,3 +15,8 @@ export const modalStateRemoveSeason = atom<boolean>({
   key: 'modalStateRemoveSeason',
   default: false,
 })
+
+export const modalStateRemoveTeam = atom<boolean>({
+  key: 'modalStateRemoveTeam',
+  default: false,
+})

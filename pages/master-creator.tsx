@@ -24,7 +24,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { useRecoilState } from 'recoil'
-import { selectedSeason, selectedDivision } from '../atoms/seasonAtoms'
+import {
+  selectedSeason,
+  selectedDivision,
+  selectedTeam,
+} from '../atoms/seasonAtoms'
 
 function a11yProps(index: number) {
   return {
@@ -46,10 +50,12 @@ export default function VerticalTabs() {
 
   const [season, setSeason] = useRecoilState(selectedSeason)
   const [division, setDivision] = useRecoilState(selectedDivision)
+  const [team, setTeam] = useRecoilState(selectedTeam)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setSeason('') //will restart the season in dropdown selection in all app
     setDivision('') //will restart the division in dropdown selection in all app
+    setTeam('') //will restart the teams in dropdown selection in all app
     setValue(newValue)
   }
 

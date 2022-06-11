@@ -5,9 +5,9 @@ import { useState } from 'react'
 
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
 
-import { selectedTeam } from '../../../../atoms/seasonAtoms'
+import { selectedTeam } from '../../../../../atoms/seasonAtoms'
 import { useRecoilState } from 'recoil'
-import useTeamList from '../../../../hooks/useTeamList'
+import useTeamList from '../../../../../hooks/useTeamList'
 
 export default function TeamList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -15,7 +15,7 @@ export default function TeamList() {
 
   const [teamSelected, setTeamSelected] = useRecoilState(selectedTeam)
 
-  const seasonList = useTeamList()
+  const teamList = useTeamList()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -56,13 +56,13 @@ export default function TeamList() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {seasonList.map((team, index) => (
+          {teamList.map((team, index) => (
             <MenuItem
               key={index}
               className="hover:bg-[#cfd8dc]"
               onClick={() => handleClose(team.idName)}
             >
-              {team.idName} {team.idName.name}
+              {team.name}
             </MenuItem>
           ))}
         </Menu>

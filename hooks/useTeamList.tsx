@@ -3,10 +3,12 @@ import { collection, doc, DocumentData, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { selectedDivision, selectedSeason } from '../atoms/seasonAtoms'
+import { TeamList } from '../typings'
 
-interface TeamList {
-  idName: string
-}
+// interface TeamList {
+//   idName: string
+// }
+
 function useTeamList() {
   const [list, setList] = useState<TeamList[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)

@@ -1,17 +1,26 @@
 import MuiModal from '@mui/material/Modal'
 
-import { selectedSeason } from '../../../../atoms/seasonAtoms'
-import { modalStateRemoveSeason } from '../../../../atoms/seasonModalAtoms'
+import {
+  selectedDivision,
+  selectedSeason,
+  selectedTeam,
+} from '../../../../atoms/seasonAtoms'
+import { modalStateRemoveTeam } from '../../../../atoms/seasonModalAtoms'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { deleteDoc, doc } from 'firebase/firestore'
-import { db } from '../../../../firebase'
 import { useState } from 'react'
+import { db } from '../../../../firebase'
 
-function ShowRemoveSeasonModal() {
-  const [showModal, setShowModal] = useRecoilState(modalStateRemoveSeason)
+function ShowDeleteTeamModal() {
+  const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
+  const [team, setTeam] = useRecoilState(selectedTeam)
+  const [division, setDivision] = useRecoilState(selectedDivision)
   const [season, setSeason] = useRecoilState(selectedSeason)
-  const data = useRecoilValue(selectedSeason)
+
+  const teamData = useRecoilValue(selectedTeam)
+  const seasonsData = useRecoilValue(selectedSeason)
+  const divisionData = useRecoilValue(selectedDivision)
 
   const [deleteComplete, setDeleteComplete] = useState(false)
 
@@ -21,7 +30,19 @@ function ShowRemoveSeasonModal() {
   }
 
   const handleDeleteSeason = async () => {
-    await deleteDoc(doc(db, 'Seasons', data?.toString()!))
+    await deleteDoc(
+      doc(
+        db,
+        'Seasons',
+        seasonsData!,
+        'Divisions',
+        divisionData!,
+        'Teams',
+        teamData!
+      )
+    )
+    setTeam('')
+    setDivision('')
     setSeason('')
     setDeleteComplete(true)
     // setShowModal(false)
@@ -38,13 +59,13 @@ function ShowRemoveSeasonModal() {
       <div className="text-xl font-semibold text-white">
         {!deleteComplete && (
           <>
-            <h2>The following season will be deleted permanently.</h2>
+            <h2>The following team will be deleted permanently.</h2>
             <h3 className="mt-2 pl-3 font-bold text-[#ff922b]">
               This is your final warning. Once deleted, cannot be undone!
             </h3>
             <p className="mt-7">
-              Season to delete:{' '}
-              <span className="capitalize text-[#ff922b]">{data}</span>
+              Team to delete:{' '}
+              <span className="capitalize text-[#ff922b]">{teamData}</span>
             </p>
 
             <button
@@ -65,4 +86,4 @@ function ShowRemoveSeasonModal() {
   )
 }
 
-export default ShowRemoveSeasonModal
+export default ShowDeleteTeamModal

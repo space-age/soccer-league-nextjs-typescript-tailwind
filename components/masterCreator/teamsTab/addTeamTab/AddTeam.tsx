@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
-import DivisionList from '../../commonComponents/seasonsData/DivisionList'
-import SeasonList from '../../commonComponents/seasonsData/SeasonList'
+import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
+import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import AddTeamForm from './AddTeamForm'
 
 function AddTeam() {
@@ -39,16 +39,12 @@ function AddTeam() {
       </h2>
       <div className="mt-3 flex flex-row gap-10">
         <div className="flex flex-col">
-          <h3 className="text-2xl font-semibold underline underline-offset-2">
-            Select Season:
-          </h3>
+          <h3 className="text-2xl font-semibold">Select Season:</h3>
           <SeasonList />
         </div>
         {showDivisionList && (
           <div className="flex flex-col">
-            <h3 className="text-2xl font-semibold underline underline-offset-2">
-              Select Division:
-            </h3>
+            <h3 className="text-2xl font-semibold ">Select Division:</h3>
             <DivisionList />
           </div>
         )}

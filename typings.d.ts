@@ -43,3 +43,12 @@ export interface TeamData {
   goalsAgainst: number[]
   teamAgainst: string[]
 }
+
+export interface TeamList {
+  idName: string
+  name: string
+  gamesPlayed: string[]
+  goalsScored: number[]
+  goalsAgainst: number[]
+  teamAgainst: string[]
+}

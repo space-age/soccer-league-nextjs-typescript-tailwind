@@ -4,26 +4,29 @@ import MenuItem from '@mui/material/MenuItem'
 import { useState } from 'react'
 
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
+import useSeasonList from '../../../../../hooks/useSeasonList'
 
-import { selectedDivision } from '../../../../atoms/seasonAtoms'
+import {
+  selectedDivision,
+  selectedSeason,
+} from '../../../../../atoms/seasonAtoms'
 import { useRecoilState } from 'recoil'
-import useDivisionList from '../../../../hooks/useDivisionList'
 
-export default function DivisionList() {
+export default function SeasonList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  const [divisionSelected, setDivisionSelected] =
-    useRecoilState(selectedDivision)
-
-  const seasonList = useDivisionList()
+  const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
+  const [seasonDivision, setDivisionSelected] = useRecoilState(selectedDivision)
+  const seasonList = useSeasonList()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  function handleClose(divisionName: string) {
-    setDivisionSelected(divisionName)
+  function handleClose(seasonName: string) {
+    setSeasonSelected(seasonName)
+    if (!(!seasonName || seasonName.length === 0)) setDivisionSelected('')
     setAnchorEl(null)
   }
 
@@ -39,9 +42,9 @@ export default function DivisionList() {
           className=" bg-[#eeeeee] !text-black"
         >
           <h2 className="text-md font-semibold text-black sm:text-lg">
-            {!divisionSelected || divisionSelected.length === 0
-              ? 'Select Division'
-              : `${divisionSelected}`}
+            {!seasonSelected || seasonSelected.length === 0
+              ? 'Select Season'
+              : `${seasonSelected}`}
             <span>
               <ArrowDropDownOutlinedIcon />
             </span>
@@ -57,13 +60,13 @@ export default function DivisionList() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {seasonList.map((division, index) => (
+          {seasonList.map((season, index) => (
             <MenuItem
               key={index}
               className="hover:bg-[#cfd8dc]"
-              onClick={() => handleClose(division.idName)}
+              onClick={() => handleClose(season.idName)}
             >
-              {division.idName}
+              {season.idName}
             </MenuItem>
           ))}
         </Menu>
