@@ -1,8 +1,12 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { ChangeEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
+import {
+  inputsDisable,
+  showAddScheduleForm,
+} from '../../../../atoms/weekScheduleAtoms'
 import { db } from '../../../../firebase'
 import useScheduleList from '../../../../hooks/useScheduleList'
 
@@ -11,17 +15,16 @@ interface WeekSchedule {
   date: string
 }
 
-interface Props {
-  handleShowAddSchedulesForm: (state: boolean) => void
-}
-
-function CreateWeekForm({ handleShowAddSchedulesForm }: Props) {
+function CreateWeekForm() {
   const scheduleList = useScheduleList()
   const MIN_LENGTH_INPUT = 5
   const MAX_LENGTH_INPUT = 30
 
   const [inputWeekName, setInputWeekName] = useState('')
   const [checkWeekName, setCheckWeekName] = useState(false)
+  const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
+  const [showAddSchedulesForm, setShowAddSchedulesForm] =
+    useRecoilState(showAddScheduleForm)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
@@ -49,8 +52,9 @@ function CreateWeekForm({ handleShowAddSchedulesForm }: Props) {
       ),
       { date: data.date, weekNumber: scheduleList.length + 1 }
     )
-    handleShowAddSchedulesForm(true)
     setCheckWeekName(false) //resets to false for new form
+    setShowAddSchedulesForm(true)
+    setDisableInput(true)
   }
 
   /*
@@ -96,6 +100,7 @@ function CreateWeekForm({ handleShowAddSchedulesForm }: Props) {
           <label className=" font-semibold">
             Schedule-Week-{scheduleList.length + 1}
             <input
+              disabled={disableInput}
               placeholder="Week Name"
               className={`${
                 checkWeekName === true &&
@@ -123,6 +128,7 @@ function CreateWeekForm({ handleShowAddSchedulesForm }: Props) {
           {' '}
           Enter week date:
           <input
+            disabled={disableInput}
             type="date"
             min=""
             className="ml-1 px-1 tracking-wider placeholder:tracking-wider"
@@ -130,10 +136,12 @@ function CreateWeekForm({ handleShowAddSchedulesForm }: Props) {
           />
         </label>
         <button
-          disabled={checkWeekName ? true : false}
+          disabled={
+            (checkWeekName ? true : false) || disableInput ? true : false
+          }
           type="submit"
           className={`${
-            checkWeekName && 'opacity-50 '
+            (checkWeekName || disableInput) && 'opacity-50 '
           } mt-4 w-[18%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]`}
         >
           Add week schedule

@@ -35,6 +35,14 @@ export interface AddedSeason {
 export interface AddedTeam {
   teams: { name: string }[]
 }
+export interface AddedSchedule {
+  scheduleList: {
+    time: string
+    fieldNumber: number
+    teamA: string
+    teamB: string
+  }[]
+}
 
 export interface TeamData {
   name: string

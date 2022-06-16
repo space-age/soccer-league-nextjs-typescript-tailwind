@@ -20,21 +20,9 @@ function useFieldNumberList() {
       const docSnap = await getDoc(docRef)
       const data = docSnap.data()
       const fields = data?.fields
-      console.log(data)
-      console.log(fields)
-
       setList(fields)
     }
-
     fetchData()
-
-    // return onSnapshot(collection(db, 'More', 'Fields'), (snapshot) => {
-    //   setList(
-    //     snapshot.docs.map((doc) => ({
-    //       ...doc.data(),
-    //     }))
-    //   )
-    // })
   }, [db])
 
   return list

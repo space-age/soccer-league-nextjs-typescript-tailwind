@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
+import {
+  showAddScheduleForm,
+  showAddWeekScheduleForm,
+} from '../../../../atoms/weekScheduleAtoms'
 import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import AddScheduleForm from './AddScheduleForm'
@@ -10,14 +14,13 @@ function CreateWeekSchedule() {
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
 
-  const [showAddWeekScheduleForm, setShowAddWeekScheduleForm] = useState(false)
-  const [showAddSchedulesForm, setShowAddSchedulesForm] = useState(true)
-
   const [showDivisionList, setShowDivisionList] = useState(false)
 
-  const handleShowAddSchedulesForm = (state: boolean) => {
-    setShowAddSchedulesForm(state)
-  }
+  const [showAddWeekSchedulesForm, setShowAddWeekSchedulesForm] =
+    useRecoilState(showAddWeekScheduleForm)
+
+  const showAddSchedulesForm = useRecoilValue(showAddScheduleForm)
+  const showWeekSchedulesForm = useRecoilValue(showAddWeekScheduleForm)
 
   /*
     handles if season or division have been selected then set the state to true
@@ -26,8 +29,8 @@ function CreateWeekSchedule() {
   */
   useEffect(() => {
     if (!season || season?.length === 0 || !division || division?.length === 0)
-      setShowAddWeekScheduleForm(false)
-    else setShowAddWeekScheduleForm(true)
+      setShowAddWeekSchedulesForm(false)
+    else setShowAddWeekSchedulesForm(true)
   }, [season, division])
 
   /*
@@ -56,11 +59,7 @@ function CreateWeekSchedule() {
           </div>
         )}
       </div>
-      {showAddWeekScheduleForm && (
-        <CreateWeekForm
-          handleShowAddSchedulesForm={handleShowAddSchedulesForm}
-        />
-      )}
+      {showWeekSchedulesForm && <CreateWeekForm />}
       {showAddSchedulesForm && <AddScheduleForm />}
     </div>
   )
