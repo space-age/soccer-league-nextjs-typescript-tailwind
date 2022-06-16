@@ -1,10 +1,13 @@
 import MasterCreatorHeader from '../commonComponents/MasterCreatorHeader'
+import SchedulesTabsOptionsContainer from './SchedulesTabsOptionsContainer'
 
 function ScheduleTabContainer() {
   return (
     <div className="w-full text-black">
       <MasterCreatorHeader title="Schedule Editor" />
-      <div className="mt-5 h-[40vh] bg-red-300"></div>
+      <div className="my-5 rounded border-2 border-[#00838f] bg-[#cfd8dc]">
+        <SchedulesTabsOptionsContainer />
+      </div>
     </div>
   )
 }

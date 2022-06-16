@@ -1,17 +1,12 @@
-import { useState } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import {
-  selectedDivision,
-  selectedSeason,
-  selectedTeam,
-} from '../../../atoms/seasonAtoms'
-import AddTeam from './addTeamTab/AddTeam'
-import DeleteTeam from './deleteTeamTab/DeleteTeam'
+import React, { useState } from 'react'
+import CreateWeekSchedule from './createWeekSchedule/CreateWeekSchedule'
 
-function TeamsTabsOptionsContainer() {
+function SchedulesTabsOptionsContainer() {
   const Tabs = [
-    { id: '1', name: 'Add a Team' },
-    { id: '2', name: 'Delete a Team' },
+    { id: '1', name: 'Create Week Schedule' },
+    { id: '2', name: 'Add a Schedule' },
+    { id: '3', name: 'Modify Schedule' },
+    { id: '4', name: 'Record Week Scores' },
   ]
 
   const [currentTab, setCurrentTab] = useState(Tabs[0].id)
@@ -20,17 +15,17 @@ function TeamsTabsOptionsContainer() {
   // const [division, setDivision] = useRecoilState(selectedDivision)
   // const [team, setTeam] = useRecoilState(selectedTeam)
 
-  const resetSeason = useResetRecoilState(selectedSeason)
-  const resetDivision = useResetRecoilState(selectedDivision)
-  const resetTeam = useResetRecoilState(selectedTeam)
+  // const resetSeason = useResetRecoilState(selectedSeason)
+  // const resetDivision = useResetRecoilState(selectedDivision)
+  // const resetTeam = useResetRecoilState(selectedTeam)
 
   const handlerTabButton = (e: any) => {
     // setSeason('') //will restart the season in dropdown selection in all app
     // setDivision('') //will restart the division in dropdown selection in all app
     // setTeam('') //RESTARTS THE DROPDOWN MENU
-    resetSeason()
-    resetDivision()
-    resetTeam()
+    // resetSeason()
+    // resetDivision()
+    // resetTeam()
     setCurrentTab(e.target.id)
   }
 
@@ -54,14 +49,20 @@ function TeamsTabsOptionsContainer() {
         </div>
 
         <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-3`}>
-          <AddTeam />
+          <CreateWeekSchedule />
         </div>
         <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
-          <DeleteTeam />
+          {/* Add a Schedule*/}
+        </div>
+        <div className={`${currentTab === '3' ? '' : 'hidden'} mx-3 mt-3 `}>
+          {/* Modify Schedule */}
+        </div>
+        <div className={`${currentTab === '4' ? '' : 'hidden'} mx-3 mt-3 `}>
+          {/* Record Week Scores */}
         </div>
       </div>
     </div>
   )
 }
 
-export default TeamsTabsOptionsContainer
+export default SchedulesTabsOptionsContainer

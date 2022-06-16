@@ -93,7 +93,7 @@ function AddSeason() {
           <input
             type="text"
             placeholder="Season Name"
-            className="ml-[1.4rem] px-1 tracking-wider placeholder:tracking-wider"
+            className="ml-1 px-1 tracking-wider placeholder:tracking-wider"
             maxLength={30}
             {...register('seasonName', { required: true })}
           />

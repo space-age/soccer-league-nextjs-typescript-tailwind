@@ -23,7 +23,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import {
   selectedSeason,
   selectedDivision,
@@ -48,14 +48,21 @@ function MainHead() {
 export default function VerticalTabs() {
   const [value, setValue] = useState(0)
 
-  const [season, setSeason] = useRecoilState(selectedSeason)
-  const [division, setDivision] = useRecoilState(selectedDivision)
-  const [team, setTeam] = useRecoilState(selectedTeam)
+  // const [season, setSeason] = useRecoilState(selectedSeason)
+  // const [division, setDivision] = useRecoilState(selectedDivision)
+  // const [team, setTeam] = useRecoilState(selectedTeam)
+
+  const resetSeason = useResetRecoilState(selectedSeason)
+  const resetDivision = useResetRecoilState(selectedDivision)
+  const resetTeam = useResetRecoilState(selectedTeam)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setSeason('') //will restart the season in dropdown selection in all app
-    setDivision('') //will restart the division in dropdown selection in all app
-    setTeam('') //will restart the teams in dropdown selection in all app
+    // setSeason('') //will restart the season in dropdown selection in all app
+    // setDivision('') //will restart the division in dropdown selection in all app
+    // setTeam('') //will restart the teams in dropdown selection in all app
+    resetSeason()
+    resetDivision()
+    resetTeam()
     setValue(newValue)
   }
 

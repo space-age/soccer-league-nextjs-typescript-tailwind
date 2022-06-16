@@ -56,15 +56,24 @@ export default function TeamList() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {teamList.map((team, index) => (
+          {!teamList.length ? (
             <MenuItem
-              key={index}
-              className="hover:bg-[#cfd8dc]"
-              onClick={() => handleClose(team.idName)}
+              className="uppercase hover:bg-[#cfd8dc]"
+              onClick={() => handleClose('')}
             >
-              {team.name}
+              No Team Found
             </MenuItem>
-          ))}
+          ) : (
+            teamList.map((team, index) => (
+              <MenuItem
+                key={index}
+                className="hover:bg-[#cfd8dc]"
+                onClick={() => handleClose(team.idName)}
+              >
+                {team.name}
+              </MenuItem>
+            ))
+          )}
         </Menu>
       </div>
     </div>

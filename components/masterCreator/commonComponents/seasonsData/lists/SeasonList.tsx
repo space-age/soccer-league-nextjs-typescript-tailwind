@@ -60,15 +60,24 @@ export default function SeasonList() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {seasonList.map((season, index) => (
+          {!seasonList.length ? (
             <MenuItem
-              key={index}
-              className="hover:bg-[#cfd8dc]"
-              onClick={() => handleClose(season.idName)}
+              className="uppercase hover:bg-[#cfd8dc]"
+              onClick={() => handleClose('')}
             >
-              {season.idName}
+              No Season Found
             </MenuItem>
-          ))}
+          ) : (
+            seasonList.map((season, index) => (
+              <MenuItem
+                key={index}
+                className="hover:bg-[#cfd8dc]"
+                onClick={() => handleClose(season.idName)}
+              >
+                {season.idName}
+              </MenuItem>
+            ))
+          )}
         </Menu>
       </div>
     </div>

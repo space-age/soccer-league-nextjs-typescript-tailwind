@@ -52,3 +52,8 @@ export interface TeamList {
   goalsAgainst: number[]
   teamAgainst: string[]
 }
+
+export interface FieldsList {
+  address: string
+  fieldNumber: number
+}
