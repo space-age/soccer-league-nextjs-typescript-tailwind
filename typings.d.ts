@@ -61,6 +61,22 @@ export interface TeamList {
   teamAgainst: string[]
 }
 
+export interface WeekScheduleList {
+  idName: string
+  date: string
+  weekNumber: number
+}
+
+export interface ScheduleList {
+  idName: string
+  time: string
+  fieldNumber: number
+  teamA: string
+  teamB: string
+  scoredA: number | null
+  scoredB: number | null
+}
+
 export interface FieldsList {
   address: string
   fieldNumber: number

@@ -1,12 +1,18 @@
+import { doc, setDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import {
+  selectedDivision,
+  selectedScheduleWeek,
+  selectedSeason,
+} from '../../../../atoms/seasonAtoms'
 import {
   inputsDisable,
   showAddScheduleForm,
   showAddWeekScheduleForm,
 } from '../../../../atoms/weekScheduleAtoms'
+import { db } from '../../../../firebase'
 import useFieldNumberList from '../../../../hooks/useFieldNumberList'
 import useTeamList from '../../../../hooks/useTeamList'
 import useTimesList from '../../../../hooks/useTimesList'
@@ -19,6 +25,10 @@ function AddScheduleForm() {
 
   const resetSeason = useResetRecoilState(selectedSeason)
   const resetDivision = useResetRecoilState(selectedDivision)
+
+  const season = useRecoilValue(selectedSeason)
+  const division = useRecoilValue(selectedDivision)
+  const weekSchedule = useRecoilValue(selectedScheduleWeek)
 
   const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
   const [showAddSchedulesForm, setShowAddSchedulesForm] =
@@ -66,7 +76,23 @@ function AddScheduleForm() {
   }
 
   const onSubmit: SubmitHandler<AddedSchedule> = async (data) => {
-    console.log(data)
+    data.scheduleList.map(async (schedule) => {
+      const scheduleIdentifier = schedule.teamA + ' vs ' + schedule.teamB
+      await setDoc(
+        doc(
+          db,
+          'Seasons',
+          season!,
+          'Divisions',
+          division!,
+          'Weeks-Schedules',
+          weekSchedule!,
+          'Schedules',
+          scheduleIdentifier
+        ),
+        { ...schedule, scoredA: null, scoredB: null }
+      )
+    })
     setScheduleList([{ time: '', fieldNumber: 0, teamA: '', teamB: '' }])
     setDisableInput(false)
     setShowAddSchedulesForm(false)
@@ -92,7 +118,6 @@ function AddScheduleForm() {
                   Field:
                   <select
                     className=" m-2 cursor-pointer rounded border-2 bg-[#00838f]	p-1 text-lg text-white"
-                    // {...register(`teams.${index}.name`, {
                     {...register(`scheduleList.${index}.fieldNumber`, {
                       required: 'Field Number is required',
                     })}
@@ -215,14 +240,12 @@ function AddScheduleForm() {
 
         <div className="flex justify-center gap-10">
           <button
-            // disabled={checkWeekName ? true : false}
             onClick={handleAddButton}
             className={`mt-4 w-[18%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]`}
           >
             Add another schedule
           </button>
           <button
-            // disabled={checkWeekName ? true : false}
             type="submit"
             className="mt-4 w-[18%] content-start justify-self-start rounded bg-[#b71c1c] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#f44336]"
           >

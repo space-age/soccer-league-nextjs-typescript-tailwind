@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { selectedDivision, selectedSeason } from '../atoms/seasonAtoms'
 import { db } from '../firebase'
-import { TeamList } from '../typings'
+import { WeekScheduleList } from '../typings'
 
-function useScheduleList() {
-  const [list, setList] = useState<TeamList[] | DocumentData[]>([])
+function useWeeksSchedulesList() {
+  const [list, setList] = useState<WeekScheduleList[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
 
@@ -20,7 +20,14 @@ function useScheduleList() {
       return
     } else {
       return onSnapshot(
-        collection(db, 'Seasons', season!, 'Divisions', division!, 'Schedules'),
+        collection(
+          db,
+          'Seasons',
+          season!,
+          'Divisions',
+          division!,
+          'Weeks-Schedules'
+        ),
         (snapshot) => {
           setList(
             snapshot.docs.map((doc) => ({
@@ -36,4 +43,4 @@ function useScheduleList() {
   return list
 }
 
-export default useScheduleList
+export default useWeeksSchedulesList

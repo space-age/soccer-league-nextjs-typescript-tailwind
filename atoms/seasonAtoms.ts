@@ -15,7 +15,13 @@ export const selectedDivision = atom<string | null>({
   key: 'selectedDivision',
   default: '',
 })
+
 export const selectedTeam = atom<string | null>({
   key: 'selectedTeam',
+  default: '',
+})
+
+export const selectedScheduleWeek = atom<string | null>({
+  key: 'selectedScheduleWeek',
   default: '',
 })

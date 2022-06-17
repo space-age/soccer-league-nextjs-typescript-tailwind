@@ -2,13 +2,17 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { ChangeEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
+import {
+  selectedDivision,
+  selectedScheduleWeek,
+  selectedSeason,
+} from '../../../../atoms/seasonAtoms'
 import {
   inputsDisable,
   showAddScheduleForm,
 } from '../../../../atoms/weekScheduleAtoms'
 import { db } from '../../../../firebase'
-import useScheduleList from '../../../../hooks/useScheduleList'
+import useScheduleList from '../../../../hooks/useWeeksSchedulesList'
 
 interface WeekSchedule {
   weekName: string
@@ -25,6 +29,7 @@ function CreateWeekForm() {
   const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
   const [showAddSchedulesForm, setShowAddSchedulesForm] =
     useRecoilState(showAddScheduleForm)
+  const [weekSchedule, setWeekSchedule] = useRecoilState(selectedScheduleWeek)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
@@ -47,11 +52,12 @@ function CreateWeekForm() {
         season!,
         'Divisions',
         division!,
-        'Schedules',
+        'Weeks-Schedules',
         data.weekName.toUpperCase().trim()
       ),
       { date: data.date, weekNumber: scheduleList.length + 1 }
     )
+    setWeekSchedule(data.weekName.toUpperCase().trim())
     setCheckWeekName(false) //resets to false for new form
     setShowAddSchedulesForm(true)
     setDisableInput(true)
@@ -66,15 +72,24 @@ function CreateWeekForm() {
   */
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
+    console.log(value)
     if (value.length <= MIN_LENGTH_INPUT - 1) {
       setCheckWeekName(false)
       return
     }
 
     const temp = value.toUpperCase().trim() //had to set to z or else cant getDoc because will be empty string
-
+    console.log(temp)
     const docSnap = await getDoc(
-      doc(db, 'Seasons', season!, 'Divisions', division!, 'Schedules', temp)
+      doc(
+        db,
+        'Seasons',
+        season!,
+        'Divisions',
+        division!,
+        'Weeks-Schedules',
+        temp
+      )
     )
     if (docSnap.exists()) {
       setCheckWeekName(true)
