@@ -13,3 +13,8 @@ export const showAddWeekScheduleForm = atom<boolean>({
   key: 'showAddWeekScheduleForm',
   default: false,
 })
+
+export const showListOfSchedules = atom<boolean>({
+  key: 'showListOfSchedules',
+  default: false,
+})

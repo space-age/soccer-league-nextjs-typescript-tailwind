@@ -11,6 +11,7 @@ import {
   selectedSeason,
 } from '../../../../../atoms/seasonAtoms'
 import { useRecoilState } from 'recoil'
+import { showAddScheduleForm } from '../../../../../atoms/weekScheduleAtoms'
 
 export default function SeasonList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)

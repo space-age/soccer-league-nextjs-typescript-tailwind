@@ -11,6 +11,7 @@ import {
   inputsDisable,
   showAddScheduleForm,
   showAddWeekScheduleForm,
+  showListOfSchedules,
 } from '../../../../atoms/weekScheduleAtoms'
 import { db } from '../../../../firebase'
 import useFieldNumberList from '../../../../hooks/useFieldNumberList'
@@ -35,6 +36,9 @@ function AddScheduleForm() {
     useRecoilState(showAddScheduleForm)
   const [showAddWeekSchedulesForm, setShowAddWeekSchedulesForm] =
     useRecoilState(showAddWeekScheduleForm)
+
+  const [showListSchedules, setShowListSchedules] =
+    useRecoilState(showListOfSchedules)
 
   const [scheduleList, setScheduleList] = useState([
     { time: '', fieldNumber: 0, teamA: '', teamB: '' },
@@ -94,11 +98,12 @@ function AddScheduleForm() {
       )
     })
     setScheduleList([{ time: '', fieldNumber: 0, teamA: '', teamB: '' }])
-    setDisableInput(false)
-    setShowAddSchedulesForm(false)
-    setShowAddWeekSchedulesForm(false)
-    resetSeason()
-    resetDivision()
+    setShowListSchedules(true) // set to true, will show the lsit of schedules
+    // setDisableInput(false) //enables inputs for add week schedule form
+    // setShowAddSchedulesForm(false) // hides the add schedule form, this component form
+    // setShowAddWeekSchedulesForm(false) //hides the add week schedule form
+    // resetSeason() // resets tod default value for the dropdown option for seasons
+    // resetDivision() // resets tod default value for the dropdown option for divisions
   }
 
   return (
