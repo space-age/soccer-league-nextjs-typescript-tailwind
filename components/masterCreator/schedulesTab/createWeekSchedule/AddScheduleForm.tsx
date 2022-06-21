@@ -24,24 +24,23 @@ function AddScheduleForm() {
   const timesList = useTimesList()
   const teamList = useTeamList()
 
-  const resetSeason = useResetRecoilState(selectedSeason)
-  const resetDivision = useResetRecoilState(selectedDivision)
+  // const resetSeason = useResetRecoilState(selectedSeason)
+  // const resetDivision = useResetRecoilState(selectedDivision)
+  // const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
+  // const [showAddSchedulesForm, setShowAddSchedulesForm] =
+  //   useRecoilState(showAddScheduleForm)
+  // const [showAddWeekSchedulesForm, setShowAddWeekSchedulesForm] =
+  //   useRecoilState(showAddWeekScheduleForm)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
   const weekSchedule = useRecoilValue(selectedScheduleWeek)
 
-  const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
-  const [showAddSchedulesForm, setShowAddSchedulesForm] =
-    useRecoilState(showAddScheduleForm)
-  const [showAddWeekSchedulesForm, setShowAddWeekSchedulesForm] =
-    useRecoilState(showAddWeekScheduleForm)
-
   const [showListSchedules, setShowListSchedules] =
     useRecoilState(showListOfSchedules)
 
   const [scheduleList, setScheduleList] = useState([
-    { time: '', fieldNumber: 0, teamA: '', teamB: '' },
+    { time: '', fieldNumber: null, teamA: '', teamB: '' },
   ])
 
   const {
@@ -50,6 +49,7 @@ function AddScheduleForm() {
     handleSubmit,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<AddedSchedule>({ shouldUnregister: true })
 
@@ -60,7 +60,7 @@ function AddScheduleForm() {
     e.preventDefault()
     const list = [
       ...scheduleList,
-      { time: '', fieldNumber: 0, teamA: '', teamB: '' },
+      { time: '', fieldNumber: null, teamA: '', teamB: '' },
     ]
     setScheduleList(list)
   }
@@ -73,15 +73,15 @@ function AddScheduleForm() {
     const list = [...scheduleList]
     list.splice(index, 1)
     setScheduleList(list)
-    unregister(`scheduleList.${index}.time`)
     unregister(`scheduleList.${index}.fieldNumber`)
     unregister(`scheduleList.${index}.teamA`)
     unregister(`scheduleList.${index}.teamB`)
+    unregister(`scheduleList.${index}.time`)
   }
 
   const onSubmit: SubmitHandler<AddedSchedule> = async (data) => {
     data.scheduleList.map(async (schedule) => {
-      const scheduleIdentifier = schedule.teamA + ' vs ' + schedule.teamB
+      const scheduleName = schedule.teamA + ' vs ' + schedule.teamB
       await setDoc(
         doc(
           db,
@@ -92,18 +92,42 @@ function AddScheduleForm() {
           'Weeks-Schedules',
           weekSchedule!,
           'Schedules',
-          scheduleIdentifier
+          scheduleName
         ),
         { ...schedule, scoredA: null, scoredB: null }
       )
     })
-    setScheduleList([{ time: '', fieldNumber: 0, teamA: '', teamB: '' }])
+    setScheduleList([{ time: '', fieldNumber: null, teamA: '', teamB: '' }])
+    reset({
+      scheduleList: [{ time: '', fieldNumber: null, teamA: '', teamB: '' }],
+    })
     setShowListSchedules(true) // set to true, will show the lsit of schedules
     // setDisableInput(false) //enables inputs for add week schedule form
     // setShowAddSchedulesForm(false) // hides the add schedule form, this component form
     // setShowAddWeekSchedulesForm(false) //hides the add week schedule form
-    // resetSeason() // resets tod default value for the dropdown option for seasons
-    // resetDivision() // resets tod default value for the dropdown option for divisions
+    // resetSeason() // resets to default value for the dropdown option for seasons
+    // resetDivision() // resets to default value for the dropdown option for divisions
+  }
+
+  /*
+    Handles input changes for the select dropdown menu options
+    Depending of the attribute passed in, it will modify the array 
+    accordingly to the attribue
+    And return the new schedule list 
+    Reason to do this is because we need to keep track of inputs entered, incase deletion occurs
+  */
+  const handleInputChanges = (e: any, index: number, attribute: string) => {
+    e.preventDefault()
+    const { value } = e.target
+    console.log(value)
+    const newArray = [...scheduleList]
+
+    attribute === 'fieldNumber' && (newArray[index].fieldNumber = value)
+    attribute === 'teamA' && (newArray[index].teamA = value)
+    attribute === 'teamB' && (newArray[index].teamB = value)
+    attribute === 'time' && (newArray[index].time = value)
+
+    attribute !== null && setScheduleList(newArray)
   }
 
   return (
@@ -119,13 +143,19 @@ function AddScheduleForm() {
           return (
             <div key={index} className="flex flex-col">
               <div className="grid grid-cols-7 items-center justify-items-center overflow-auto rounded-lg border-2 border-[#00838f] bg-[#cfd8dc]  px-2 text-xl font-semibold shadow-lg ">
+                {/* Field Selection */}
                 <label>
                   Field:
                   <select
                     className=" m-2 cursor-pointer rounded border-2 bg-[#00838f]	p-1 text-lg text-white"
                     {...register(`scheduleList.${index}.fieldNumber`, {
-                      required: 'Field Number is required',
+                      required: true,
+                      onChange: (e) =>
+                        handleInputChanges(e, index, 'fieldNumber'),
                     })}
+                    value={
+                      schedule.fieldNumber === null ? '' : schedule.fieldNumber
+                    }
                   >
                     <option className="mb-3" value="">
                       Select
@@ -156,15 +186,17 @@ function AddScheduleForm() {
                     )}
                   </select>
                 </label>
-
+                {/* Team A selection */}
                 <div className="col-start-2 col-end-4 px-3">
                   <label>
                     Team A:
                     <select
                       className=" m-2 cursor-pointer rounded border-2 bg-[#00838f]	p-1 text-lg text-white"
                       {...register(`scheduleList.${index}.teamA`, {
-                        required: 'Team A is required',
+                        required: true,
+                        onChange: (e) => handleInputChanges(e, index, 'teamA'),
                       })}
+                      value={schedule.teamA === null ? '' : schedule.teamA}
                     >
                       <option className="mb-3" value="">
                         Select
@@ -186,14 +218,17 @@ function AddScheduleForm() {
                   <p className="self-center">vs.</p>
                   <p className="self-center text-[#00acc1]">(Goals)</p>
                 </div>
+                {/* Team B selection */}
                 <div className="col-start-5 col-end-7 px-3">
                   <label>
                     Team B:
                     <select
                       className=" m-2 cursor-pointer rounded border-2 bg-[#00838f]	p-1 text-lg text-white"
                       {...register(`scheduleList.${index}.teamB`, {
-                        required: 'Team B is required',
+                        required: true,
+                        onChange: (e) => handleInputChanges(e, index, 'teamB'),
                       })}
+                      value={schedule.teamB === null ? '' : schedule.teamB}
                     >
                       <option className="mb-3" value="">
                         Select
@@ -210,13 +245,16 @@ function AddScheduleForm() {
                     </select>
                   </label>
                 </div>
+                {/* Time selection */}
                 <label>
                   Time:
                   <select
                     className=" m-2 cursor-pointer rounded border-2 bg-[#00838f]	p-1 text-lg text-white"
                     {...register(`scheduleList.${index}.time`, {
-                      required: 'Time is required',
+                      required: true,
+                      onChange: (e) => handleInputChanges(e, index, 'time'),
                     })}
+                    value={schedule.time === null ? '' : schedule.time}
                   >
                     <option className="mb-3" value="">
                       Select

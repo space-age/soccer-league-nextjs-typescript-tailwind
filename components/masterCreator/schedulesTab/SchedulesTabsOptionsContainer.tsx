@@ -31,7 +31,7 @@ function SchedulesTabsOptionsContainer() {
   }
 
   return (
-    <div className="">
+    <div>
       <div>
         <div className="bg-[#455a64] p-2"></div>
         <div className="flex  text-lg ">

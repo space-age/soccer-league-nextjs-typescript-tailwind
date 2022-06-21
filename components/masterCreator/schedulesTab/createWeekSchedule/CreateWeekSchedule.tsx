@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import {
   selectedDivision,
   selectedScheduleWeek,
@@ -70,6 +70,18 @@ function CreateWeekSchedule() {
     } else setShowDivisionList(true)
   }, [season])
 
+  const resetSeason = useResetRecoilState(selectedSeason)
+  const resetDivision = useResetRecoilState(selectedDivision)
+
+  const handleAnotherWeekScheduleButton = () => {
+    setShowSchedulesForm(false)
+    setShowAddWeekSchedulesForm(false)
+    setDisableInput(false)
+    setShowScheduleList(false)
+    resetSeason() // resets to default value for the dropdown option for seasons
+    resetDivision() // resets to default value for the dropdown option for divisions
+  }
+
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
       <h2 className="text-2xl font-bold text-[#006064]">
@@ -90,17 +102,25 @@ function CreateWeekSchedule() {
       {showWeekSchedulesForm && <CreateWeekForm />}
       {showAddSchedulesForm && <AddScheduleForm />}
       {showListSchedules && (
-        <div className="my-5 rounded-sm border-2  border-[#ccc] bg-[#eeeeee] p-3">
-          <div>
-            <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
-              Schedules for:{' '}
-              <span className="text-[#006064]">{selectedWeek}</span>
-            </h1>
-            <CurrentScheduleList />
+        <>
+          <div className="my-5 rounded-sm border-2  border-[#ccc] bg-[#eeeeee] p-3">
+            <div>
+              <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
+                Schedules for:{' '}
+                <span className="text-[#006064]">{selectedWeek}</span>
+              </h1>
+              <CurrentScheduleList />
+            </div>
           </div>
-          <h3>Done Submitting Schedules Click the button to restart form</h3>
-          <button>Finish Submitting Schedules</button>
-        </div>
+          <div className="flex justify-center">
+            <button
+              onClick={handleAnotherWeekScheduleButton}
+              className="m-auto mt-4 w-[30%] rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
+            >
+              Add another Week
+            </button>
+          </div>
+        </>
       )}
     </div>
   )

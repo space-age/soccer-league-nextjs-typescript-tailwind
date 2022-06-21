@@ -73,4 +73,9 @@
   .masterCreator--Tab {
     @apply !justify-start !pl-5 !text-3xl !normal-case hover:!text-[white];
   }
+
+  /* Week Schedule Label */
+  .schedule--label {
+    @apply ml-2 mb-2 text-3xl font-bold capitalize text-[#006064] underline decoration-[#00838f] underline-offset-1;
+  }
 }

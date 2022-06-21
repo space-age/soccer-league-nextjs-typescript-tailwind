@@ -38,7 +38,7 @@ export interface AddedTeam {
 export interface AddedSchedule {
   scheduleList: {
     time: string
-    fieldNumber: number
+    fieldNumber: number | null
     teamA: string
     teamB: string
   }[]
@@ -69,10 +69,10 @@ export interface WeekScheduleList {
 
 export interface ScheduleList {
   idName: string
-  time: string
-  fieldNumber: number
-  teamA: string
-  teamB: string
+  time: string | null
+  fieldNumber: number | null
+  teamA: string | null
+  teamB: string | null
   scoredA: number | null
   scoredB: number | null
 }

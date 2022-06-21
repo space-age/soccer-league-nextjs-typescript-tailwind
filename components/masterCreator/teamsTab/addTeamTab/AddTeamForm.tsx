@@ -152,10 +152,10 @@ function AddTeamForm() {
                     {...register(`teams.${index}.name`, {
                       onChange: (e) => handleInputChange(e, index),
                       required: true,
-                      value: team.name,
+                      // value: team.name,
                     })}
                     type="text"
-                    onChange={(e) => handleInputChange(e, index)}
+                    // onChange={(e) => handleInputChange(e, index)}
                     value={team.name}
                   />
                 </label>

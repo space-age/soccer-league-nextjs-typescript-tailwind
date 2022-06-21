@@ -1,37 +1,131 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useSchedulesList from '../../../../hooks/useSchedulesList'
+import { ScheduleList } from '../../../../typings'
+import Schedule from './Schedule'
 
 function CurrentScheduleList() {
   const scheduleList = useSchedulesList()
 
+  // Sorts the schedule list by field number first then by time
+  scheduleList.sort((a, b) => {
+    if (a.fieldNumber === b.fieldNumber) {
+      return a.time < b.time ? -1 : 1
+    } else {
+      return a.cofieldNumberlA < b.fieldNumber ? -1 : 1
+    }
+  })
+
   return (
     <>
+      <p className="schedule--label">Field 1</p>
       {scheduleList.map((list, index) => {
-        return (
-          <div
-            key={index}
-            className="my-4 grid w-full  grid-cols-7 justify-items-center overflow-auto rounded-lg border-2 border-[#00838f] bg-[#cfd8dc]  px-2 py-3 font-semibold shadow-lg"
-          >
-            <p className="text-[#00acc1]">Field: {list.fieldNumber}</p>
-            <div className="col-start-2 col-end-4 px-3">
-              <p className="overflow-hidden text-clip">{list.teamA}</p>
-            </div>
-            <div className="flex flex-row gap-3 self-center ">
-              <p className="self-center text-[#00acc1]">
-                {list.scoredA === null ? 'TBD' : list.scoredA}
-              </p>
-              <p className="self-center">vs.</p>
-              <p className="self-center text-[#00acc1]">
-                {' '}
-                {list.scoredB === null ? 'TBD' : list.scoredB}
-              </p>
-            </div>
-            <div className="col-start-5 col-end-7 px-3">
-              <p className="overflow-hidden text-ellipsis">{list.teamB}</p>
-            </div>
-            <p className="text-[#00acc1]">Time: {list.time}</p>
-          </div>
-        )
+        {
+          if (list.fieldNumber === '1') return <Schedule list={list} />
+        }
+      })}
+      <p className="schedule--label">Field 2</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '2') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 3</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '3') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 4</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '4') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 5</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '5') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 6</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '6') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 7</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '7') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 8</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '8') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
+      })}
+      <p className="schedule--label">Field 9</p>
+      {scheduleList.map((list, index) => {
+        {
+          let counter = 0
+          if (list.fieldNumber === '9') {
+            counter++
+            return <Schedule list={list} />
+          }
+
+          if (index === scheduleList.length - 1 && counter === 0)
+            return <p className="ml-4 text-xl">No Schedules found.</p>
+        }
       })}
     </>
   )
