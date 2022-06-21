@@ -16,18 +16,11 @@ function TeamsTabsOptionsContainer() {
 
   const [currentTab, setCurrentTab] = useState(Tabs[0].id)
 
-  // const [season, setSeason] = useRecoilState(selectedSeason)
-  // const [division, setDivision] = useRecoilState(selectedDivision)
-  // const [team, setTeam] = useRecoilState(selectedTeam)
-
   const resetSeason = useResetRecoilState(selectedSeason)
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetTeam = useResetRecoilState(selectedTeam)
 
   const handlerTabButton = (e: any) => {
-    // setSeason('') //will restart the season in dropdown selection in all app
-    // setDivision('') //will restart the division in dropdown selection in all app
-    // setTeam('') //RESTARTS THE DROPDOWN MENU
     resetSeason()
     resetDivision()
     resetTeam()

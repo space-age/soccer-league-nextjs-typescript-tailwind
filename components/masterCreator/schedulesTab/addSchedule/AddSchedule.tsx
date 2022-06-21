@@ -77,7 +77,7 @@ function AddSchedule() {
       {showTeamList && (
         <div className="flex flex-col">
           <h3 className="mt-3 text-2xl font-bold">
-            Next, select a weeek to add schedules
+            Next, select a week to add schedules
           </h3>
           <ScheduleList />
         </div>

@@ -88,7 +88,7 @@ function Header() {
             </p>
           </Link>
           <li className="headerSlash">/</li>
-          <Link href="/teams">
+          {/* <Link href="/teams">
             <p
               className={`${
                 isScrolled
@@ -99,7 +99,7 @@ function Header() {
               Teams
             </p>
           </Link>
-          <li className="headerSlash">/</li>
+          <li className="headerSlash">/</li> */}
           <Link href="/fields">
             <p
               className={`${

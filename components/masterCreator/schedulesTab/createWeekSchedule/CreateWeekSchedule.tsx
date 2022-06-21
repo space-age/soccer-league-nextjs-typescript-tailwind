@@ -58,28 +58,33 @@ function CreateWeekSchedule() {
   }, [season, division])
 
   /*
-  handles if season is selected, then will set the state to true so
-  division dropdown menu shows
+  handles if season is selected:
+    if no season selected,
+      then will hide the schedule form, reset division list, disable input name for week schedule, and hide schedule list
+    if season selected,
+     then will show the division dropdown menu 
   */
   useEffect(() => {
     if (!season || season?.length === 0) {
-      setShowSchedulesForm(false)
-      setShowDivisionList(false)
-      setDisableInput(false)
       setShowScheduleList(false)
+      setShowSchedulesForm(false)
+      setDisableInput(false)
+      setShowDivisionList(false)
     } else setShowDivisionList(true)
   }, [season])
 
   const resetSeason = useResetRecoilState(selectedSeason)
   const resetDivision = useResetRecoilState(selectedDivision)
+  const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
 
   const handleAnotherWeekScheduleButton = () => {
-    setShowSchedulesForm(false)
-    setShowAddWeekSchedulesForm(false)
-    setDisableInput(false)
-    setShowScheduleList(false)
+    setShowSchedulesForm(false) // hides the add schedules form and resets the form
+    setShowAddWeekSchedulesForm(false) // hides week form and resets the form
+    setDisableInput(false) // enables the input for week schedule name for next form
+    setShowScheduleList(false) // hides schedule list
     resetSeason() // resets to default value for the dropdown option for seasons
     resetDivision() // resets to default value for the dropdown option for divisions
+    resetWeekSchedule() // resets to default value for the dropdown option for week schedule
   }
 
   return (

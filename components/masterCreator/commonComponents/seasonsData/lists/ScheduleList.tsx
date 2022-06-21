@@ -14,7 +14,6 @@ export default function ScheduleList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  // const [weekSelected, setWeekSelected] = useState('')
   const [weekSelected, setWeekSelected] = useRecoilState(selectedScheduleWeek)
 
   const scheduleWeekList = useWeeksSchedulesList()
@@ -24,9 +23,6 @@ export default function ScheduleList() {
   }
 
   function handleClose(name: string) {
-    // console.log(schedule)
-    // const selectedName =
-    //   'Week ' + schedule.weekNumber + '( ' + schedule.idName + ' )'
     setWeekSelected(name)
     setAnchorEl(null)
   }
@@ -73,16 +69,7 @@ export default function ScheduleList() {
               <MenuItem
                 key={index}
                 className="hover:bg-[#cfd8dc]"
-                onClick={
-                  () => handleClose(schedule.idName)
-                  // handleClose(
-                  //   'Week ' +
-                  //     schedule.weekNumber +
-                  //     '( ' +
-                  //     schedule.idName +
-                  //     ' )'
-                  // )
-                }
+                onClick={() => handleClose(schedule.idName)}
               >
                 Week {schedule.weekNumber} ({schedule.idName})
               </MenuItem>

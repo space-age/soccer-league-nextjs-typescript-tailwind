@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useSchedulesList from '../../../../hooks/useSchedulesList'
 import { ScheduleList } from '../../../../typings'
 import Schedule from './Schedule'
@@ -6,125 +6,82 @@ import Schedule from './Schedule'
 function CurrentScheduleList() {
   const scheduleList = useSchedulesList()
 
-  // Sorts the schedule list by field number first then by time
+  // Sorts the schedule list by time first then by field number
   scheduleList.sort((a, b) => {
-    if (a.fieldNumber === b.fieldNumber) {
-      return a.time < b.time ? -1 : 1
+    if (a.time === b.time) {
+      return a.fieldNumber < b.fieldNumber ? -1 : 1
     } else {
-      return a.cofieldNumberlA < b.fieldNumber ? -1 : 1
+      return a.time < b.time ? -1 : 1
     }
   })
 
+  let listCounter = 0
+
   return (
     <>
-      <p className="schedule--label">Field 1</p>
+      {/* List of games at 8am */}
+      <p className="schedule--label">8:00 AM</p>
+      {(scheduleList.length === 0 || scheduleList === undefined) && (
+        <p className="ml-4 text-xl">No Schedules found.</p>
+      )}
       {scheduleList.map((list, index) => {
         {
-          if (list.fieldNumber === '1') return <Schedule list={list} />
-        }
-      })}
-      <p className="schedule--label">Field 2</p>
-      {scheduleList.map((list, index) => {
-        {
-          let counter = 0
-          if (list.fieldNumber === '2') {
-            counter++
-            return <Schedule list={list} />
+          if (list.time === '08 AM') {
+            listCounter++
+            if (index === scheduleList.length - 1) listCounter = 0
+            return <Schedule key={index} list={list} />
           }
 
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
+          if (index === scheduleList.length - 1 && listCounter === 0)
+            return (
+              <p key={index} className="ml-4 text-xl">
+                No Schedules found.
+              </p>
+            )
         }
       })}
-      <p className="schedule--label">Field 3</p>
+
+      {/* List of games at 10am */}
+      <p className="schedule--label">10:00 AM</p>
+      {(scheduleList.length === 0 || scheduleList === undefined) && (
+        <p className="ml-4 text-xl">No Schedules found.</p>
+      )}
       {scheduleList.map((list, index) => {
         {
-          let counter = 0
-          if (list.fieldNumber === '3') {
-            counter++
-            return <Schedule list={list} />
+          if (list.time === '10 AM') {
+            listCounter++
+            if (index === scheduleList.length - 1) listCounter = 0
+            return <Schedule key={index} list={list} />
           }
 
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
+          if (index === scheduleList.length - 1 && listCounter === 0)
+            return (
+              <p key={index} className="ml-4 text-xl">
+                No Schedules found.
+              </p>
+            )
         }
       })}
-      <p className="schedule--label">Field 4</p>
+
+      {/* List of games at 12pm */}
+      <p className="schedule--label">12:00 PM</p>
+      {(scheduleList.length === 0 || scheduleList === undefined) && (
+        <p className="ml-4 text-xl">No Schedules found.</p>
+      )}
       {scheduleList.map((list, index) => {
         {
-          let counter = 0
-          if (list.fieldNumber === '4') {
-            counter++
-            return <Schedule list={list} />
+          if (list.time === '12 PM') {
+            listCounter++
+            if (index === scheduleList.length - 1) listCounter = 0
+            return <Schedule key={index} list={list} />
           }
 
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
-        }
-      })}
-      <p className="schedule--label">Field 5</p>
-      {scheduleList.map((list, index) => {
-        {
-          let counter = 0
-          if (list.fieldNumber === '5') {
-            counter++
-            return <Schedule list={list} />
-          }
-
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
-        }
-      })}
-      <p className="schedule--label">Field 6</p>
-      {scheduleList.map((list, index) => {
-        {
-          let counter = 0
-          if (list.fieldNumber === '6') {
-            counter++
-            return <Schedule list={list} />
-          }
-
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
-        }
-      })}
-      <p className="schedule--label">Field 7</p>
-      {scheduleList.map((list, index) => {
-        {
-          let counter = 0
-          if (list.fieldNumber === '7') {
-            counter++
-            return <Schedule list={list} />
-          }
-
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
-        }
-      })}
-      <p className="schedule--label">Field 8</p>
-      {scheduleList.map((list, index) => {
-        {
-          let counter = 0
-          if (list.fieldNumber === '8') {
-            counter++
-            return <Schedule list={list} />
-          }
-
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
-        }
-      })}
-      <p className="schedule--label">Field 9</p>
-      {scheduleList.map((list, index) => {
-        {
-          let counter = 0
-          if (list.fieldNumber === '9') {
-            counter++
-            return <Schedule list={list} />
-          }
-
-          if (index === scheduleList.length - 1 && counter === 0)
-            return <p className="ml-4 text-xl">No Schedules found.</p>
+          if (index === scheduleList.length - 1 && listCounter === 0)
+            return (
+              <p key={index} className="ml-4 text-xl">
+                No Schedules found.
+              </p>
+            )
         }
       })}
     </>

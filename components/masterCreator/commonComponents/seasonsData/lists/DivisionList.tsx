@@ -7,16 +7,18 @@ import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined
 
 import {
   selectedDivision,
+  selectedScheduleWeek,
   selectedSeason,
   selectedTeam,
 } from '../../../../../atoms/seasonAtoms'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import useDivisionList from '../../../../../hooks/useDivisionList'
 
 export default function DivisionList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
+  const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
   const [divisionSelected, setDivisionSelected] =
     useRecoilState(selectedDivision)
 
@@ -30,7 +32,11 @@ export default function DivisionList() {
 
   function handleClose(divisionName: string) {
     setDivisionSelected(divisionName)
-    if (!(!divisionName || divisionName.length === 0)) setTeamSelected('')
+    if (!(!divisionName || divisionName.length === 0)) {
+      setTeamSelected('')
+      resetWeekSchedule()
+    }
+
     setAnchorEl(null)
   }
 

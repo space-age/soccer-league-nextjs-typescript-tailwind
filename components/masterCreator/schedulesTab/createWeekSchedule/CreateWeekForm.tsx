@@ -26,9 +26,12 @@ function CreateWeekForm() {
 
   const [inputWeekName, setInputWeekName] = useState('')
   const [checkWeekName, setCheckWeekName] = useState(false)
+
   const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
+
   const [showAddSchedulesForm, setShowAddSchedulesForm] =
     useRecoilState(showAddScheduleForm)
+
   const [weekSchedule, setWeekSchedule] = useRecoilState(selectedScheduleWeek)
 
   const season = useRecoilValue(selectedSeason)
@@ -44,7 +47,6 @@ function CreateWeekForm() {
   } = useForm<WeekSchedule>({ shouldUnregister: true })
 
   const onSubmit: SubmitHandler<WeekSchedule> = async (data: WeekSchedule) => {
-    console.log(data)
     await setDoc(
       doc(
         db,
@@ -72,14 +74,12 @@ function CreateWeekForm() {
   */
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
-    console.log(value)
     if (value.length <= MIN_LENGTH_INPUT - 1) {
       setCheckWeekName(false)
       return
     }
 
     const temp = value.toUpperCase().trim() //had to set to z or else cant getDoc because will be empty string
-    console.log(temp)
     const docSnap = await getDoc(
       doc(
         db,

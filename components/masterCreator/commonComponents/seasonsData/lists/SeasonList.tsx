@@ -8,9 +8,10 @@ import useSeasonList from '../../../../../hooks/useSeasonList'
 
 import {
   selectedDivision,
+  selectedScheduleWeek,
   selectedSeason,
 } from '../../../../../atoms/seasonAtoms'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { showAddScheduleForm } from '../../../../../atoms/weekScheduleAtoms'
 
 export default function SeasonList() {
@@ -18,7 +19,10 @@ export default function SeasonList() {
   const open = Boolean(anchorEl)
 
   const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
-  const [seasonDivision, setDivisionSelected] = useRecoilState(selectedDivision)
+  // const [seasonDivision, setDivisionSelected] = useRecoilState(selectedDivision)
+  const resetDivision = useResetRecoilState(selectedDivision)
+  const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
+
   const seasonList = useSeasonList()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +31,12 @@ export default function SeasonList() {
 
   function handleClose(seasonName: string) {
     setSeasonSelected(seasonName)
-    if (!(!seasonName || seasonName.length === 0)) setDivisionSelected('')
+    if (!(!seasonName || seasonName.length === 0)) {
+      resetDivision()
+      resetWeekSchedule()
+      // setDivisionSelected('')
+    }
+
     setAnchorEl(null)
   }
 
