@@ -218,6 +218,7 @@ function AddScheduleForm() {
                   <p className="self-center">vs.</p>
                   <p className="self-center text-[#00acc1]">(Goals)</p>
                 </div>
+
                 {/* Team B selection */}
                 <div className="col-start-5 col-end-7 px-3">
                   <label>
@@ -245,6 +246,7 @@ function AddScheduleForm() {
                     </select>
                   </label>
                 </div>
+
                 {/* Time selection */}
                 <label>
                   Time:

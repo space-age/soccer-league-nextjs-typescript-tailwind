@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AddSchedule from './addSchedule/AddSchedule'
 import CreateWeekSchedule from './createWeekSchedule/CreateWeekSchedule'
+import EditScheduleContainer from './editSchedule/EditScheduleContainer'
 
 function SchedulesTabsOptionsContainer() {
   const Tabs = [
@@ -56,7 +57,7 @@ function SchedulesTabsOptionsContainer() {
           <AddSchedule />
         </div>
         <div className={`${currentTab === '3' ? '' : 'hidden'} mx-3 mt-3 `}>
-          {/* Modify Schedule */}
+          <EditScheduleContainer />
         </div>
         <div className={`${currentTab === '4' ? '' : 'hidden'} mx-3 mt-3 `}>
           {/* Record Week Scores */}
