@@ -117,7 +117,8 @@ function AddTeamForm() {
           'Teams',
           team.name.toUpperCase().trim()
         ),
-        { ...defaultTeamData, name: team.name.toUpperCase().trim() }
+        // { ...defaultTeamData, name: team.name.toUpperCase().trim() }
+        { name: team.name.toUpperCase().trim() }
       )
     })
     setDivisionSelected('')

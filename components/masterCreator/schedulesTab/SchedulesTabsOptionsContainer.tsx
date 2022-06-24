@@ -4,6 +4,7 @@ import DeleteWeekScheduleContainer from './deleteWeekScheduleTab/DeleteWeekSched
 import EditScheduleContainer from './editScheduleTab/EditScheduleContainer'
 import RecordWeekScoresContainer from './recordWeekScoresTab/RecordWeekScoresContainer'
 // import AddSchedule from './addScheduleTab/AddSchedule'
+import { v4 as uuidv4 } from 'uuid'
 
 function SchedulesTabsOptionsContainer() {
   const Tabs = [
@@ -41,7 +42,7 @@ function SchedulesTabsOptionsContainer() {
         <div className="flex  text-lg ">
           {Tabs.map((tab, index) => (
             <button
-              key={index}
+              key={uuidv4()}
               onClick={handlerTabButton}
               id={tab.id}
               className={`w-[20%] rounded-bl-lg

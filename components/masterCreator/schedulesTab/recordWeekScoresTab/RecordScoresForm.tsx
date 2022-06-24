@@ -2,6 +2,7 @@ import { ScoreRounded } from '@mui/icons-material'
 import {
   arrayRemove,
   arrayUnion,
+  deleteField,
   doc,
   DocumentData,
   FieldValue,
@@ -16,10 +17,12 @@ import {
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
 import { db } from '../../../../firebase'
-import useFieldNumberList from '../../../../hooks/useFieldNumberList'
 import useTeamList from '../../../../hooks/useTeamList'
-import useTimesList from '../../../../hooks/useTimesList'
-import { ScheduleList } from '../../../../typings'
+import { ScheduleList, TeamList } from '../../../../typings'
+import { v4 as uuidv4 } from 'uuid'
+
+// import useFieldNumberList from '../../../../hooks/useFieldNumberList'
+// import useTimesList from '../../../../hooks/useTimesList'
 
 interface Props {
   list: ScheduleList | DocumentData
@@ -27,21 +30,13 @@ interface Props {
 }
 
 function RecordScoresForm({ list, handleEditClick }: Props) {
-  const fieldsList = useFieldNumberList()
+  // const fieldsList = useFieldNumberList()
+  // const timesList = useTimesList()
   const teamList = useTeamList()
-  const timesList = useTimesList()
 
   const seasonsData = useRecoilValue(selectedSeason)
   const divisionData = useRecoilValue(selectedDivision)
   const weekScheduleData = useRecoilValue(selectedScheduleWeek)
-
-  // const defaultTeamData = {
-  //   goalsAgainst: null,
-  //   goalsScored: null,
-  //   result: '',
-  //   teamAgainst: '',
-  //   weekName: '',
-  // }
 
   const handleCancelButton = () => {
     handleEditClick()
@@ -57,146 +52,136 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
     formState: { errors },
   } = useForm<ScheduleList>({ shouldUnregister: true })
 
+  const firebaseInsertData = async (
+    team: TeamList | DocumentData,
+    teamAorB: string,
+    data: ScheduleList
+  ) => {
+    const againstGoals = teamAorB === 'teamA' ? +data.scoredB! : +data.scoredA!
+    const scoredGoals = teamAorB === 'teamA' ? +data.scoredA! : +data.scoredB!
+    const teamAgainst = teamAorB === 'teamA' ? list.teamA : list.teamB
+
+    // Setting up whether team won or lost or draw
+    let finalScore = 'D'
+    if (teamAorB === 'teamA') {
+      if (data.scoredA! > data.scoredB!) finalScore = 'W'
+      if (data.scoredA! < data.scoredB!) finalScore = 'L'
+    }
+    if (teamAorB === 'teamB') {
+      if (data.scoredA! < data.scoredB!) finalScore = 'W'
+      if (data.scoredA! > data.scoredB!) finalScore = 'L'
+    }
+
+    // If gamesPlayed array does not exist in firebase field, then created
+    if (!team.gamesPlayed) {
+      const listRef = doc(
+        db,
+        'Seasons',
+        seasonsData!,
+        'Divisions',
+        divisionData!,
+        'Teams',
+        team.idName!
+      )
+      await updateDoc(listRef, {
+        gamesPlayed: arrayUnion({
+          goalsAgainst: againstGoals,
+          goalsScored: scoredGoals,
+          result: finalScore,
+          teamAgainst: teamAgainst,
+          weekName: list.idName,
+        }),
+      })
+    }
+
+    //If gamePlayed array already exists, then make modofications to the array
+    if (team.gamesPlayed) {
+      team.gamesPlayed.map(
+        async (
+          game: {
+            weekName: string
+            goalsAgainst: number
+            goaslScored: number
+            result: string
+            teamAgainst: string
+          },
+          teamIndex: number
+        ) => {
+          //If schedule already exists, then will modify the schedule data with the new scores entered
+          if (game.weekName === list.idName) {
+            const listRef = doc(
+              db,
+              'Seasons',
+              seasonsData!,
+              'Divisions',
+              divisionData!,
+              'Teams',
+              team.idName!
+            )
+            // taking care of the removing and iserting new edit data for week schedule
+            const tempTeamList = team.gamesPlayed // temp of team list to modify
+            tempTeamList.splice(teamIndex, 1) // remove the object found that matches the week we editing
+            //create object with new data we editing
+            const tempNewTeamGamePlayed = {
+              goalsAgainst: againstGoals,
+              goalsScored: scoredGoals,
+              result: finalScore,
+              teamAgainst: teamAgainst,
+              weekName: list.idName,
+            }
+            tempTeamList.splice(teamIndex, 0, tempNewTeamGamePlayed) //insert new object data in the index where we removed the match object
+            // Remove gamesPlayed array field from the document
+            await updateDoc(listRef, {
+              gamesPlayed: deleteField(),
+            })
+            // Add the new modify list to the gamesPlayed array
+            await updateDoc(listRef, {
+              gamesPlayed: tempTeamList,
+            })
+          }
+          // If at the end of the array gamesPlayed and no schedule found with the editing schedule, then add a new gamesPlayed object to the array
+          else if (teamIndex === team.gamesPlayed.length - 1) {
+            const listRef = doc(
+              db,
+              'Seasons',
+              seasonsData!,
+              'Divisions',
+              divisionData!,
+              'Teams',
+              team.idName!
+            )
+            await updateDoc(listRef, {
+              gamesPlayed: arrayUnion({
+                goalsAgainst: againstGoals,
+                goalsScored: scoredGoals,
+                result: finalScore,
+                teamAgainst: teamAgainst,
+                weekName: list.idName,
+              }),
+            })
+          }
+        }
+      )
+    }
+  }
+
   const onSubmit: SubmitHandler<ScheduleList> = async (data) => {
     const teamA = list.teamA
     const teamB = list.teamB
 
-    // This is for making additions to TEAM ACCORDING TO THE FINAL RESULT ENTERED
-    teamList.map((team, index) => {
+    // This is for making additions to TEAM ACCORDING TO THE FINAL SCORES ENTERED
+    teamList.map(async (team, index) => {
+      // For Team A
       if (team.name === teamA) {
-        team.gamesPlayed.map(
-          async (
-            game: {
-              weekName: string
-              goalsAgainst: number
-              goaslScored: number
-              result: string
-              teamAgainst: string
-            },
-            index: number
-          ) => {
-            let finalScore = 'D'
-            if (data.scoredA! > data.scoredB!) finalScore = 'W'
-            if (data.scoredA! < data.scoredB!) finalScore = 'L'
-            if (game.weekName === list.idName) {
-              const listRef = doc(
-                db,
-                'Seasons',
-                seasonsData!,
-                'Divisions',
-                divisionData!,
-                'Teams',
-                team.idName!
-              )
-
-              await updateDoc(listRef, {
-                gamesPlayed: arrayRemove({
-                  goalsAgainst: game.goalsAgainst,
-                  goalsScored: game.goaslScored,
-                  result: game.result,
-                  teamAgainst: game.teamAgainst,
-                  weekName: game.weekName,
-                }),
-
-                // goalsAgainst: data.scoredB!,
-                // goalsScored: +data.scoredA!,
-                // result: finalScore,
-                // teamAgainst: teamB,
-              })
-              await updateDoc(listRef, {
-                gamesPlayed: arrayUnion({
-                  goalsAgainst: +data.scoredB!,
-                  goalsScored: +data.scoredA!,
-                  result: finalScore,
-                  teamAgainst: teamB,
-                  weekName: list.idName,
-                }),
-
-                // goalsAgainst: data.scoredB!,
-                // goalsScored: +data.scoredA!,
-                // result: finalScore,
-                // teamAgainst: teamB,
-              })
-            } else if (index === team.gamesPlayed.length - 1) {
-              const listRef = doc(
-                db,
-                'Seasons',
-                seasonsData!,
-                'Divisions',
-                divisionData!,
-                'Teams',
-                team.idName!
-              )
-              await updateDoc(listRef, {
-                gamesPlayed: arrayUnion({
-                  goalsAgainst: +data.scoredB!,
-                  goalsScored: +data.scoredA!,
-                  result: finalScore,
-                  teamAgainst: teamB,
-                  weekName: list.idName,
-                }),
-              })
-            }
-          }
-        )
+        firebaseInsertData(team, 'teamA', data)
       }
       // For Team B
       if (team.name === teamB) {
-        team.gamesPlayed.map(
-          async (
-            game: {
-              weekName: string
-              goalsAgainst: number
-              goaslScored: number
-              result: string
-              teamAgainst: string
-            },
-            index: number
-          ) => {
-            let finalScore = 'D'
-            if (data.scoredA! < data.scoredB!) finalScore = 'W'
-            if (data.scoredA! > data.scoredB!) finalScore = 'L'
-            if (game.weekName === list.idName) {
-              const listRef = doc(
-                db,
-                'Seasons',
-                seasonsData!,
-                'Divisions',
-                divisionData!,
-                'Teams',
-                team.idName!
-              )
-              await updateDoc(listRef, {
-                goalsAgainst: +data.scoredA!,
-                goalsScored: +data.scoredB!,
-                result: finalScore,
-                teamAgainst: teamA,
-              })
-            } else if (index === team.gamesPlayed.length - 1) {
-              const listRef = doc(
-                db,
-                'Seasons',
-                seasonsData!,
-                'Divisions',
-                divisionData!,
-                'Teams',
-                team.idName!
-              )
-              await updateDoc(listRef, {
-                gamesPlayed: arrayUnion({
-                  goalsAgainst: +data.scoredA!,
-                  goalsScored: +data.scoredB!,
-                  result: finalScore,
-                  teamAgainst: teamA,
-                  weekName: list.idName,
-                }),
-              })
-            }
-          }
-        )
+        firebaseInsertData(team, 'teamB', data)
       }
     })
 
+    //Sets data in firebase for schedule with the new scores submitted
     const listRef = doc(
       db,
       'Seasons',
@@ -213,14 +198,18 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
       scoredB: +data.scoredB!,
     })
 
-    handleEditClick()
+    handleEditClick() //removes the edit click button
   }
 
   const getOptions = () => {
     const MAX_GOALS = 25
     let content = []
     for (var i = 0; i <= MAX_GOALS; i++) {
-      content.push(<option value={i}>{i}</option>)
+      content.push(
+        <option key={uuidv4()} value={i}>
+          {i}
+        </option>
+      )
     }
     return content
   }

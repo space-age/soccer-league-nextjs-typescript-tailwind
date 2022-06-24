@@ -4,6 +4,7 @@ import { selectedScheduleWeek } from '../../../../atoms/seasonAtoms'
 import useSchedulesList from '../../../../hooks/useSchedulesList'
 import { ScheduleList } from '../../../../typings'
 import RecordScores from './RecordScores'
+import { v4 as uuidv4 } from 'uuid'
 
 function RecordSchedulesForm() {
   const scheduleList = useSchedulesList()
@@ -39,12 +40,12 @@ function RecordSchedulesForm() {
           if (list.time === '08 AM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <RecordScores key={index} list={list} />
+            return <RecordScores key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -61,12 +62,12 @@ function RecordSchedulesForm() {
           if (list.time === '10 AM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <RecordScores key={index} list={list} />
+            return <RecordScores key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
