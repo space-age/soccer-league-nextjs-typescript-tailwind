@@ -8,10 +8,9 @@ import {
 import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import ScheduleList from '../../commonComponents/seasonsData/lists/ScheduleList'
-import ScheduleListContainer from '../addSchedule/ScheduleListContainer'
-import EditScheduleList from './EditScheduleList'
+import RecordSchedulesForm from './RecordSchedulesForm'
 
-function EditScheduleContainer() {
+function RecordWeekScoresContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showTeamList, setShowTeamList] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
@@ -61,7 +60,7 @@ function EditScheduleContainer() {
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
       <h2 className="text-2xl font-bold text-[#006064]">
-        To add a schedule, start with selecting a season.
+        To begin recording scores, start with selecting a season.
       </h2>
       <div className="flex flex-col">
         <h3 className="mt-3 text-2xl font-bold">Start by selecting a Season</h3>
@@ -84,9 +83,9 @@ function EditScheduleContainer() {
           <ScheduleList />
         </div>
       )}
-      {showAddForm && <EditScheduleList />}
+      {showAddForm && <RecordSchedulesForm />}
     </div>
   )
 }
 
-export default EditScheduleContainer
+export default RecordWeekScoresContainer

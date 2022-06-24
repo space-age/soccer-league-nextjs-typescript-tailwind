@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/masterCreator/schedulesTab/createWeekSchedule"
+    "components/masterCreator/schedulesTab/createWeekScheduleTab"
   ],
   "exclude": ["node_modules"]
 }

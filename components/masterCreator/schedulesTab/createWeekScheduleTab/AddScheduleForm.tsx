@@ -15,15 +15,18 @@ import {
 } from '../../../../atoms/weekScheduleAtoms'
 import { db } from '../../../../firebase'
 import useFieldNumberList from '../../../../hooks/useFieldNumberList'
+import useSchedulesList from '../../../../hooks/useSchedulesList'
 import useTeamList from '../../../../hooks/useTeamList'
 import useTimesList from '../../../../hooks/useTimesList'
 import { AddedSchedule } from '../../../../typings'
+
+import { v4 as uuidv4 } from 'uuid'
 
 function AddScheduleForm() {
   const fieldsList = useFieldNumberList()
   const timesList = useTimesList()
   const teamList = useTeamList()
-
+  const currentScheduleList = useSchedulesList()
   // const resetSeason = useResetRecoilState(selectedSeason)
   // const resetDivision = useResetRecoilState(selectedDivision)
   // const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
@@ -81,7 +84,9 @@ function AddScheduleForm() {
 
   const onSubmit: SubmitHandler<AddedSchedule> = async (data) => {
     data.scheduleList.map(async (schedule) => {
-      const scheduleName = schedule.teamA + ' vs ' + schedule.teamB
+      // const scheduleName = schedule.teamA + ' vs ' + schedule.teamB
+      const scheduleName = uuidv4()
+      const dataFieldNumber = +schedule.fieldNumber! // converting the string to number
       await setDoc(
         doc(
           db,
@@ -94,7 +99,12 @@ function AddScheduleForm() {
           'Schedules',
           scheduleName
         ),
-        { ...schedule, scoredA: null, scoredB: null }
+        {
+          ...schedule,
+          scoredA: null,
+          scoredB: null,
+          fieldNumber: dataFieldNumber,
+        }
       )
     })
     setScheduleList([{ time: '', fieldNumber: null, teamA: '', teamB: '' }])
@@ -119,7 +129,6 @@ function AddScheduleForm() {
   const handleInputChanges = (e: any, index: number, attribute: string) => {
     e.preventDefault()
     const { value } = e.target
-    console.log(value)
     const newArray = [...scheduleList]
 
     attribute === 'fieldNumber' && (newArray[index].fieldNumber = value)
@@ -157,9 +166,8 @@ function AddScheduleForm() {
                       schedule.fieldNumber === null ? '' : schedule.fieldNumber
                     }
                   >
-                    <option className="mb-3" value="">
-                      Select
-                    </option>
+                    {/* <option className="mb-3" value=""> */}
+                    <option className="mb-3">Select</option>
                     {fieldsList.map(
                       (
                         field: { fieldNumbers: number[]; address: string },
@@ -273,12 +281,14 @@ function AddScheduleForm() {
                   </select>
                 </label>
               </div>
-              <button
-                className="m-auto mt-2 w-[25%] content-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
-                onClick={(e) => handleRemoveButton(e, index)}
-              >
-                Remove above schedule
-              </button>
+              {scheduleList.length > 1 && (
+                <button
+                  className="m-auto mt-2 w-[25%] content-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
+                  onClick={(e) => handleRemoveButton(e, index)}
+                >
+                  Remove above schedule
+                </button>
+              )}
             </div>
           )
         })}

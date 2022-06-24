@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil'
 import { selectedScheduleWeek } from '../../../../atoms/seasonAtoms'
-import AddScheduleForm from '../createWeekSchedule/AddScheduleForm'
+import AddScheduleForm from '../createWeekScheduleTab/AddScheduleForm'
 import CurrentScheduleList from './CurrentScheduleList'
 
 function ScheduleListContainer() {

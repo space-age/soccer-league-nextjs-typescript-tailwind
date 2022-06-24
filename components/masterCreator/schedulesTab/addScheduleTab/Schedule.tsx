@@ -8,7 +8,7 @@ interface Props {
 function Schedule({ list }: Props) {
   return (
     <div>
-      <div className="my-4 grid w-full  grid-cols-7 justify-items-center overflow-auto rounded-lg border-2 border-[#00838f] bg-[#cfd8dc]  px-2 py-3 font-semibold shadow-lg">
+      <div className="my-4 grid w-full grid-cols-7  justify-items-center overflow-auto rounded-lg border-2 border-[#00838f] bg-[#cfd8dc] px-2  py-3 text-xl font-semibold shadow-lg">
         <p className="text-[#00acc1]">Field: {list.fieldNumber}</p>
         <div className="col-start-2 col-end-4 px-3">
           <p className="overflow-hidden text-clip">{list.teamA}</p>
@@ -17,9 +17,8 @@ function Schedule({ list }: Props) {
           <p className="self-center text-[#00acc1]">
             {list.scoredA === null ? 'TBD' : list.scoredA}
           </p>
-          <p className="self-center">vs.</p>
+          <p className="self-center">-</p>
           <p className="self-center text-[#00acc1]">
-            {' '}
             {list.scoredB === null ? 'TBD' : list.scoredB}
           </p>
         </div>

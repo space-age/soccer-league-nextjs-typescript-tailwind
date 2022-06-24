@@ -15,11 +15,22 @@ function AddTeamForm() {
   const division = useRecoilValue(selectedDivision)
 
   const defaultTeamData = {
-    gamesPlayed: [],
-    goalsScored: [],
-    goalsAgainst: [],
-    teamAgainst: [],
+    gamesPlayed: [
+      {
+        weekName: '',
+        result: '',
+        goalsScored: null,
+        goalsAgainst: null,
+        teamAgainst: '',
+      },
+    ],
   }
+  // const defaultTeamData = {
+  //   gamesPlayed: [],
+  //   goalsScored: [],
+  //   goalsAgainst: [],
+  //   teamAgainst: [],
+  // }
 
   const {
     register,
@@ -162,7 +173,7 @@ function AddTeamForm() {
               </div>
 
               <div>
-                {teams.length !== 1 && (
+                {teams.length > 1 && (
                   <button
                     className="content-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
                     onClick={(e) => handleRemoveButton(e, index)}

@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import AddSchedule from './addSchedule/AddSchedule'
-import CreateWeekSchedule from './createWeekSchedule/CreateWeekSchedule'
-import EditScheduleContainer from './editSchedule/EditScheduleContainer'
+import CreateWeekSchedule from './createWeekScheduleTab/CreateWeekSchedule'
+import DeleteWeekScheduleContainer from './deleteWeekScheduleTab/DeleteWeekScheduleContainer'
+import EditScheduleContainer from './editScheduleTab/EditScheduleContainer'
+import RecordWeekScoresContainer from './recordWeekScoresTab/RecordWeekScoresContainer'
+// import AddSchedule from './addScheduleTab/AddSchedule'
 
 function SchedulesTabsOptionsContainer() {
   const Tabs = [
     { id: '1', name: 'Create Week Schedule' },
-    { id: '2', name: 'Add a Schedule' },
-    { id: '3', name: 'Modify Schedule' },
+    { id: '2', name: 'Delete Week Schedule' },
+    { id: '3', name: 'Add / Edit Schedules' },
     { id: '4', name: 'Record Week Scores' },
+    // { id: '2', name: 'Add a Schedule' }, // kept just incase want to enable
   ]
 
   const [currentTab, setCurrentTab] = useState(Tabs[0].id)
@@ -54,14 +57,18 @@ function SchedulesTabsOptionsContainer() {
           <CreateWeekSchedule />
         </div>
         <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
-          <AddSchedule />
+          <DeleteWeekScheduleContainer />
         </div>
         <div className={`${currentTab === '3' ? '' : 'hidden'} mx-3 mt-3 `}>
           <EditScheduleContainer />
         </div>
         <div className={`${currentTab === '4' ? '' : 'hidden'} mx-3 mt-3 `}>
-          {/* Record Week Scores */}
+          <RecordWeekScoresContainer />
         </div>
+        {/* Tab below has the capability of adding schedules and only displaying the list of schedules without editing capability */}
+        {/* <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
+          <AddSchedule />
+        </div> */}
       </div>
     </div>
   )

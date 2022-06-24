@@ -52,13 +52,24 @@ export interface TeamData {
   teamAgainst: string[]
 }
 
+// export interface TeamList {
+//   idName: string
+//   name: string
+//   gamesPlayed: string[]
+//   goalsScored: number[]
+//   goalsAgainst: number[]
+//   teamAgainst: string[]
+// }
 export interface TeamList {
   idName: string
   name: string
-  gamesPlayed: string[]
-  goalsScored: number[]
-  goalsAgainst: number[]
-  teamAgainst: string[]
+  gamesPlayed: {
+    weekName: string | null
+    result: string | null
+    goalsScored: number | null
+    goalsAgainst: number | null
+    teamAgainst: string | null
+  }[]
 }
 
 export interface WeekScheduleList {

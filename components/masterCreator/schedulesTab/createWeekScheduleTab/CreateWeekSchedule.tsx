@@ -13,7 +13,7 @@ import {
 } from '../../../../atoms/weekScheduleAtoms'
 import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
-import CurrentScheduleList from '../addSchedule/CurrentScheduleList'
+import CurrentScheduleList from '../addScheduleTab/CurrentScheduleList'
 import AddScheduleForm from './AddScheduleForm'
 import CreateWeekForm from './CreateWeekForm'
 

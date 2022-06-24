@@ -8,7 +8,7 @@ import {
 } from '../../../../atoms/seasonAtoms'
 import { db } from '../../../../firebase'
 import { ScheduleList } from '../../../../typings'
-import Schedule from '../addSchedule/Schedule'
+import Schedule from '../addScheduleTab/Schedule'
 import EditScheduleForm from './EditScheduleForm'
 
 interface Props {
