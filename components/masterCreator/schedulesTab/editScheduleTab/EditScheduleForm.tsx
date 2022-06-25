@@ -138,7 +138,7 @@ function EditScheduleForm({ list, handleEditClick }: Props) {
           </div>
           <div className="flex flex-row gap-3 self-center ">
             <p className="self-center text-[#00acc1]">TBD</p>
-            <p className="self-center">vs.</p>
+            <p className="self-center">-</p>
             <p className="self-center text-[#00acc1]">TBD</p>
           </div>
 
