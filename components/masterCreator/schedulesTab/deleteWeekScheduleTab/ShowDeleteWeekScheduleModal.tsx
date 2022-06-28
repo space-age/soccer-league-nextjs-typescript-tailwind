@@ -8,21 +8,22 @@ import {
 import { modalStateRemoveTeam } from '../../../../atoms/seasonModalAtoms'
 
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
-import { deleteDoc, doc } from 'firebase/firestore'
+import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { db } from '../../../../firebase'
+import useTeamList from '../../../../hooks/useTeamList'
 
 function ShowDeleteWeekScheduleModal() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
   // const [schedule, setSchedule] = useRecoilState(selectedScheduleWeek)
-  const [division, setDivision] = useRecoilState(selectedDivision)
-  const [season, setSeason] = useRecoilState(selectedSeason)
 
   const weekSchedule = useRecoilValue(selectedScheduleWeek)
   const seasonsData = useRecoilValue(selectedSeason)
   const divisionData = useRecoilValue(selectedDivision)
 
   const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
+  const resetDivision = useResetRecoilState(selectedDivision)
+  const resetSeason = useResetRecoilState(selectedSeason)
 
   const [deleteComplete, setDeleteComplete] = useState(false)
 
@@ -31,7 +32,42 @@ function ShowDeleteWeekScheduleModal() {
     setDeleteComplete(false)
   }
 
+  const teamList = useTeamList()
+
+  const removeWeekScheduleFromTeams = async () => {
+    teamList.map(async (team) => {
+      if (!team.gamesPlayed) return
+      const listRef = doc(
+        db,
+        'Seasons',
+        seasonsData!,
+        'Divisions',
+        divisionData!,
+        'Teams',
+        team.idName!
+      )
+
+      const tempList = team.gamesPlayed.filter(function (game: {
+        weekScheduleID: string
+      }) {
+        return game.weekScheduleID !== weekSchedule.idName
+      })
+
+      // Remove gamesPlayed array field from the document
+      await updateDoc(listRef, {
+        gamesPlayed: deleteField(),
+      })
+      if (tempList.length > 0) {
+        // Add the new modify list to the gamesPlayed array
+        await updateDoc(listRef, {
+          gamesPlayed: tempList,
+        })
+      }
+    })
+  }
+
   const handleDeleteSeason = async () => {
+    await removeWeekScheduleFromTeams()
     await deleteDoc(
       doc(
         db,
@@ -45,8 +81,8 @@ function ShowDeleteWeekScheduleModal() {
     )
     // setSchedule('')
     resetWeekSchedule()
-    setDivision('')
-    setSeason('')
+    resetDivision()
+    resetSeason()
     setDeleteComplete(true)
   }
 

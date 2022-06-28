@@ -7,7 +7,68 @@ interface Props {
 }
 function SeasonTable({ division }: Props) {
   const teamList = useTeamList(division)
-  console.log(teamList)
+
+  /*
+    Loop thru team list and create a new array holding the table results
+    for the gamesPlayed array
+  */
+  const tempTeamList = teamList.map((team) => {
+    const tempCounterGames = !team.gamesPlayed ? 0 : team.gamesPlayed.length
+    const defaultCalculations = {
+      counterW: 0,
+      counterPoints: 0,
+      counterD: 0,
+      counterL: 0,
+      counterGoalsScored: 0,
+      counterGoalsAgainst: 0,
+      counterGoalsDifference: 0,
+      gamesPlayed: false,
+      name: team.idName,
+      counterGames: tempCounterGames,
+    }
+    if (!team.gamesPlayed) return defaultCalculations
+    else {
+      team.gamesPlayed.map(
+        (game: {
+          result: string | null
+          goalsScored: number | null
+          goalsAgainst: number | null
+        }) => {
+          if (game.result === 'W') {
+            defaultCalculations.counterW += 1
+            defaultCalculations.counterPoints += 3
+          }
+          if (game.result === 'D') {
+            defaultCalculations.counterD += 1
+            defaultCalculations.counterPoints += 1
+          }
+          if (game.result === 'D') {
+            defaultCalculations.counterL += 1
+          }
+
+          defaultCalculations.counterGoalsScored += game.goalsScored!
+          defaultCalculations.counterGoalsAgainst += game.goalsAgainst!
+        }
+      )
+      defaultCalculations.counterGoalsDifference =
+        defaultCalculations.counterGoalsScored -
+        defaultCalculations.counterGoalsAgainst
+
+      defaultCalculations.gamesPlayed = true
+
+      return defaultCalculations
+    }
+  })
+
+  // Sorts the schedule list by points first then by goals difference, in greatest to lowest
+  tempTeamList.sort((a, b) => {
+    if (a.counterPoints === b.counterPoints) {
+      return a.counterGoalsDifference > b.counterGoalsDifference ? -1 : 1
+    } else {
+      return a.counterPoints > b.counterPoints ? -1 : 1
+    }
+  })
+
   return (
     <div className="my-5 overflow-auto rounded-sm border-2 text-black shadow-xl md:m-5 lg:m-7">
       <table className="mainTable sticky">
@@ -39,7 +100,7 @@ function SeasonTable({ division }: Props) {
           </tr>
         </thead>
         <tbody>
-          {teamList.map((team, index) => (
+          {tempTeamList.map((team, index) => (
             <SeasonTableRow team={team} key={team.name} index={index} />
           ))}
         </tbody>

@@ -76,7 +76,7 @@ function SeasonsDataContainer() {
           <SeasonTable division={'DIVISION 1'} />
         </div>
         <div className={`${currentTab === '2' ? '' : 'hidden'}`}>
-          hello world
+          <SeasonTable division={'DIVISION 2'} />
         </div>
       </div>
     </div>

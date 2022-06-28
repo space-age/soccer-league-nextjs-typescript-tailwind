@@ -114,8 +114,8 @@ function AddTeamForm() {
         { name: team.name.toUpperCase().trim() }
       )
     })
-    resetDivisionSelected()
-    resetSeasonSelected()
+    // resetDivisionSelected()
+    // resetSeasonSelected()
     setTeams([{ name: '', teamExists: false }])
     reset({ teams: [{ name: '' }] })
   }

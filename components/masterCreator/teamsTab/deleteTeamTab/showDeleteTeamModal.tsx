@@ -42,8 +42,8 @@ function ShowDeleteTeamModal() {
       )
     )
     setTeam('')
-    setDivision('')
-    setSeason('')
+    // setDivision('')
+    // setSeason('')
     setDeleteComplete(true)
     // setShowModal(false)
   }
