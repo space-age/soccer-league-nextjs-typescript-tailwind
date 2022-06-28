@@ -34,7 +34,7 @@ function EditSchedule({ list }: Props) {
         'Divisions',
         divisionData!,
         'Weeks-Schedules',
-        weekScheduleData!,
+        weekScheduleData.idName,
         'Schedules',
         list.idName!
       )
@@ -44,7 +44,11 @@ function EditSchedule({ list }: Props) {
   return (
     <div>
       {!editMode && <Schedule list={list} />}
-      <div className="flex justify-center gap-10">
+      <div
+        className={`${
+          list.scoredA === null && list.scoredB === null && '!flex'
+        } hidden  justify-center gap-10`}
+      >
         {!editMode && (
           <button
             onClick={handleEditClick}

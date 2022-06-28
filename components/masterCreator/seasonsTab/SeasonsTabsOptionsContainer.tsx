@@ -33,10 +33,10 @@ function SeasonsTabsOptionsContainer() {
           ))}
         </div>
 
-        <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-3`}>
+        <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-6`}>
           <AddSeason />
         </div>
-        <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
+        <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-6 `}>
           <DeleteSeason />
         </div>
       </div>

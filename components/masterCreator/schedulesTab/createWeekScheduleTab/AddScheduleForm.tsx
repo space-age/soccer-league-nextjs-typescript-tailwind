@@ -95,7 +95,7 @@ function AddScheduleForm() {
           'Divisions',
           division!,
           'Weeks-Schedules',
-          weekSchedule!,
+          weekSchedule.idName,
           'Schedules',
           scheduleName
         ),

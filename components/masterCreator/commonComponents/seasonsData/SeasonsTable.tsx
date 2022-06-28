@@ -1,7 +1,13 @@
+import useTeamList from '../../../../hooks/useTeamList'
 import * as myConstants from '../../../../Tables/week1'
 import SeasonTableRow from './SeasonTableRow'
 
-function SeasonTable() {
+interface Props {
+  division: string
+}
+function SeasonTable({ division }: Props) {
+  const teamList = useTeamList(division)
+  console.log(teamList)
   return (
     <div className="my-5 overflow-auto rounded-sm border-2 text-black shadow-xl md:m-5 lg:m-7">
       <table className="mainTable sticky">
@@ -33,7 +39,7 @@ function SeasonTable() {
           </tr>
         </thead>
         <tbody>
-          {myConstants.WEEK_2022_05_22.map((team, index) => (
+          {teamList.map((team, index) => (
             <SeasonTableRow team={team} key={team.name} index={index} />
           ))}
         </tbody>

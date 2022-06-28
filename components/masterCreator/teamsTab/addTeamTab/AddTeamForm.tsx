@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
 
 import { db } from '../../../../firebase'
@@ -25,12 +25,6 @@ function AddTeamForm() {
       },
     ],
   }
-  // const defaultTeamData = {
-  //   gamesPlayed: [],
-  //   goalsScored: [],
-  //   goalsAgainst: [],
-  //   teamAgainst: [],
-  // }
 
   const {
     register,
@@ -96,9 +90,8 @@ function AddTeamForm() {
 
   //Takes care of setting default values for dropdown menu after form submission is entered
   //Might take care of it somewhere else, but for now it is here
-  const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
-  const [divisionSelected, setDivisionSelected] =
-    useRecoilState(selectedDivision)
+  const resetSeasonSelected = useResetRecoilState(selectedSeason)
+  const resetDivisionSelected = useResetRecoilState(selectedDivision)
 
   /*
     Handles sumbission button.
@@ -121,8 +114,8 @@ function AddTeamForm() {
         { name: team.name.toUpperCase().trim() }
       )
     })
-    setDivisionSelected('')
-    setSeasonSelected('')
+    resetDivisionSelected()
+    resetSeasonSelected()
     setTeams([{ name: '', teamExists: false }])
     reset({ teams: [{ name: '' }] })
   }

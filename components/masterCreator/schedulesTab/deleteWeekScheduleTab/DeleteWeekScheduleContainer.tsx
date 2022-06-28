@@ -23,7 +23,7 @@ function DeleteWeekScheduleContainer() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
 
   const handleDeleteSeason = () => {
-    if (!(!weekSchedule || weekSchedule.length === 0)) setShowModal(true)
+    if (!(!weekSchedule || weekSchedule.idName.length === 0)) setShowModal(true)
   }
 
   /*
@@ -38,7 +38,7 @@ function DeleteWeekScheduleContainer() {
       !division ||
       division?.length === 0 ||
       !weekSchedule ||
-      weekSchedule?.length === 0
+      weekSchedule.idName.length === 0
     )
       setShowDeleteButton(false)
     else setShowDeleteButton(true)

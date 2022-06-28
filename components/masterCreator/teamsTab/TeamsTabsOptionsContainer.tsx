@@ -46,10 +46,10 @@ function TeamsTabsOptionsContainer() {
           ))}
         </div>
 
-        <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-3`}>
+        <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 my-5`}>
           <AddTeam />
         </div>
-        <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
+        <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 my-5 `}>
           <DeleteTeam />
         </div>
       </div>

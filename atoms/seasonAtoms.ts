@@ -1,5 +1,6 @@
+import { DocumentData } from 'firebase/firestore'
 import { atom } from 'recoil'
-import { AddedSeason } from '../typings'
+import { AddedSeason, WeekScheduleList } from '../typings'
 
 // export const modalStateRemoveSeason = atom<boolean>({
 //   key: 'modalStateRemoveSeason',
@@ -21,7 +22,16 @@ export const selectedTeam = atom<string | null>({
   default: '',
 })
 
-export const selectedScheduleWeek = atom<string | null>({
+// export const selectedScheduleWeek = atom<string | null>({
+//   key: 'selectedScheduleWeek',
+//   default: '',
+// })
+
+export const selectedScheduleWeek = atom<WeekScheduleList | DocumentData>({
   key: 'selectedScheduleWeek',
-  default: '',
+  default: {
+    idName: '',
+    date: '',
+    weekName: '',
+  },
 })

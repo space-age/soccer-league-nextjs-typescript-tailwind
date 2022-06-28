@@ -22,7 +22,7 @@ function useSchedulesList() {
       !division ||
       division?.length === 0 ||
       !weekSchedule ||
-      weekSchedule.length === 0
+      weekSchedule.idName.length === 0
     ) {
       return
     } else {
@@ -34,7 +34,7 @@ function useSchedulesList() {
           'Divisions',
           division!,
           'Weeks-Schedules',
-          weekSchedule!,
+          weekSchedule.idName,
           'Schedules'
         ),
         (snapshot) => {

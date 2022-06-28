@@ -64,18 +64,23 @@ export interface TeamList {
   idName: string
   name: string
   gamesPlayed: {
-    weekName: string | null
+    // weekName: string | null
     result: string | null
     goalsScored: number | null
     goalsAgainst: number | null
     teamAgainst: string | null
+    weekScheduleDate: string | null
+    weekScheduleName: string | null
+    weekScheduleID: string | null
+    scheduleID: string | null
   }[]
 }
 
 export interface WeekScheduleList {
   idName: string
   date: string
-  weekNumber: number
+  // weekName: number
+  weekName: string
 }
 
 export interface ScheduleList {

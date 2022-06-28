@@ -89,7 +89,10 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
           goalsScored: scoredGoals,
           result: finalScore,
           teamAgainst: teamAgainst,
-          weekName: list.idName,
+          scheduleID: list.idName,
+          weekScheduleDate: weekScheduleData.date,
+          weekScheduleName: weekScheduleData.weekName,
+          weekScheduleID: weekScheduleData.idName,
         }),
       })
     }
@@ -99,16 +102,19 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
       team.gamesPlayed.map(
         async (
           game: {
-            weekName: string
             goalsAgainst: number
             goaslScored: number
             result: string
             teamAgainst: string
+            scheduleID: string
+            weekScheduleDate: string
+            weekScheduleName: string
+            weekScheduleID: string
           },
           teamIndex: number
         ) => {
           //If schedule already exists, then will modify the schedule data with the new scores entered
-          if (game.weekName === list.idName) {
+          if (game.scheduleID === list.idName) {
             const listRef = doc(
               db,
               'Seasons',
@@ -127,7 +133,10 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
               goalsScored: scoredGoals,
               result: finalScore,
               teamAgainst: teamAgainst,
-              weekName: list.idName,
+              scheduleID: list.idName,
+              weekScheduleDate: weekScheduleData.date,
+              weekScheduleName: weekScheduleData.weekName,
+              weekScheduleID: weekScheduleData.idName,
             }
             tempTeamList.splice(teamIndex, 0, tempNewTeamGamePlayed) //insert new object data in the index where we removed the match object
             // Remove gamesPlayed array field from the document
@@ -156,7 +165,10 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
                 goalsScored: scoredGoals,
                 result: finalScore,
                 teamAgainst: teamAgainst,
-                weekName: list.idName,
+                scheduleID: list.idName,
+                weekScheduleDate: weekScheduleData.date,
+                weekScheduleName: weekScheduleData.weekName,
+                weekScheduleID: weekScheduleData.idName,
               }),
             })
           }
@@ -189,7 +201,7 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
       'Divisions',
       divisionData!,
       'Weeks-Schedules',
-      weekScheduleData!,
+      weekScheduleData.idName,
       'Schedules',
       list.idName!
     )

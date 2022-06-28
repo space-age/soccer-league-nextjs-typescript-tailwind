@@ -30,7 +30,7 @@ function AddSchedule() {
       !division ||
       division?.length === 0 ||
       !weekSchedule ||
-      weekSchedule?.length === 0
+      weekSchedule.idName.length === 0
     )
       setShowAddForm(false)
     else setShowAddForm(true)

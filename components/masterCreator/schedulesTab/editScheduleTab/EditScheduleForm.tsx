@@ -49,7 +49,7 @@ function EditScheduleForm({ list, handleEditClick }: Props) {
       'Divisions',
       divisionData!,
       'Weeks-Schedules',
-      weekScheduleData!,
+      weekScheduleData.idName,
       'Schedules',
       list.idName!
     )

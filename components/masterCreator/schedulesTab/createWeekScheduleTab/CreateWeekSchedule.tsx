@@ -20,7 +20,7 @@ import CreateWeekForm from './CreateWeekForm'
 function CreateWeekSchedule() {
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
-  const selectedWeek = useRecoilState(selectedScheduleWeek)
+  const selectedWeek = useRecoilValue(selectedScheduleWeek)
 
   const [showDivisionList, setShowDivisionList] = useState(false)
 
@@ -110,10 +110,18 @@ function CreateWeekSchedule() {
         <>
           <div className="my-5 rounded-sm border-2  border-[#ccc] bg-[#eeeeee] p-3">
             <div>
-              <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
-                Schedules for:{' '}
-                <span className="text-[#006064]">{selectedWeek}</span>
-              </h1>
+              <div className="flex justify-center  gap-5">
+                <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
+                  Schedules for:{' '}
+                  <span className="text-[#006064]">
+                    {selectedWeek.weekName}
+                  </span>
+                </h1>
+                <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
+                  Date:{' '}
+                  <span className="text-[#006064]">{selectedWeek.date}</span>
+                </h1>
+              </div>
               <CurrentScheduleList />
             </div>
           </div>

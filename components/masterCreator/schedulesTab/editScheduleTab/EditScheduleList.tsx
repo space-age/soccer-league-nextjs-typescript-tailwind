@@ -7,7 +7,7 @@ import EditSchedule from './EditSchedule'
 
 function EditScheduleList() {
   const scheduleList = useSchedulesList()
-  const scheduleWeekList = useRecoilValue(selectedScheduleWeek)
+  const selectedWeek = useRecoilValue(selectedScheduleWeek)
 
   // Sorts the schedule list by time first then by field number
   scheduleList.sort((a, b) => {
@@ -22,10 +22,13 @@ function EditScheduleList() {
 
   return (
     <div className="my-5 rounded-sm border-2  border-[#ccc] bg-[#eeeeee] p-3">
-      <div>
+      <div className="flex justify-center  gap-5">
         <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
           Schedules for:{' '}
-          <span className="text-[#006064]">{scheduleWeekList}</span>
+          <span className="text-[#006064]">{selectedWeek.weekName}</span>
+        </h1>
+        <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
+          Date: <span className="text-[#006064]">{selectedWeek.date}</span>
         </h1>
       </div>
 

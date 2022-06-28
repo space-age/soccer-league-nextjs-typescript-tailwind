@@ -9,6 +9,7 @@ import { selectedScheduleWeek } from '../../../../../atoms/seasonAtoms'
 import { useRecoilState } from 'recoil'
 import useWeeksSchedulesList from '../../../../../hooks/useWeeksSchedulesList'
 import { WeekScheduleList } from '../../../../../typings'
+import { DocumentData } from 'firebase/firestore'
 
 export default function ScheduleList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -18,12 +19,18 @@ export default function ScheduleList() {
 
   const scheduleWeekList = useWeeksSchedulesList()
 
+  const defaultSchedule = {
+    idName: '',
+    date: '',
+    weekName: '',
+  }
+  
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  function handleClose(name: string) {
-    setWeekSelected(name)
+  function handleClose(schedule: WeekScheduleList | DocumentData) {
+    setWeekSelected(schedule)
     setAnchorEl(null)
   }
 
@@ -39,9 +46,9 @@ export default function ScheduleList() {
           className=" bg-[#eeeeee] !text-black"
         >
           <h2 className="text-md font-semibold text-black sm:text-lg">
-            {!weekSelected || weekSelected.length === 0
+            {!weekSelected || weekSelected.idName.length === 0
               ? 'Select Week Schedule'
-              : `${weekSelected}`}
+              : `${weekSelected.date} (${weekSelected.weekName})`}
             <span>
               <ArrowDropDownOutlinedIcon />
             </span>
@@ -51,7 +58,7 @@ export default function ScheduleList() {
           id="basic-menu"
           anchorEl={anchorEl}
           open={open}
-          onClose={() => handleClose('')}
+          onClose={() => handleClose(defaultSchedule)}
           className="menu h-[40%]  sm:h-[50%]"
           MenuListProps={{
             'aria-labelledby': 'basic-button',
@@ -60,7 +67,7 @@ export default function ScheduleList() {
           {!scheduleWeekList.length ? (
             <MenuItem
               className="uppercase hover:bg-[#cfd8dc]"
-              onClick={() => handleClose('')}
+              onClick={() => handleClose(defaultSchedule)}
             >
               No week schedule
             </MenuItem>
@@ -69,9 +76,9 @@ export default function ScheduleList() {
               <MenuItem
                 key={index}
                 className="hover:bg-[#cfd8dc]"
-                onClick={() => handleClose(schedule.idName)}
+                onClick={() => handleClose(schedule)}
               >
-                Week {schedule.weekNumber} ({schedule.idName})
+                {schedule.date} ({schedule.weekName})
               </MenuItem>
             ))
           )}

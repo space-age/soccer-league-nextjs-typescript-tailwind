@@ -12,7 +12,7 @@ function ScheduleListContainer() {
         <div>
           <h1 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
             Schedules for:{' '}
-            <span className="text-[#006064]">{scheduleWeekList}</span>
+            <span className="text-[#006064]">{scheduleWeekList.weekName}</span>
           </h1>
         </div>
         <CurrentScheduleList />

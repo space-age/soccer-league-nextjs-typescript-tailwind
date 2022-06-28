@@ -22,18 +22,18 @@ export default function DivisionList() {
   const [divisionSelected, setDivisionSelected] =
     useRecoilState(selectedDivision)
 
-  const seasonList = useDivisionList()
+  const divisionList = useDivisionList()
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const [teamSelected, setTeamSelected] = useRecoilState(selectedTeam)
+  const resetTeam = useResetRecoilState(selectedTeam)
 
   function handleClose(divisionName: string) {
     setDivisionSelected(divisionName)
     if (!(!divisionName || divisionName.length === 0)) {
-      setTeamSelected('')
+      resetTeam()
       resetWeekSchedule()
     }
 
@@ -70,7 +70,7 @@ export default function DivisionList() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {seasonList.map((division, index) => (
+          {divisionList.map((division, index) => (
             <MenuItem
               key={index}
               className="hover:bg-[#cfd8dc]"
