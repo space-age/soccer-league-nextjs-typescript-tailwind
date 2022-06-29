@@ -3,7 +3,9 @@ import Header from '../components/homePage/Header'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 import SheduleWeekList from '../components/schedulePage/SheduleWeekList'
 import image from '../images/schedules-bg.jpg'
-import WeekScheduleDropdown from '../components/schedulePage/WeekScheduleDropdown'
+import SchedulesSeasonsDropdown from '../components/schedulePage/lists/SchedulesSeasonsDropdown'
+import SchedulesDivisionsDropdown from '../components/schedulePage/lists/SchedulesDivisionsDropdown'
+import SchedulesWeekScheduleDropdown from '../components/schedulePage/lists/SchedulesWeekScheduleDropdown'
 
 function SchedulesPage() {
   return (
@@ -15,7 +17,11 @@ function SchedulesPage() {
       <Header />
       <main className="relative pb-4 md:pb-10">
         <CommonBanner image={image} title="schedules" />
-        <WeekScheduleDropdown />
+        <div className="mt-8 flex justify-center gap-10">
+          <SchedulesSeasonsDropdown />
+          <SchedulesDivisionsDropdown />
+          <SchedulesWeekScheduleDropdown />
+        </div>
         <SheduleWeekList />
       </main>
     </div>

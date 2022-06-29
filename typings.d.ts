@@ -98,3 +98,13 @@ export interface FieldsList {
   address: string
   fieldNumber: number
 }
+
+export interface Assignments {
+  currentDivision: string
+  currentSeason: string
+  currentWeekSchedule: {
+    date: string
+    idName: string
+    weekName: string
+  }
+}

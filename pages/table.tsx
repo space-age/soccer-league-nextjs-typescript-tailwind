@@ -4,7 +4,7 @@ import Tables from '../components/tablesPage/Tables'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 
 import image from '../images/table-bg.jpg'
-import WeekScheduleDropdown from '../components/schedulePage/WeekScheduleDropdown'
+import WeekScheduleDropdown from '../components/schedulePage/lists/SchedulesSeasonsDropdown'
 
 function TablePage() {
   return (
