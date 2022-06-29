@@ -81,6 +81,7 @@ export interface WeekScheduleList {
   date: string
   // weekName: number
   weekName: string
+  pushed: boolean
 }
 
 export interface ScheduleList {

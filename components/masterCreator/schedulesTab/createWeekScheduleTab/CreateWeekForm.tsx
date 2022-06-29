@@ -13,7 +13,6 @@ import {
 } from '../../../../atoms/weekScheduleAtoms'
 import { db } from '../../../../firebase'
 import useScheduleList from '../../../../hooks/useWeeksSchedulesList'
-
 import { v4 as uuidv4 } from 'uuid'
 
 interface WeekSchedule {
@@ -60,13 +59,15 @@ function CreateWeekForm() {
         'Weeks-Schedules',
         scheduleUUID
       ),
-      { date: data.date, weekName: dataWeekName }
+      { date: data.date, weekName: dataWeekName, pushed: false }
     )
     const tempSchedule = {
       idName: scheduleUUID,
       date: data.date,
       weekName: dataWeekName,
+      pushed: false,
     }
+
     setWeekSchedule(tempSchedule)
     setCheckWeekName(false) //resets to false for new form
     setShowAddSchedulesForm(true)
@@ -123,17 +124,24 @@ function CreateWeekForm() {
               disabled={disableInput}
               placeholder="Week Name"
               className={` ml-2 rounded-md border border-slate-300 px-1 placeholder-slate-400 shadow-sm `}
-              minLength={MIN_LENGTH_INPUT}
-              maxLength={MAX_LENGTH_INPUT}
+              // minLength={MIN_LENGTH_INPUT}
+              // maxLength={MAX_LENGTH_INPUT}
               {...register(`weekName`, {
                 // onChange: (e) => handleInputChange(e),
                 required: true,
                 // value: inputWeekName,
+                minLength: 5,
+                maxLength: 20,
               })}
               type="text"
               // onChange={(e) => handleInputChange(e)}
               // value={inputWeekName}
             />
+            {errors.weekName && (
+              <p className=" text-[13px] font-light  text-orange-500">
+                Schedule Week Name must contain between 5 and 30 characters.
+              </p>
+            )}
           </label>
         </div>
         <label className=" font-semibold">
@@ -146,6 +154,11 @@ function CreateWeekForm() {
             {...register('date', { required: true })}
           />
         </label>
+        {errors.date && (
+          <p className="text-[13px] font-light text-orange-500">
+            Must enter a week date.
+          </p>
+        )}
         <button
           disabled={disableInput ? true : false}
           type="submit"

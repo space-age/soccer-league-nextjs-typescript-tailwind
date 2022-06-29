@@ -6,10 +6,11 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import GroupsIcon from '@mui/icons-material/Groups'
 import EventIcon from '@mui/icons-material/Event'
 import TableChartIcon from '@mui/icons-material/TableChart'
+import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined'
 
 import SeasonsTabContainer from '../components/masterCreator/seasonsTab/SeasonsTabContainer'
 import ScheduleTabContainer from '../components/masterCreator/schedulesTab/ScheduleTabContainer'
-import TablesTabContainer from '../components/masterCreator/tablesTab/TablesTabContainer'
+import AssignTabContainer from '../components/masterCreator/assignTab/AssignTabContainer'
 import TeamsTabContainer from '../components/masterCreator/teamsTab/TeamsTabContainer'
 
 import LogOutButton from '../components/masterCreator/masterCreatorMain/LogOutButton'
@@ -123,10 +124,17 @@ export default function VerticalTabs() {
         />
         <Tab
           className={`masterCreator--Tab`}
-          label={`${hide ? 'Tables' : ''}`}
+          label={`${hide ? 'Assign' : ''}`}
           icon={<TableChartIcon />}
           iconPosition="start"
           {...a11yProps(3)}
+        />
+        <Tab
+          className={`masterCreator--Tab`}
+          label={`${hide ? 'Playoffs' : ''}`}
+          icon={<EmojiEventsOutlinedIcon />}
+          iconPosition="start"
+          {...a11yProps(4)}
         />
         <ArrowButton hide={hide} handleButton={handleButton} />
         <HomeButton hide={hide} />
@@ -142,7 +150,10 @@ export default function VerticalTabs() {
         <ScheduleTabContainer />
       </TabPanel>
       <TabPanel value={value} index={3} hide={hide}>
-        <TablesTabContainer />
+        <AssignTabContainer />
+      </TabPanel>
+      <TabPanel value={value} index={4} hide={hide}>
+        {/* <PlayoffsTabContainer /> */}
       </TabPanel>
     </Box>
   )
