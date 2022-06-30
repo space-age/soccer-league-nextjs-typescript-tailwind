@@ -1,7 +1,7 @@
-import TableRow from './TableRow'
+import TemplateTableRow from './TemplateTableRow'
 import * as myConstants from '../../Tables/week1'
 
-function Tables() {
+function TemplateTables() {
   return (
     <div className="my-5 overflow-auto rounded-sm border-2 text-black shadow-xl md:m-5 lg:m-7">
       <table className="mainTable sticky">
@@ -36,7 +36,7 @@ function Tables() {
         </thead>
         <tbody>
           {myConstants.WEEK_2022_05_22.map((team, index) => (
-            <TableRow team={team} key={team.name} index={index} />
+            <TemplateTableRow team={team} key={team.name} index={index} />
           ))}
         </tbody>
       </table>
@@ -44,4 +44,4 @@ function Tables() {
   )
 }
 
-export default Tables
+export default TemplateTables

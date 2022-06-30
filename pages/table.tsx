@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Header from '../components/homePage/Header'
-import Tables from '../components/tablesPage/Tables'
+import TemplateTables from '../components/tablesPage/TemplateTables'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 
 import image from '../images/table-bg.jpg'
@@ -8,6 +8,7 @@ import WeekScheduleDropdown from '../components/schedulePage/lists/SchedulesSeas
 import SchedulesSeasonsDropdown from '../components/schedulePage/lists/SchedulesSeasonsDropdown'
 import SchedulesDivisionsDropdown from '../components/schedulePage/lists/SchedulesDivisionsDropdown'
 import SchedulesWeekScheduleDropdown from '../components/schedulePage/lists/SchedulesWeekScheduleDropdown'
+import TablesContainer from '../components/tablesPage/TablesContainer'
 
 function TablePage() {
   return (
@@ -24,7 +25,8 @@ function TablePage() {
           <SchedulesDivisionsDropdown />
           <SchedulesWeekScheduleDropdown />
         </div>
-        <Tables />
+        {/* <TemplateTables /> */}
+        <TablesContainer />
       </main>
     </div>
   )

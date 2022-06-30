@@ -53,7 +53,7 @@
   }
 
   .mainTable tbody tr {
-    @apply border-b-2 border-[#eceff1] text-sm md:text-xl;
+    @apply border-b-2 border-[#eceff1]  text-sm md:text-xl;
   }
   .mainTable-Form {
     @apply h-5 w-5 rounded-full text-center text-sm font-bold leading-5 text-white md:h-8 md:w-8 md:text-lg md:leading-8;

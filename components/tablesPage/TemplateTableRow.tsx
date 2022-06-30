@@ -5,7 +5,7 @@ interface Props {
   index: number
 }
 
-function TableRow({ team, index }: Props) {
+function TemplateTableRow({ team, index }: Props) {
   return (
     <tr>
       <td>{++index}</td>
@@ -42,4 +42,4 @@ function TableRow({ team, index }: Props) {
   )
 }
 
-export default TableRow
+export default TemplateTableRow
