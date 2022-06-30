@@ -78,4 +78,12 @@
   .schedule--label {
     @apply ml-2 mb-2 text-3xl font-bold capitalize text-[#006064] underline decoration-[#00838f] underline-offset-1;
   }
+  /* Main Page Week Schedule Label */
+  .main-schedule--label {
+    @apply my-2 justify-self-center text-xl font-bold capitalize text-[#006064] underline decoration-[#00838f] underline-offset-1 sm:text-3xl;
+  }
+  /* Main Page Week Schedule Paragraph */
+  .main-schedule--paragraph {
+    @apply justify-self-center text-xl font-bold text-[#c62828] sm:text-3xl;
+  }
 }

@@ -40,17 +40,20 @@ export default function SchedulesWeekScheduleDropdown() {
   }
 
   return (
-    <div className="my-2 flex ">
-      <div className=" rounded-md border-2 border-[#00838f]">
+    <div className="m-auto my-2 flex sm:m-0">
+      <div className=" rounded-md border-2 border-[#00838f] ">
         <Button
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          className=" bg-[#eeeeee] !text-black"
+          className=" bg-[#eeeeee] !text-black disabled:opacity-50"
+          disabled={
+            !scheduleWeekList || scheduleWeekList.length === 0 ? true : false
+          }
         >
-          <h2 className="text-md font-semibold text-black sm:text-2xl">
+          <h2 className="text-md font-semibold text-black sm:text-lg lg:text-2xl">
             {!weekSelected || weekSelected.idName.length === 0
               ? 'Select Week Schedule'
               : `${weekSelected.date} (${weekSelected.weekName})`}
@@ -77,15 +80,18 @@ export default function SchedulesWeekScheduleDropdown() {
               No week schedule
             </MenuItem>
           ) : (
-            scheduleWeekList.map((schedule, index) => (
-              <MenuItem
-                key={index}
-                className="hover:bg-[#cfd8dc]"
-                onClick={() => handleClose(schedule)}
-              >
-                {schedule.date} ({schedule.weekName})
-              </MenuItem>
-            ))
+            scheduleWeekList.map(
+              (schedule, index) =>
+                schedule.pushed && (
+                  <MenuItem
+                    key={index}
+                    className="hover:bg-[#cfd8dc]"
+                    onClick={() => handleClose(schedule)}
+                  >
+                    {schedule.date} ({schedule.weekName})
+                  </MenuItem>
+                )
+            )
           )}
         </Menu>
       </div>

@@ -11,9 +11,24 @@ function useDivisionList() {
   const [list, setList] = useState<SeasonList[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)
 
+  // useEffect(() => {
+  //   if (!(!season || season?.length === 0)) {
+  //     onSnapshot(
+  //       collection(db, 'Seasons', season!, 'Divisions'),
+  //       (snapshot) => {
+  //         setList(
+  //           snapshot.docs.map((doc) => ({
+  //             idName: doc.id,
+  //           }))
+  //         )
+  //       }
+  //     )
+  //   } else setList([])
+  // }, [db, season])
+
   useEffect(() => {
     if (!season || season?.length === 0) {
-      return
+      setList([])
     } else {
       return onSnapshot(
         collection(db, 'Seasons', season!, 'Divisions'),

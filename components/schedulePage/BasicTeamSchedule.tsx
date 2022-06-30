@@ -1,30 +1,32 @@
-import { Schedule } from '../../typings'
+import { DocumentData } from 'firebase/firestore'
+import { Schedule, ScheduleList } from '../../typings'
 
 interface Props {
-  schedule: Schedule
+  list: ScheduleList | DocumentData
 }
 
-function BasicTeamSchedule({ schedule }: Props) {
+function BasicTeamSchedule({ list }: Props) {
   return (
-    <div className="grid w-full grid-rows-2 items-center justify-self-center overflow-auto bg-[#455a64]  px-2 py-3   font-semibold sm:!hidden">
+    <div className="grid w-full grid-rows-2 items-center justify-self-center overflow-auto bg-[#455a64] px-2  py-3 font-semibold sm:!hidden">
       <div className="flex flex-row justify-between">
-        <p className="text-[#00acc1]">Field: {schedule.field}</p>
-        <p className="text-[#00acc1]">Time: {schedule.time}</p>
+        <p className="text-[#00acc1]">Field: {list.fieldNumber}</p>
+        <p className="text-[#00acc1]">Time: {list.time}</p>
       </div>
-      <div className="flex flex-row justify-around gap-6">
-        <div>
+      {/* <div className="flex flex-row justify-evenly gap-6"> */}
+      <div className="grid grid-cols-5 gap-6">
+        <div className="col-span-2 ml-2 justify-self-start">
           <p className="overflow-hidden text-ellipsis text-[#e0e0e0]">
-            {schedule.teamA}
+            {list.teamA}
           </p>
         </div>
         <div className="flex flex-row gap-3 self-center ">
-          <p className="self-center text-[#00acc1]">({schedule.scoreA})</p>
+          <p className="self-center text-[#00acc1]">({list.scoredA})</p>
           <p className="self-center text-[#e0e0e0]">vs.</p>
-          <p className="self-center text-[#00acc1]">({schedule.scoreB})</p>
+          <p className="self-center text-[#00acc1]">({list.scoredB})</p>
         </div>
-        <div>
+        <div className="col-span-2 mr-2 justify-self-end">
           <p className="overflow-hidden text-ellipsis text-[#e0e0e0]">
-            {schedule.teamB}
+            {list.teamB}
           </p>
         </div>
       </div>

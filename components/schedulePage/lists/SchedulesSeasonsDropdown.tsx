@@ -4,14 +4,13 @@ import MenuItem from '@mui/material/MenuItem'
 import { useEffect, useState } from 'react'
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
 import { useRecoilState, useResetRecoilState } from 'recoil'
-import {
-  mainSelectedDivision,
-  mainSelectedScheduleWeek,
-  mainSelectedSeason,
-} from '../../../atoms/mainPageAtoms'
 import useSeasonList from '../../../hooks/useSeasonList'
 import useAssignments from '../../../hooks/useAssignments'
-import { selectedSeason } from '../../../atoms/seasonAtoms'
+import {
+  selectedSeason,
+  selectedDivision,
+  selectedScheduleWeek,
+} from '../../../atoms/seasonAtoms'
 
 export default function SchedulesSeasonsDropdown() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -20,14 +19,13 @@ export default function SchedulesSeasonsDropdown() {
   const assignments = useAssignments()
   const seasonList = useSeasonList()
   const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
-  // setSeasonSelected(assignments?.currentSeason)
 
   useEffect(() => {
     setSeasonSelected(assignments?.currentSeason)
   }, [assignments])
 
-  // const resetDivision = useResetRecoilState(mainSelectedDivision)
-  // const resetWeekSchedule = useResetRecoilState(mainSelectedScheduleWeek)
+  const resetDivision = useResetRecoilState(selectedDivision)
+  const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -35,9 +33,9 @@ export default function SchedulesSeasonsDropdown() {
 
   function handleClose(seasonName: string) {
     setSeasonSelected(seasonName)
-    if (!(!seasonName || seasonName.length === 0)) {
-      // resetDivision()
-      // resetWeekSchedule()
+    if (!seasonName || seasonName.length === 0) {
+      resetDivision()
+      resetWeekSchedule()
       // setDivisionSelected('')
     }
 
@@ -45,7 +43,7 @@ export default function SchedulesSeasonsDropdown() {
   }
 
   return (
-    <div className="my-2 flex  ">
+    <div className="m-auto my-2 flex sm:m-0">
       <div className="rounded-md border-2 border-[#00838f] ">
         <Button
           id="basic-button"
@@ -55,7 +53,7 @@ export default function SchedulesSeasonsDropdown() {
           onClick={handleClick}
           className=" bg-[#eeeeee] !text-black"
         >
-          <h2 className="text-md font-semibold text-black sm:text-2xl">
+          <h2 className="text-md font-semibold text-black sm:text-lg lg:text-2xl">
             {!seasonSelected || seasonSelected.length === 0
               ? 'Select Season'
               : `${seasonSelected}`}

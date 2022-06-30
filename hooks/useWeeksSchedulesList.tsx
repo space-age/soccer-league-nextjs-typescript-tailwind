@@ -17,7 +17,7 @@ function useWeeksSchedulesList() {
       !division ||
       division?.length === 0
     ) {
-      return
+      setList([])
     } else {
       return onSnapshot(
         collection(

@@ -6,7 +6,12 @@ import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import useAssignments from '../../../hooks/useAssignments'
 import useDivisionList from '../../../hooks/useDivisionList'
-import { selectedDivision } from '../../../atoms/seasonAtoms'
+import {
+  selectedDivision,
+  selectedScheduleWeek,
+  selectedSeason,
+  selectedTeam,
+} from '../../../atoms/seasonAtoms'
 
 export default function SchedulesDivisionsDropdown() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -14,15 +19,16 @@ export default function SchedulesDivisionsDropdown() {
 
   const assignments = useAssignments()
   const divisionList = useDivisionList()
+
   const [divisionSelected, setDivisionSelected] =
     useRecoilState(selectedDivision)
-  // setDivisionSelected(assignments?.currentDivision)
 
   useEffect(() => {
     setDivisionSelected(assignments?.currentDivision)
   }, [assignments])
-  // const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
-  // const resetTeam = useResetRecoilState(selectedTeam)
+
+  const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
+  const resetTeam = useResetRecoilState(selectedTeam)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -30,16 +36,16 @@ export default function SchedulesDivisionsDropdown() {
 
   function handleClose(divisionName: string) {
     setDivisionSelected(divisionName)
-    if (!(!divisionName || divisionName.length === 0)) {
-      // resetTeam()
-      // resetWeekSchedule()
+    if (!divisionName || divisionName.length === 0) {
+      resetTeam()
+      resetWeekSchedule()
     }
 
     setAnchorEl(null)
   }
 
   return (
-    <div className="my-2 flex ">
+    <div className="m-auto my-2 flex sm:m-0">
       <div className=" rounded-md border-2 border-[#00838f]">
         <Button
           id="basic-button"
@@ -47,9 +53,10 @@ export default function SchedulesDivisionsDropdown() {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          className=" bg-[#eeeeee] !text-black"
+          className=" bg-[#eeeeee] !text-black disabled:opacity-50"
+          disabled={!divisionList || divisionList.length === 0 ? true : false}
         >
-          <h2 className="text-md font-semibold text-black sm:text-2xl">
+          <h2 className="text-md font-semibold text-black sm:text-lg lg:text-2xl">
             {!divisionSelected || divisionSelected.length === 0
               ? 'Select Division'
               : `${divisionSelected}`}
