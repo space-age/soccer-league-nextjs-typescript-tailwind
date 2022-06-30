@@ -2,7 +2,6 @@ import useAuth from '../../../hooks/useAuth'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Button } from '@mui/material'
-import ResetTabsValues from '../../../helperFunctions/ResetTabsValues'
 import { useResetRecoilState } from 'recoil'
 import {
   selectedDivision,
