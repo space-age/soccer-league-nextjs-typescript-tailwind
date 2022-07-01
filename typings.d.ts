@@ -116,3 +116,25 @@ export interface Assignments {
     weekName: string
   }
 }
+
+interface Playoff {
+  stage: string
+  match: string
+  time: string
+  fieldNumber: number | null
+  teamA: string
+  teamB: string
+  scoredA: number | null
+  scoredB: number | null
+}
+export interface PlayoffGame {
+  match1Game1: Playoff
+  match1Game2: Playoff
+  match2Game1: Playoff
+  match2Game2: Playoff
+  match3Game1: Playoff
+  match3Game2: Playoff
+  match4Game1: Playoff
+  match4Game2: Playoff
+  final: Playoff
+}

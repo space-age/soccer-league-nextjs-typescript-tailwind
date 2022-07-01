@@ -10,7 +10,7 @@ import { db } from '../../../../firebase'
 import { v4 as uuidv4 } from 'uuid'
 import {
   showCreateRoundForm,
-  inputsDisable,
+  inputsDisablePlayoffs,
 } from '../../../../atoms/playoffsAtoms'
 
 interface WeekSchedule {
@@ -19,7 +19,7 @@ interface WeekSchedule {
 }
 
 function CreatePlayoffBracketForm() {
-  const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
+  const [disableInput, setDisableInput] = useRecoilState(inputsDisablePlayoffs)
 
   const [showCreateRoundsForm, setShowCreateRoundsForm] =
     useRecoilState(showCreateRoundForm)

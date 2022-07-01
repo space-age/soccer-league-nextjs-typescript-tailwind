@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
 
-export const inputsDisable = atom<boolean>({
-  key: 'inputsDisable',
+export const inputsDisablePlayoffs = atom<boolean>({
+  key: 'inputsDisablePlayoffs',
   default: false,
 })
 export const showCreateRoundForm = atom<boolean>({

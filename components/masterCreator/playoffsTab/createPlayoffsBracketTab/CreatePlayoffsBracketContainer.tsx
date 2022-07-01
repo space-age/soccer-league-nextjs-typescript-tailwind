@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
-  inputsDisable,
+  inputsDisablePlayoffs,
   showCreateRoundForm,
 } from '../../../../atoms/playoffsAtoms'
 import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
@@ -13,7 +13,7 @@ import CreatePlayoffBracketForm from './CreatePlayoffBracketForm'
 function CreatePlayoffsBracketContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showCreateBracketForm, setShowCreateBracketForm] = useState(false)
-  const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
+  const [disableInput, setDisableInput] = useRecoilState(inputsDisablePlayoffs)
 
   const [showCreateRoundsForm, setShowCreateRoundsForm] =
     useRecoilState(showCreateRoundForm)
@@ -76,7 +76,8 @@ function CreatePlayoffsBracketContainer() {
         )}
       </div>
       {showCreateBracketForm && <CreatePlayoffBracketForm />}
-      <AddPlayoffsGamesContainer />
+      {showBracketForm && <AddPlayoffsGamesContainer />}
+      {/* <AddPlayoffsGamesContainer /> */}
     </div>
   )
 }
