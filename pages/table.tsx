@@ -4,10 +4,10 @@ import TemplateTables from '../components/tablesPage/TemplateTables'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 
 import image from '../images/table-bg.jpg'
-import WeekScheduleDropdown from '../components/schedulePage/lists/SchedulesSeasonsDropdown'
-import SchedulesSeasonsDropdown from '../components/schedulePage/lists/SchedulesSeasonsDropdown'
-import SchedulesDivisionsDropdown from '../components/schedulePage/lists/SchedulesDivisionsDropdown'
-import SchedulesWeekScheduleDropdown from '../components/schedulePage/lists/SchedulesWeekScheduleDropdown'
+import WeekScheduleDropdown from '../components/commonComponents/lists/SchedulesSeasonsDropdown'
+import SchedulesSeasonsDropdown from '../components/commonComponents/lists/SchedulesSeasonsDropdown'
+import SchedulesDivisionsDropdown from '../components/commonComponents/lists/SchedulesDivisionsDropdown'
+import SchedulesWeekScheduleDropdown from '../components/commonComponents/lists/SchedulesWeekScheduleDropdown'
 import TablesContainer from '../components/tablesPage/TablesContainer'
 
 function TablePage() {

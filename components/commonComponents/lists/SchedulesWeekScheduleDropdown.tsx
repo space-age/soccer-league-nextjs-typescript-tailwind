@@ -39,6 +39,11 @@ export default function SchedulesWeekScheduleDropdown() {
     setAnchorEl(null)
   }
 
+  //Sorts the array from highest date to lowestes date
+  scheduleWeekList.sort(function (a, b) {
+    return b.date! < a.date! ? -1 : 1
+  })
+
   return (
     <div className="m-auto my-2 flex sm:m-0">
       <div className=" rounded-md border-2 border-[#00838f] ">

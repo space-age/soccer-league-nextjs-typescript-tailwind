@@ -84,6 +84,14 @@ export interface WeekScheduleList {
   pushed: boolean
 }
 
+export interface PlayoffsBracket {
+  idName: string
+  date: string
+  // weekName: number
+  bracketName: string
+  pushed: boolean
+}
+
 export interface ScheduleList {
   idName: string
   time: string | null

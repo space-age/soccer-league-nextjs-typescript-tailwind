@@ -30,6 +30,7 @@ import {
   selectedDivision,
   selectedTeam,
 } from '../atoms/seasonAtoms'
+import PlayoffsTabContainer from '../components/masterCreator/playoffsTab/PlayoffsTabContainer'
 
 function a11yProps(index: number) {
   return {
@@ -153,7 +154,7 @@ export default function VerticalTabs() {
         <AssignTabContainer />
       </TabPanel>
       <TabPanel value={value} index={4} hide={hide}>
-        {/* <PlayoffsTabContainer /> */}
+        <PlayoffsTabContainer />
       </TabPanel>
     </Box>
   )

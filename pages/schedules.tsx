@@ -2,9 +2,9 @@ import Head from 'next/head'
 import Header from '../components/homePage/Header'
 import CommonBanner from '../components/commonComponents/CommonBanner'
 import image from '../images/schedules-bg.jpg'
-import SchedulesSeasonsDropdown from '../components/schedulePage/lists/SchedulesSeasonsDropdown'
-import SchedulesDivisionsDropdown from '../components/schedulePage/lists/SchedulesDivisionsDropdown'
-import SchedulesWeekScheduleDropdown from '../components/schedulePage/lists/SchedulesWeekScheduleDropdown'
+import SchedulesSeasonsDropdown from '../components/commonComponents/lists/SchedulesSeasonsDropdown'
+import SchedulesDivisionsDropdown from '../components/commonComponents/lists/SchedulesDivisionsDropdown'
+import SchedulesWeekScheduleDropdown from '../components/commonComponents/lists/SchedulesWeekScheduleDropdown'
 import SheduleWeekListContainer from '../components/schedulePage/SheduleWeekListContainer'
 
 function SchedulesPage() {
