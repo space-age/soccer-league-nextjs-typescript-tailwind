@@ -59,7 +59,7 @@ function RecordWeekScoresContainer() {
 
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
-      <h2 className="text-2xl font-bold text-[#006064]">
+      <h2 className="masterCreator--tabTitle">
         To begin recording scores, start with selecting a season.
       </h2>
       <div className="flex flex-col">
@@ -78,7 +78,7 @@ function RecordWeekScoresContainer() {
       {showTeamList && (
         <div className="flex flex-col">
           <h3 className="mt-3 text-2xl font-bold">
-            Next, select a week to add schedules
+            Lastly, select a week to add schedules
           </h3>
           <ScheduleList />
         </div>

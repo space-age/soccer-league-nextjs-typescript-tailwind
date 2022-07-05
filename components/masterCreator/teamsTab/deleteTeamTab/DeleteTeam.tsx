@@ -66,7 +66,7 @@ function DeleteTeam() {
 
   return (
     <div className="rounded border-2 border-white bg-[#eceff1] p-2">
-      <h2 className=" text-xl font-semibold">
+      <h2 className=" masterCreator--tabTitle">
         Deleting a team will remove all data within the team.
       </h2>
       <h3 className="text-lg text-[red]">
@@ -93,7 +93,9 @@ function DeleteTeam() {
       )}
       {showTeamList && (
         <div className="flex flex-col">
-          <h3 className="mt-3 text-2xl font-bold">Select team to delete</h3>
+          <h3 className="mt-3 text-2xl font-bold">
+            Lastly, select team to delete
+          </h3>
           <TeamList />
         </div>
       )}

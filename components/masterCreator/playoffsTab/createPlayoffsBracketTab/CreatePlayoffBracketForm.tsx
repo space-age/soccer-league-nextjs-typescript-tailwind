@@ -41,14 +41,13 @@ function CreatePlayoffBracketForm() {
   } = useForm<WeekSchedule>({ shouldUnregister: true })
 
   const defaultGame = {
-    stage: '',
-    match: '',
     time: '',
     fieldNumber: null,
     teamA: '',
     teamB: '',
     scoredA: null,
     scoredB: null,
+    pushed: false,
   }
 
   const onSubmit: SubmitHandler<WeekSchedule> = async (data: WeekSchedule) => {

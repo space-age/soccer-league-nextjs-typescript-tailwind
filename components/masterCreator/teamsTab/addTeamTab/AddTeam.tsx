@@ -34,7 +34,7 @@ function AddTeam() {
 
   return (
     <div className="rounded border-2 border-white bg-[#eceff1] p-2">
-      <h2 className="text-xl font-semibold">
+      <h2 className="masterCreator--tabTitle">
         To add a team, start with selecting a season.
       </h2>
       <div className="mt-3 flex flex-row gap-10">

@@ -66,7 +66,7 @@ function DeleteWeekScheduleContainer() {
 
   return (
     <div className="rounded border-2 border-white bg-[#eceff1] p-2">
-      <h2 className=" text-xl font-semibold">
+      <h2 className=" masterCreator--tabTitle">
         Deleting a week schedule will remove all schedules inside the week
         schedule.
       </h2>
@@ -89,7 +89,7 @@ function DeleteWeekScheduleContainer() {
       {showTeamList && (
         <div className="flex flex-col">
           <h3 className="mt-3 text-2xl font-bold">
-            Next, select a week to delete schedules
+            Lastly, select a week to delete schedules
           </h3>
           <ScheduleList />
         </div>

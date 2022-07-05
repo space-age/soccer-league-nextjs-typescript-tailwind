@@ -5,9 +5,11 @@ import PlayoffOfficialGame from './PlayoffOfficialGame'
 
 interface Props {
   game: Playoff
+  stage: string
+  matchGame: string
 }
 
-function PlayoffGame({ game }: Props) {
+function PlayoffGame({ game, stage, matchGame }: Props) {
   const [editMode, setEditMode] = useState(false)
 
   const handleEditClick = () => {
@@ -16,27 +18,24 @@ function PlayoffGame({ game }: Props) {
 
   return (
     <div>
-      {<PlayoffOfficialGame game={game} />}
-      <div className=" flex justify-center ">
-        <button
-          onClick={handleEditClick}
-          className=" w-[15%]  justify-center rounded bg-[#00838f] text-base font-semibold  uppercase tracking-wider text-white hover:bg-[#006064]"
-        >
-          edit
-        </button>
-
-        {/* {!editMode && <PlayoffOfficialGame game={game} />} */}
-        {/* {!editMode && (
+      {!editMode && <PlayoffOfficialGame game={game} />}
+      <div className=" flex justify-center">
+        {!editMode && (
           <button
             onClick={handleEditClick}
             className=" w-[15%]  justify-center rounded bg-[#00838f] text-base font-semibold  uppercase tracking-wider text-white hover:bg-[#006064]"
           >
             edit
           </button>
-        )} */}
+        )}
       </div>
       {editMode && (
-        <EditPlayoffGameForm game={game} handleEditClick={handleEditClick} />
+        <EditPlayoffGameForm
+          game={game}
+          handleEditClick={handleEditClick}
+          stage={stage}
+          matchGame={matchGame}
+        />
       )}
     </div>
   )

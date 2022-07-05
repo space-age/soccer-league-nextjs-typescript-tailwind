@@ -2,24 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import {
   selectedDivision,
+  selectedPlayoffBracket,
   selectedScheduleWeek,
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
 import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
+import PlayoffBracketList from '../../commonComponents/seasonsData/lists/PlayoffBracketList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
-import ScheduleList from '../../commonComponents/seasonsData/lists/ScheduleList'
-import ScheduleListContainer from '../addScheduleTab/ScheduleListContainer'
-import EditScheduleList from './EditScheduleList'
-import AddScheduleForm from '../createWeekScheduleTab/AddScheduleForm'
 
-function EditScheduleContainer() {
+function EditPlayoffsBracketContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showTeamList, setShowTeamList] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
-  const weekSchedule = useRecoilValue(selectedScheduleWeek)
+  const playoffBracket = useRecoilValue(selectedPlayoffBracket)
 
   /*
     handles if season or division have been selected then set the state to true
@@ -32,12 +30,12 @@ function EditScheduleContainer() {
       season?.length === 0 ||
       !division ||
       division?.length === 0 ||
-      !weekSchedule ||
-      weekSchedule.idName.length === 0
+      !playoffBracket ||
+      playoffBracket.idName.length === 0
     )
       setShowAddForm(false)
     else setShowAddForm(true)
-  }, [season, division, weekSchedule])
+  }, [season, division, playoffBracket])
 
   /*
     handles if season or division have been selected then set the state to true
@@ -62,7 +60,7 @@ function EditScheduleContainer() {
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
       <h2 className="masterCreator--tabTitle">
-        To add or edit a schedule, start with selecting a season.
+        To edit a playoff bracket, start with selecting a season.
       </h2>
       <div className="flex flex-col">
         <h3 className="mt-3 text-2xl font-bold">Start by selecting a Season</h3>
@@ -80,15 +78,16 @@ function EditScheduleContainer() {
       {showTeamList && (
         <div className="flex flex-col">
           <h3 className="mt-3 text-2xl font-bold">
-            Lastly, select a week to add schedules
+            Lastly, select the bracket to edit
           </h3>
-          <ScheduleList />
+          {/* <ScheduleList /> */}
+          <PlayoffBracketList />
         </div>
       )}
-      {showAddForm && <AddScheduleForm />}
-      {showAddForm && <EditScheduleList />}
+      {/* {showAddForm && <AddScheduleForm />}
+      {showAddForm && <EditScheduleList />} */}
     </div>
   )
 }
 
-export default EditScheduleContainer
+export default EditPlayoffsBracketContainer

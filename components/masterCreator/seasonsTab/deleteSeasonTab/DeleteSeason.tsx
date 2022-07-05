@@ -24,7 +24,7 @@ function DeleteSeason() {
 
   return (
     <div className="rounded border-2 border-white bg-[#eceff1] p-2">
-      <h2 className=" text-xl font-semibold">
+      <h2 className="masterCreator--tabTitle">
         Deleting a season will remove the Entire Season, including all data such
         as Teams, Schedules, Tables.{' '}
       </h2>
@@ -32,15 +32,15 @@ function DeleteSeason() {
         A warning window with a final deletion verification will be prompted.
         Once delete is click to do a final confirmation on the deletion.
       </h3>
-      <div className="mt-3  py-2">
-        <p className="text-xl">Select season to delete:</p>
+      <div className="mt-3 ">
+        <p className="text-2xl font-bold">Select season to delete:</p>
         <SeasonList />
         {!deleteSelected && (
           <p className="text-sm text-[red]">*** Please select a season</p>
         )}
         <button
           onClick={handleDeleteSeason}
-          className="mt-2 w-[18%] content-start justify-self-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
+          className="mt-2 w-[20%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
         >
           Delete Selected Season
         </button>

@@ -84,6 +84,10 @@ function AddSeason() {
 
   return (
     <div className="rounded border-2 border-white bg-[#eceff1] p-2">
+      <h2 className="masterCreator--tabTitle mb-4">
+        To add a new season, start with giving a season name, then choose how
+        many divisions to include in the season.
+      </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid-row mt-1 grid gap-3 text-lg"
@@ -141,7 +145,7 @@ function AddSeason() {
 
         <button
           type="submit"
-          className="mt-2 w-[30%] justify-self-center rounded bg-[#00838f] px-1 font-bold tracking-wider text-white hover:bg-[#006064]"
+          className="mt-2 w-[20%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
         >
           Add Season
         </button>

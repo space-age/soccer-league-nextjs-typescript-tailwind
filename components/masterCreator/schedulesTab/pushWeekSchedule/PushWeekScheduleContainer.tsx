@@ -79,7 +79,7 @@ function PushWeekScheduleContainer() {
 
   return (
     <div className="mb-10 rounded border-2 border-white bg-[#eceff1] p-2">
-      <h2 className="text-2xl font-bold text-[#006064]">
+      <h2 className="masterCreator--tabTitle">
         Select the week schedule to be pushed, meaning it will become viewable
         in the Main Page
       </h2>

@@ -72,12 +72,14 @@ function AssignSeasonPlusWeekContainer() {
 
   return (
     <div className="rounded border-2 border-white bg-[#eceff1] p-2">
-      <h2 className="text-2xl font-bold ">
+      <h2 className="masterCreator--tabTitle">
         Begin by selecting the season you will like to assign as the default
         season to display in Main Page
       </h2>
       <div className="flex flex-col">
         <div className=" mt-3 flex flex-col">
+          <h3 className="text-2xl font-semibold">Select Season:</h3>
+
           <SeasonList />
         </div>
       </div>
