@@ -80,7 +80,7 @@ function PushWeekScheduleContainer() {
   return (
     <div className="mb-10 rounded border-2 border-white bg-[#eceff1] p-2">
       <h2 className="masterCreator--tabTitle">
-        Select the week schedule to be pushed, meaning it will become viewable
+        Select the week schedule to be publish, meaning it will become viewable
         in the Main Page
       </h2>
       <div className="flex flex-col">
@@ -111,7 +111,7 @@ function PushWeekScheduleContainer() {
           onClick={handleAssignButton}
           className="mt-2  content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
         >
-          Push Schedule
+          Publish Schedule
         </button>
       )}
       {showModal && <PushWeekSubmissionModal />}

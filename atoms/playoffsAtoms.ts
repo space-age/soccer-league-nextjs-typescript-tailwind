@@ -9,12 +9,12 @@ export const showCreateRoundForm = atom<boolean>({
   default: false,
 })
 
-// export const showAddWeekScheduleForm = atom<boolean>({
-//   key: 'showAddWeekScheduleForm',
-//   default: false,
-// })
+export const showDeleteBracketModal = atom<boolean>({
+  key: 'showDeleteBracketModal',
+  default: false,
+})
 
-// export const showListOfSchedules = atom<boolean>({
-//   key: 'showListOfSchedules',
-//   default: false,
-// })
+export const showPublishBracketModal = atom<boolean>({
+  key: 'showPublishBracketModal',
+  default: false,
+})

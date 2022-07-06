@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { showDeleteBracketModal } from '../../../../atoms/playoffsAtoms'
 import {
   selectedDivision,
   selectedPlayoffBracket,
@@ -9,11 +10,12 @@ import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import PlayoffBracketList from '../../commonComponents/seasonsData/lists/PlayoffBracketList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import AddPlayoffsGamesContainer from '../createPlayoffsBracketTab/AddPlayoffsGamesContainer'
+import ShowDeletePlayoffBracketModal from './ShowDeletePlayoffBracketModal'
 
-function EditPlayoffsBracketContainer() {
+function DeletePlayoffBracketContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showBracketList, setShowBracketList] = useState(false)
-  const [showAddForm, setShowAddForm] = useState(false)
+  const [showDeleteButton, setShowDeleteButton] = useState(false)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
@@ -33,8 +35,8 @@ function EditPlayoffsBracketContainer() {
       !playoffBracket ||
       playoffBracket.idName.length === 0
     )
-      setShowAddForm(false)
-    else setShowAddForm(true)
+      setShowDeleteButton(false)
+    else setShowDeleteButton(true)
   }, [season, division, playoffBracket])
 
   /*
@@ -57,10 +59,17 @@ function EditPlayoffsBracketContainer() {
     else setShowDivisionList(true)
   }, [season])
 
+  const [showModal, setShowModal] = useRecoilState(showDeleteBracketModal)
+
+  const handleDeletePlayoffBracket = () => {
+    if (!(!playoffBracket || playoffBracket.idName.length === 0))
+      setShowModal(true)
+  }
+
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
       <h2 className="masterCreator--tabTitle">
-        To edit a playoff bracket, start with selecting a season.
+        To delete a playoff bracket, start with selecting a season.
       </h2>
       <div className="flex flex-col">
         <h3 className="mt-3 text-2xl font-bold">Start by selecting a Season</h3>
@@ -78,14 +87,22 @@ function EditPlayoffsBracketContainer() {
       {showBracketList && (
         <div className="flex flex-col">
           <h3 className="mt-3 text-2xl font-bold">
-            Lastly, select the bracket to edit
+            Lastly, select the bracket to delete
           </h3>
           <PlayoffBracketList />
         </div>
       )}
-      {showAddForm && <AddPlayoffsGamesContainer />}
+      {showDeleteButton && (
+        <button
+          onClick={handleDeletePlayoffBracket}
+          className="mt-2 w-[25%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
+        >
+          Delete Selected Playoff Bracket
+        </button>
+      )}
+      {showModal && <ShowDeletePlayoffBracketModal />}
     </div>
   )
 }
 
-export default EditPlayoffsBracketContainer
+export default DeletePlayoffBracketContainer

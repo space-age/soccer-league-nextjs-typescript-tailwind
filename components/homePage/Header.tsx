@@ -100,6 +100,18 @@ function Header() {
             </p>
           </Link>
           <li className="headerSlash">/</li> */}
+          <Link href="/playoffs">
+            <p
+              className={`${
+                isScrolled
+                  ? 'headerLinkScrolled'
+                  : 'headerLinkScrolled headerLink'
+              }`}
+            >
+              Playoffs
+            </p>
+          </Link>
+          <li className="headerSlash">/</li>
           <Link href="/fields">
             <p
               className={`${

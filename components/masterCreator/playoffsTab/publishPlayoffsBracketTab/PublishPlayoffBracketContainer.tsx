@@ -1,19 +1,22 @@
+import { doc, updateDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { showPublishBracketModal } from '../../../../atoms/playoffsAtoms'
 import {
   selectedDivision,
   selectedPlayoffBracket,
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
+import { db } from '../../../../firebase'
 import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import PlayoffBracketList from '../../commonComponents/seasonsData/lists/PlayoffBracketList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
-import AddPlayoffsGamesContainer from '../createPlayoffsBracketTab/AddPlayoffsGamesContainer'
+import PublishPlayoffBracketModal from './PublishPlayoffBracketModal'
 
-function EditPlayoffsBracketContainer() {
+function PublishPlayoffBracketContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showBracketList, setShowBracketList] = useState(false)
-  const [showAddForm, setShowAddForm] = useState(false)
+  const [showDeleteButton, setShowDeleteButton] = useState(false)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
@@ -33,8 +36,8 @@ function EditPlayoffsBracketContainer() {
       !playoffBracket ||
       playoffBracket.idName.length === 0
     )
-      setShowAddForm(false)
-    else setShowAddForm(true)
+      setShowDeleteButton(false)
+    else setShowDeleteButton(true)
   }, [season, division, playoffBracket])
 
   /*
@@ -57,10 +60,31 @@ function EditPlayoffsBracketContainer() {
     else setShowDivisionList(true)
   }, [season])
 
+  const [showModal, setShowModal] = useRecoilState(showPublishBracketModal)
+
+  const handlePublishButton = async () => {
+    if (!(!playoffBracket || playoffBracket.idName.length === 0)) {
+      const listRef = doc(
+        db,
+        'Seasons',
+        season!,
+        'Divisions',
+        division!,
+        'Playoffs-Brackets',
+        playoffBracket.idName
+      )
+      await updateDoc(listRef, {
+        pushed: true,
+      })
+    }
+    setShowModal(true)
+  }
+
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
       <h2 className="masterCreator--tabTitle">
-        To edit a playoff bracket, start with selecting a season.
+        Select the playoff bracket to be publish, meaning it will become
+        viewable in the Main Page
       </h2>
       <div className="flex flex-col">
         <h3 className="mt-3 text-2xl font-bold">Start by selecting a Season</h3>
@@ -78,14 +102,22 @@ function EditPlayoffsBracketContainer() {
       {showBracketList && (
         <div className="flex flex-col">
           <h3 className="mt-3 text-2xl font-bold">
-            Lastly, select the bracket to edit
+            Lastly, select the bracket to publish
           </h3>
           <PlayoffBracketList />
         </div>
       )}
-      {showAddForm && <AddPlayoffsGamesContainer />}
+      {showDeleteButton && (
+        <button
+          onClick={handlePublishButton}
+          className="mt-2 w-[30%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
+        >
+          Publish Selected Playoff Bracket
+        </button>
+      )}
+      {showModal && <PublishPlayoffBracketModal />}
     </div>
   )
 }
 
-export default EditPlayoffsBracketContainer
+export default PublishPlayoffBracketContainer

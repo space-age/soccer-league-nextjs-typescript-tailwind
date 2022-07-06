@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import CreatePlayoffsBracketContainer from './createPlayoffsBracketTab/CreatePlayoffsBracketContainer'
+import DeletePlayoffBracketContainer from './deletePlayoffBracketTab/DeletePlayoffBracketContainer'
 import EditPlayoffsBracketContainer from './editPlayoffsBracketTab/EditPlayoffsBracketContainer'
+import PublishPlayoffBracketContainer from './publishPlayoffsBracketTab/PublishPlayoffBracketContainer'
 
 function PlayoffsTabsOptionsContainer() {
   const Tabs = [
@@ -42,12 +44,12 @@ function PlayoffsTabsOptionsContainer() {
         <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-3 `}>
           <EditPlayoffsBracketContainer />
         </div>
-        <div
-          className={`${currentTab === '3' ? '' : 'hidden'} mx-3 mt-3 `}
-        ></div>
-        <div
-          className={`${currentTab === '4' ? '' : 'hidden'} mx-3 mt-3 `}
-        ></div>
+        <div className={`${currentTab === '3' ? '' : 'hidden'} mx-3 mt-3 `}>
+          <DeletePlayoffBracketContainer />
+        </div>
+        <div className={`${currentTab === '4' ? '' : 'hidden'} mx-3 mt-3 `}>
+          <PublishPlayoffBracketContainer />
+        </div>
       </div>
     </div>
   )

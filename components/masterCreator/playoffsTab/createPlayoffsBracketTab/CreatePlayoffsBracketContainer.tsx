@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import {
   inputsDisablePlayoffs,
   showCreateRoundForm,
 } from '../../../../atoms/playoffsAtoms'
-import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
+import {
+  selectedDivision,
+  selectedPlayoffBracket,
+  selectedSeason,
+} from '../../../../atoms/seasonAtoms'
 import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import AddPlayoffsGamesContainer from './AddPlayoffsGamesContainer'
@@ -37,7 +41,6 @@ function CreatePlayoffsBracketContainer() {
       setShowCreateBracketForm(false)
       setDisableInput(false)
       setShowCreateRoundsForm(false)
-      // setShowScheduleList(false)
     } else setShowCreateBracketForm(true)
   }, [season, division])
 
@@ -54,10 +57,21 @@ function CreatePlayoffsBracketContainer() {
       setShowDivisionList(false)
       setDisableInput(false)
       setShowCreateRoundsForm(false)
-      // setShowScheduleList(false)
     } else setShowDivisionList(true)
   }, [season])
 
+  const resetSeason = useResetRecoilState(selectedSeason)
+  const resetDivision = useResetRecoilState(selectedDivision)
+  const resetPalyoffBracket = useResetRecoilState(selectedPlayoffBracket)
+
+  const handleAnotherBracketButton = () => {
+    setShowCreateBracketForm(false) // hides the add bracket form and resets the form
+    setShowCreateRoundsForm(false) // hides the create round form
+    setDisableInput(false) // enables the input for week schedule name for next form
+    resetSeason() // resets to default value for the dropdown option for seasons
+    resetDivision() // resets to default value for the dropdown option for divisions
+    resetPalyoffBracket() // resets to default value for the dropdown option for playoff bracket
+  }
   return (
     <div className="mb-3 rounded border-2 border-white bg-[#eceff1] p-2 ">
       <h2 className="masterCreator--tabTitle">
@@ -76,8 +90,19 @@ function CreatePlayoffsBracketContainer() {
         )}
       </div>
       {showCreateBracketForm && <CreatePlayoffBracketForm />}
-      {showBracketForm && <AddPlayoffsGamesContainer />}
-      {/* <AddPlayoffsGamesContainer /> */}
+      {showBracketForm && (
+        <>
+          <AddPlayoffsGamesContainer />
+          <div className="flex justify-center">
+            <button
+              onClick={handleAnotherBracketButton}
+              className="m-auto mt-4 w-[30%] rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
+            >
+              Add another bracket
+            </button>
+          </div>
+        </>
+      )}
     </div>
   )
 }

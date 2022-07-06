@@ -2,7 +2,7 @@ import MuiModal from '@mui/material/Modal'
 
 import {
   selectedDivision,
-  selectedScheduleWeek,
+  selectedPlayoffBracket,
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
 import { modalStateRemoveTeam } from '../../../../atoms/seasonModalAtoms'
@@ -12,16 +12,16 @@ import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { db } from '../../../../firebase'
 import useTeamList from '../../../../hooks/useTeamList'
+import { showDeleteBracketModal } from '../../../../atoms/playoffsAtoms'
 
-function ShowDeleteWeekScheduleModal() {
-  const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
-  // const [schedule, setSchedule] = useRecoilState(selectedScheduleWeek)
+function ShowDeletePlayoffBracketModal() {
+  const [showModal, setShowModal] = useRecoilState(showDeleteBracketModal)
 
-  const weekSchedule = useRecoilValue(selectedScheduleWeek)
+  const bracketPlayoffData = useRecoilValue(selectedPlayoffBracket)
   const seasonsData = useRecoilValue(selectedSeason)
   const divisionData = useRecoilValue(selectedDivision)
 
-  const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
+  const resetBracketPlayoffData = useResetRecoilState(selectedPlayoffBracket)
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetSeason = useResetRecoilState(selectedSeason)
 
@@ -32,42 +32,7 @@ function ShowDeleteWeekScheduleModal() {
     setDeleteComplete(false)
   }
 
-  const teamList = useTeamList()
-
-  const removeWeekScheduleFromTeams = async () => {
-    teamList.map(async (team) => {
-      if (!team.gamesPlayed) return
-      const listRef = doc(
-        db,
-        'Seasons',
-        seasonsData!,
-        'Divisions',
-        divisionData!,
-        'Teams',
-        team.idName!
-      )
-
-      const tempList = team.gamesPlayed.filter(function (game: {
-        weekScheduleID: string
-      }) {
-        return game.weekScheduleID !== weekSchedule.idName
-      })
-
-      // Remove gamesPlayed array field from the document
-      await updateDoc(listRef, {
-        gamesPlayed: deleteField(),
-      })
-      if (tempList.length > 0) {
-        // Add the new modify list to the gamesPlayed array
-        await updateDoc(listRef, {
-          gamesPlayed: tempList,
-        })
-      }
-    })
-  }
-
-  const handleDeleteSchedule = async () => {
-    await removeWeekScheduleFromTeams()
+  const handleDeleteSeason = async () => {
     await deleteDoc(
       doc(
         db,
@@ -75,12 +40,11 @@ function ShowDeleteWeekScheduleModal() {
         seasonsData!,
         'Divisions',
         divisionData!,
-        'Weeks-Schedules',
-        weekSchedule.idName
+        'Playoffs-Brackets',
+        bracketPlayoffData.idName
       )
     )
-    // setSchedule('')
-    resetWeekSchedule()
+    resetBracketPlayoffData()
     resetDivision()
     resetSeason()
     setDeleteComplete(true)
@@ -97,27 +61,27 @@ function ShowDeleteWeekScheduleModal() {
       <div className="text-xl font-semibold text-white">
         {!deleteComplete && (
           <>
-            <h2>The following week schedule will be deleted permanently.</h2>
+            <h2>The following Playoff Bracket will be deleted permanently.</h2>
             <h3 className="mt-2 pl-3 font-bold text-[#ff922b]">
               This is your final warning. Once deleted, cannot be undone!
             </h3>
-            <p className="mt-7">Week Schedule to delete: </p>
+            <p className="mt-7">Playoff Bracket to delete: </p>
             <div className="ml-3 capitalize text-[#ff922b]">
               <p>
-                <span className="text-[#ccc]">Week Schedule Name: </span>
-                {weekSchedule.weekName}
+                <span className="text-[#ccc]">Playoff Bracket Name: </span>
+                {bracketPlayoffData.bracketName}
               </p>
               <p>
-                <span className="text-[#ccc]">Week Schedule Date: </span>
-                {weekSchedule.date}
+                <span className="text-[#ccc]">Playoff Bracket Date: </span>
+                {bracketPlayoffData.date}
               </p>
             </div>
 
             <button
-              onClick={handleDeleteSchedule}
+              onClick={handleDeleteSeason}
               className="text-bold mt-6 rounded border-2 border-black bg-red-500 p-1 hover:bg-red-300 hover:text-black"
             >
-              Delete Week Schedule
+              Delete Playoff Bracket
             </button>
           </>
         )}
@@ -131,4 +95,4 @@ function ShowDeleteWeekScheduleModal() {
   )
 }
 
-export default ShowDeleteWeekScheduleModal
+export default ShowDeletePlayoffBracketModal
