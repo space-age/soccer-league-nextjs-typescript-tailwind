@@ -50,7 +50,7 @@ export default function PlayoffBracketList() {
           <h2 className="text-md font-semibold text-black sm:text-lg">
             {!bracketPlayoffSelected ||
             bracketPlayoffSelected.idName.length === 0
-              ? 'Select Week Schedule'
+              ? 'Select Playoff Bracket'
               : `${bracketPlayoffSelected.date} (${bracketPlayoffSelected.bracketName})`}
             <span>
               <ArrowDropDownOutlinedIcon />
@@ -72,7 +72,7 @@ export default function PlayoffBracketList() {
               className="uppercase hover:bg-[#cfd8dc]"
               onClick={() => handleClose(defaultBracketPlayoff)}
             >
-              No week schedule
+              No playoff brackets found
             </MenuItem>
           ) : (
             bracketPlayoffList.map((bracket, index) => (

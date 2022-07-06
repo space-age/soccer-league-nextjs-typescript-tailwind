@@ -48,6 +48,7 @@ function CreatePlayoffBracketForm() {
     scoredA: null,
     scoredB: null,
     pushed: false,
+    date: '',
   }
 
   const onSubmit: SubmitHandler<WeekSchedule> = async (data: WeekSchedule) => {

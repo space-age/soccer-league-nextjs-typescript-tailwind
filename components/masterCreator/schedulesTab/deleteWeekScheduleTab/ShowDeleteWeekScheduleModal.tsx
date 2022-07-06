@@ -12,6 +12,7 @@ import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { db } from '../../../../firebase'
 import useTeamList from '../../../../hooks/useTeamList'
+import useAssignments from '../../../../hooks/useAssignments'
 
 function ShowDeleteWeekScheduleModal() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
@@ -26,6 +27,8 @@ function ShowDeleteWeekScheduleModal() {
   const resetSeason = useResetRecoilState(selectedSeason)
 
   const [deleteComplete, setDeleteComplete] = useState(false)
+
+  const assignments = useAssignments()
 
   const handleClose = () => {
     setShowModal(false)
@@ -79,6 +82,18 @@ function ShowDeleteWeekScheduleModal() {
         weekSchedule.idName
       )
     )
+    if (weekSchedule.idName === assignments?.currentWeekSchedule.idName) {
+      const listRef = doc(db, 'More', 'Assignments')
+      await updateDoc(listRef, {
+        currentSeason: '',
+        currentWeekSchedule: {
+          date: '',
+          idName: '',
+          pushed: false,
+          weekName: '',
+        },
+      })
+    }
     // setSchedule('')
     resetWeekSchedule()
     resetDivision()

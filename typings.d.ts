@@ -124,6 +124,7 @@ interface Playoff {
   teamB: string
   scoredA: number | null | string
   scoredB: number | null | string
+  date: string
 }
 export interface PlayoffGame {
   match1Game1: Playoff

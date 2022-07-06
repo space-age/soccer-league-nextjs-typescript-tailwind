@@ -73,6 +73,7 @@ function EditPlayoffGameForm({
       time: data.time,
       scoredA: scoreA,
       scoredB: scoreB,
+      date: data.date,
     }
 
     if (matchGame === 'match1Game1') {
@@ -149,6 +150,21 @@ function EditPlayoffGameForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
       <div className="flex flex-col">
+        <label className=" ml-1 mb-2 text-xl font-semibold">
+          Select game date:
+          <input
+            type="date"
+            min=""
+            className="ml-3 px-1 tracking-wider placeholder:tracking-wider"
+            {...register('date', { required: true })}
+            defaultValue={game.date === null ? '' : game.date}
+          />
+        </label>
+        {errors.date && (
+          <p className="text-[13px] font-light text-orange-500">
+            Must enter a date.
+          </p>
+        )}
         <div className="grid grid-cols-7 items-center justify-items-center overflow-auto rounded-lg border-2 border-[#00838f] bg-[#cfd8dc]  px-2 text-xl font-semibold shadow-lg ">
           {/* Field Selection */}
           <label>

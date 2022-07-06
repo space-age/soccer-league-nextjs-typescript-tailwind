@@ -4,9 +4,10 @@ import { selectedSeason } from '../../../../atoms/seasonAtoms'
 import { modalStateRemoveSeason } from '../../../../atoms/seasonModalAtoms'
 
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { deleteDoc, doc } from 'firebase/firestore'
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../../../firebase'
 import { useState } from 'react'
+import useAssignments from '../../../../hooks/useAssignments'
 
 function ShowDeleteSeasonModal() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveSeason)
@@ -15,6 +16,8 @@ function ShowDeleteSeasonModal() {
 
   const [deleteComplete, setDeleteComplete] = useState(false)
 
+  const assignments = useAssignments()
+
   const handleClose = () => {
     setShowModal(false)
     setDeleteComplete(false)
@@ -22,6 +25,19 @@ function ShowDeleteSeasonModal() {
 
   const handleDeleteSeason = async () => {
     await deleteDoc(doc(db, 'Seasons', data!))
+    if (data === assignments?.currentSeason) {
+      const listRef = doc(db, 'More', 'Assignments')
+      await updateDoc(listRef, {
+        currentSeason: '',
+        currentWeekSchedule: {
+          date: '',
+          idName: '',
+          pushed: false,
+          weekName: '',
+        },
+      })
+    }
+
     setSeason('')
     setDeleteComplete(true)
     // setShowModal(false)
