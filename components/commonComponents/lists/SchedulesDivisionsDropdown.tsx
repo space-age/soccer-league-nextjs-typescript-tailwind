@@ -39,7 +39,6 @@ export default function SchedulesDivisionsDropdown({ stage }: Props) {
   }
 
   const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
-  // const resetTeam = useResetRecoilState(selectedTeam)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -48,7 +47,6 @@ export default function SchedulesDivisionsDropdown({ stage }: Props) {
   function handleClose(divisionName: string) {
     setDivisionSelected(divisionName)
     if (!divisionName || divisionName.length === 0) {
-      // resetTeam()
       resetWeekSchedule()
     }
 

@@ -1,16 +1,12 @@
 import MuiModal from '@mui/material/Modal'
 
-import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   selectedDivision,
   selectedPlayoffBracket,
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
-import {
-  showDeleteBracketModal,
-  showPublishBracketModal,
-} from '../../../../atoms/playoffsAtoms'
+import { showPublishBracketModal } from '../../../../atoms/playoffsAtoms'
 
 function PublishPlayoffBracketModal() {
   const [showModal, setShowModal] = useRecoilState(showPublishBracketModal)

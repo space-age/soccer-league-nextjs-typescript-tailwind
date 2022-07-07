@@ -12,7 +12,6 @@ function BasicTeamSchedule({ list }: Props) {
         <p className="text-[#00acc1]">Field: {list.fieldNumber}</p>
         <p className="text-[#00acc1]">Time: {list.time}</p>
       </div>
-      {/* <div className="flex flex-row justify-evenly gap-6"> */}
       <div className="grid grid-cols-5 gap-6">
         <div className="col-span-2 ml-2 justify-self-start">
           <p className="overflow-hidden text-ellipsis text-[#e0e0e0]">

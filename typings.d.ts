@@ -52,14 +52,6 @@ export interface TeamData {
   teamAgainst: string[]
 }
 
-// export interface TeamList {
-//   idName: string
-//   name: string
-//   gamesPlayed: string[]
-//   goalsScored: number[]
-//   goalsAgainst: number[]
-//   teamAgainst: string[]
-// }
 export interface TeamList {
   idName: string
   name: string
@@ -79,7 +71,6 @@ export interface TeamList {
 export interface WeekScheduleList {
   idName: string
   date: string
-  // weekName: number
   weekName: string
   pushed: boolean
 }
@@ -87,7 +78,6 @@ export interface WeekScheduleList {
 export interface PlayoffsBracket {
   idName: string
   date: string
-  // weekName: number
   bracketName: string
   pushed: boolean
 }

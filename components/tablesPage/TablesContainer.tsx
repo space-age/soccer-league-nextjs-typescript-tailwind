@@ -112,22 +112,27 @@ function TablesContainer() {
     }
   })
 
+  const check =
+    !weekSchedule?.idName ||
+    weekSchedule?.idName.length === 0 ||
+    weekSchedule === undefined
+      ? true
+      : false
+
   return (
-    <div className="my-5 overflow-auto rounded-sm border-2 text-black shadow-xl md:m-5 lg:m-7">
-      {(!weekSchedule?.idName ||
-        weekSchedule?.idName.length === 0 ||
-        weekSchedule === undefined) && (
+    <div
+      className={`${
+        !check && 'shadow-xl'
+      } my-5 overflow-auto rounded-sm border-2 text-black  md:m-5 lg:m-7`}
+    >
+      {check && (
         <div>
           <h2 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
             Select a season, division, and week schedule to view table
           </h2>
         </div>
       )}
-      {!(
-        !weekSchedule?.idName ||
-        weekSchedule?.idName.length === 0 ||
-        weekSchedule === undefined
-      ) && (
+      {!check && (
         <table className="mainTable sticky">
           <thead>
             <tr className="bg-[#006064] text-white">

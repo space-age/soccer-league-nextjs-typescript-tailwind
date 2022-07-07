@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import FinalContainer from '../largerScreens/final/FinalContainer'
 import QuarterFinalsContainer from '../largerScreens/quarterFinals/QuarterFinalsContainer'
 import SemiFinalsContainer from '../largerScreens/semiFinals/SemiFinalsContainer'
-import FinalContainerMobile from './final/FinalContainerMobile'
-import QuarterFinalsContainerMobile from './quarterFinals/QuarterFinalsContainerMobile'
-import SemiFinalsContainerMobile from './semiFinals/SemiFinalsContainerMobile'
 
 function PlayoffContainerMobile() {
   const [stage, setStage] = useState('quarter')

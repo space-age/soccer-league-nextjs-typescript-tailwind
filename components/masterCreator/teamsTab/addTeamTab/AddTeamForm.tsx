@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { selectedDivision, selectedSeason } from '../../../../atoms/seasonAtoms'
 
 import { db } from '../../../../firebase'
@@ -50,7 +50,6 @@ function AddTeamForm() {
     const { value } = e.target
     const list = [...teams]
     list[index].name = value
-    // setTeams(list)
 
     const temp =
       !list[index].name || list[index].name.length === 0

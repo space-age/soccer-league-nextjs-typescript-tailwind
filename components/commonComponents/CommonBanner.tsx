@@ -8,7 +8,6 @@ interface Props {
 function TableBanner({ image, title }: Props) {
   return (
     <div
-      // bg-gradient-to-b from-white-100/30 to-[#222]
       className="
   flex h-[44vh] w-full flex-col justify-center space-y-2 pb-5 
   md:h-[46vh]
@@ -24,7 +23,6 @@ function TableBanner({ image, title }: Props) {
           objectFit="cover"
           alt="Soccer Field"
           placeholder="blur"
-          // priority={true}
         />
       </div>
       <h1

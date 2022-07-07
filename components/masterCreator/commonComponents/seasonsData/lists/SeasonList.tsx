@@ -19,7 +19,6 @@ export default function SeasonList() {
   const open = Boolean(anchorEl)
 
   const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
-  // const [seasonDivision, setDivisionSelected] = useRecoilState(selectedDivision)
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
 
@@ -34,7 +33,6 @@ export default function SeasonList() {
     if (!(!seasonName || seasonName.length === 0)) {
       resetDivision()
       resetWeekSchedule()
-      // setDivisionSelected('')
     }
 
     setAnchorEl(null)

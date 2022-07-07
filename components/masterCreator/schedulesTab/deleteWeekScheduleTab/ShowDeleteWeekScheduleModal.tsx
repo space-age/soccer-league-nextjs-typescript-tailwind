@@ -94,7 +94,6 @@ function ShowDeleteWeekScheduleModal() {
         },
       })
     }
-    // setSchedule('')
     resetWeekSchedule()
     resetDivision()
     resetSeason()

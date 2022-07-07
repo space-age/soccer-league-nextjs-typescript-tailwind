@@ -52,7 +52,6 @@ function PlayoffBracketContainer() {
 
         {/*Quarter Final Tab  */}
         <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-3`}>
-          {/* <p className="schedule--label">Quarter-Finals</p> */}
           {/*Match 1*/}
           <p className="playoffs--match">Match 1</p>
           {/* Game 1 for Match 1 */}

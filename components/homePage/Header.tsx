@@ -26,14 +26,6 @@ function Header() {
 
   return (
     <header className={`${isScrolled ? 'bg-[#263238]' : 'bg-[#fafafa]'}`}>
-      {/* <div className="flex items-center space-x-2 md:space-x-10">
-        <img
-          src="https://rb.gy/ulxxee"
-          width={100}
-          height={100}
-          className="cursor-pointer object-contain"
-        />
-      </div> */}
       {user && (
         <div className="mr-10 !hidden  items-center space-x-10 justify-self-start  border-2 p-2 hover:bg-slate-600 xl:!flex">
           <Link href="/master-creator">

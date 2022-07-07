@@ -37,9 +37,6 @@ function SeasonsDataContainer() {
   }, [season])
 
   const handlerTabButton = (e: any) => {
-    // console.log(e.target.id)
-    // if (e.target.id === 1) setDivision('DIVISION 1')
-    // if (e.target.id === 2) setDivision('DIVISION 2')
     setCurrentTab(e.target.id)
   }
 

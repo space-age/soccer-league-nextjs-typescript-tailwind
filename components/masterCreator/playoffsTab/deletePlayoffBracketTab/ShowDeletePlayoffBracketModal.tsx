@@ -5,13 +5,11 @@ import {
   selectedPlayoffBracket,
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
-import { modalStateRemoveTeam } from '../../../../atoms/seasonModalAtoms'
 
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
-import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore'
+import { deleteDoc, doc } from 'firebase/firestore'
 import { useState } from 'react'
 import { db } from '../../../../firebase'
-import useTeamList from '../../../../hooks/useTeamList'
 import { showDeleteBracketModal } from '../../../../atoms/playoffsAtoms'
 
 function ShowDeletePlayoffBracketModal() {

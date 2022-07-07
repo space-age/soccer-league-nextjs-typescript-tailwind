@@ -49,7 +49,6 @@ export default function SchedulesSeasonsDropdown({ stage }: Props) {
     if (!seasonName || seasonName.length === 0) {
       resetDivision()
       resetWeekSchedule()
-      // setDivisionSelected('')
     }
 
     setAnchorEl(null)

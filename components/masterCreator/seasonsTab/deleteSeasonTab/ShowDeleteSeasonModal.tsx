@@ -40,7 +40,6 @@ function ShowDeleteSeasonModal() {
 
     setSeason('')
     setDeleteComplete(true)
-    // setShowModal(false)
   }
 
   return (

@@ -16,18 +16,11 @@ interface Props {
 function HomeButton(props: Props) {
   const { hide } = props
 
-  // const [season, setSeason] = useRecoilState(selectedSeason)
-  // const [division, setDivision] = useRecoilState(selectedDivision)
-  // const [team, setTeam] = useRecoilState(selectedTeam)
-
   const resetSeason = useResetRecoilState(selectedSeason)
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetTeam = useResetRecoilState(selectedTeam)
 
   const handleLinkClick = () => {
-    // setSeason('') //RESTARTS THE DROPDOWN MENU
-    // setDivision('') //RESTARTS THE DROPDOWN MENU
-    // setTeam('') //RESTARTS THE DROPDOWN MENU
     resetSeason()
     resetDivision()
     resetTeam()

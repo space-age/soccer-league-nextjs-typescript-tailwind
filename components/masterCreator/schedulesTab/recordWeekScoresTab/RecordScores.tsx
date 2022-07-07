@@ -1,11 +1,6 @@
-import { deleteDoc, doc, DocumentData } from 'firebase/firestore'
+import { DocumentData } from 'firebase/firestore'
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import {
-  selectedDivision,
-  selectedScheduleWeek,
-  selectedSeason,
-} from '../../../../atoms/seasonAtoms'
+
 import { ScheduleList } from '../../../../typings'
 import Schedule from '../addScheduleTab/Schedule'
 import RecordScoresForm from './RecordScoresForm'
