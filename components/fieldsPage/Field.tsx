@@ -1,13 +1,12 @@
 import React from 'react'
-import { Field } from '../../typings'
+import { FieldsList } from '../../typings'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
-  field: Field
+  field: FieldsList
 }
 
 function Field({ field }: Props) {
-  // const mainColor = '#00838f'
-
   return (
     <div className=" grid w-full  grid-cols-1	justify-items-stretch">
       <div
@@ -17,8 +16,8 @@ function Field({ field }: Props) {
           className={`flex flex-row items-center gap-5 text-[#00838f]  md:gap-10`}
         >
           <p className=" text-black ">Fields:</p>
-          {field.fields.map((fieldNumber, index) => (
-            <p key={index}>{fieldNumber}</p>
+          {field?.fieldNumbers.map((number, index) => (
+            <p key={uuidv4()}>{number}</p>
           ))}
         </div>
         <div className="flex flex-row  py-2">

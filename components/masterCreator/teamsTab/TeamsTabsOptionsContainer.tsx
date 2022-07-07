@@ -7,6 +7,7 @@ import {
 } from '../../../atoms/seasonAtoms'
 import AddTeam from './addTeamTab/AddTeam'
 import DeleteTeam from './deleteTeamTab/DeleteTeam'
+import { v4 as uuidv4 } from 'uuid'
 
 function TeamsTabsOptionsContainer() {
   const Tabs = [
@@ -34,7 +35,7 @@ function TeamsTabsOptionsContainer() {
         <div className="flex  text-lg ">
           {Tabs.map((tab, index) => (
             <button
-              key={index}
+              key={uuidv4()}
               onClick={handlerTabButton}
               id={tab.id}
               className={`w-[20%] rounded-bl-lg

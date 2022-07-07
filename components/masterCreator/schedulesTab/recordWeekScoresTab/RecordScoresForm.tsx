@@ -1,11 +1,8 @@
-import { ScoreRounded } from '@mui/icons-material'
 import {
-  arrayRemove,
   arrayUnion,
   deleteField,
   doc,
   DocumentData,
-  FieldValue,
   updateDoc,
 } from 'firebase/firestore'
 import React from 'react'
@@ -21,17 +18,12 @@ import useTeamList from '../../../../hooks/useTeamList'
 import { ScheduleList, TeamList } from '../../../../typings'
 import { v4 as uuidv4 } from 'uuid'
 
-// import useFieldNumberList from '../../../../hooks/useFieldNumberList'
-// import useTimesList from '../../../../hooks/useTimesList'
-
 interface Props {
   list: ScheduleList | DocumentData
   handleEditClick: () => void
 }
 
 function RecordScoresForm({ list, handleEditClick }: Props) {
-  // const fieldsList = useFieldNumberList()
-  // const timesList = useTimesList()
   const teamList = useTeamList()
 
   const seasonsData = useRecoilValue(selectedSeason)
@@ -182,7 +174,7 @@ function RecordScoresForm({ list, handleEditClick }: Props) {
     const teamB = list.teamB
 
     // This is for making additions to TEAM ACCORDING TO THE FINAL SCORES ENTERED
-    teamList.map(async (team, index) => {
+    teamList.map((team, index) => {
       // For Team A
       if (team.name === teamA) {
         firebaseInsertData(team, 'teamA', data)

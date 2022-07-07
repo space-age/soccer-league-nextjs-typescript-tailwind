@@ -8,11 +8,11 @@ import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined
 import {
   selectedDivision,
   selectedScheduleWeek,
-  selectedSeason,
   selectedTeam,
 } from '../../../../../atoms/seasonAtoms'
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import useDivisionList from '../../../../../hooks/useDivisionList'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function DivisionList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -72,7 +72,7 @@ export default function DivisionList() {
         >
           {divisionList.map((division, index) => (
             <MenuItem
-              key={index}
+              key={uuidv4()}
               className="hover:bg-[#cfd8dc]"
               onClick={() => handleClose(division.idName)}
             >

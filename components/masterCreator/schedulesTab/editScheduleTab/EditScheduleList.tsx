@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { selectedScheduleWeek } from '../../../../atoms/seasonAtoms'
 import useSchedulesList from '../../../../hooks/useSchedulesList'
-import { ScheduleList } from '../../../../typings'
 import EditSchedule from './EditSchedule'
+import { v4 as uuidv4 } from 'uuid'
 
 function EditScheduleList() {
   const scheduleList = useSchedulesList()
@@ -42,12 +41,12 @@ function EditScheduleList() {
           if (list.time === '08 AM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <EditSchedule key={index} list={list} />
+            return <EditSchedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -64,12 +63,12 @@ function EditScheduleList() {
           if (list.time === '10 AM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <EditSchedule key={index} list={list} />
+            return <EditSchedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -86,12 +85,12 @@ function EditScheduleList() {
           if (list.time === '12 PM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <EditSchedule key={index} list={list} />
+            return <EditSchedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useSchedulesList from '../../hooks/useSchedulesList'
 import TeamSchedule from './TeamSchedule'
+import { v4 as uuidv4 } from 'uuid'
 
 function ScheduleWeekList() {
   const scheduleList = useSchedulesList()
@@ -28,12 +29,12 @@ function ScheduleWeekList() {
           if (list.time === '08 AM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <TeamSchedule key={index} list={list} />
+            return <TeamSchedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found
               </p>
             )
@@ -50,12 +51,12 @@ function ScheduleWeekList() {
           if (list.time === '10 AM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <TeamSchedule key={index} list={list} />
+            return <TeamSchedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found
               </p>
             )
@@ -72,12 +73,12 @@ function ScheduleWeekList() {
           if (list.time === '12 PM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <TeamSchedule key={index} list={list} />
+            return <TeamSchedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )

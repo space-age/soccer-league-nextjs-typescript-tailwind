@@ -3,17 +3,20 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useEffect, useState } from 'react'
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined'
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import useAssignments from '../../../hooks/useAssignments'
 import useDivisionList from '../../../hooks/useDivisionList'
 import {
   selectedDivision,
   selectedScheduleWeek,
-  selectedSeason,
-  selectedTeam,
 } from '../../../atoms/seasonAtoms'
+import { v4 as uuidv4 } from 'uuid'
 
-export default function SchedulesDivisionsDropdown() {
+interface Props {
+  stage: string
+}
+
+export default function SchedulesDivisionsDropdown({ stage }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -23,12 +26,20 @@ export default function SchedulesDivisionsDropdown() {
   const [divisionSelected, setDivisionSelected] =
     useRecoilState(selectedDivision)
 
-  useEffect(() => {
-    setDivisionSelected(assignments?.currentDivision)
-  }, [assignments])
+  if (stage === 'season') {
+    useEffect(() => {
+      setDivisionSelected(assignments?.currentDivision)
+    }, [assignments])
+  }
+
+  if (stage === 'playoffs') {
+    useEffect(() => {
+      setDivisionSelected(assignments?.currentPlayoffDivision)
+    }, [assignments])
+  }
 
   const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
-  const resetTeam = useResetRecoilState(selectedTeam)
+  // const resetTeam = useResetRecoilState(selectedTeam)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -37,7 +48,7 @@ export default function SchedulesDivisionsDropdown() {
   function handleClose(divisionName: string) {
     setDivisionSelected(divisionName)
     if (!divisionName || divisionName.length === 0) {
-      resetTeam()
+      // resetTeam()
       resetWeekSchedule()
     }
 
@@ -77,7 +88,7 @@ export default function SchedulesDivisionsDropdown() {
         >
           {divisionList.map((division, index) => (
             <MenuItem
-              key={index}
+              key={uuidv4()}
               className="hover:bg-[#cfd8dc]"
               onClick={() => handleClose(division.idName)}
             >

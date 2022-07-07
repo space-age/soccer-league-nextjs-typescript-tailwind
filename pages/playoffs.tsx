@@ -21,8 +21,8 @@ function playoffs() {
       <main className="relative pb-4 md:pb-10">
         <CommonBanner image={image} title="Playoffs" />
         <div className="mt-4 flex flex-col sm:mt-8 sm:flex-row sm:justify-center sm:gap-10">
-          <SchedulesSeasonsDropdown />
-          <SchedulesDivisionsDropdown />
+          <SchedulesSeasonsDropdown stage={'playoffs'} />
+          <SchedulesDivisionsDropdown stage={'playoffs'} />
           <PlayoffsBracketsDropdown />
         </div>
         <PlayoffContainerMobile />

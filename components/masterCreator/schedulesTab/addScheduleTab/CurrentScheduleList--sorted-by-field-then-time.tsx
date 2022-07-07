@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
 import useSchedulesList from '../../../../hooks/useSchedulesList'
-import { ScheduleList } from '../../../../typings'
 import Schedule from './Schedule'
+import { v4 as uuidv4 } from 'uuid'
 
 function CurrentScheduleList() {
   const scheduleList = useSchedulesList()
@@ -25,12 +24,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '1') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -42,12 +41,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '2') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -60,12 +59,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '3') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -78,12 +77,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '4') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -98,12 +97,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '5') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -115,12 +114,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '6') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -132,12 +131,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '7') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -154,7 +153,7 @@ function CurrentScheduleList() {
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )
@@ -166,12 +165,12 @@ function CurrentScheduleList() {
           if (list.fieldNumber === '9') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <Schedule key={index} list={list} />
+            return <Schedule key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )

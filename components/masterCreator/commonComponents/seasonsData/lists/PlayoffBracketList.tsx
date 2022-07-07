@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil'
 import { PlayoffsBracket } from '../../../../../typings'
 import { DocumentData } from 'firebase/firestore'
 import useBracketPlayoffList from '../../../../../hooks/useBracketPlayoffList'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function PlayoffBracketList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -77,7 +78,7 @@ export default function PlayoffBracketList() {
           ) : (
             bracketPlayoffList.map((bracket, index) => (
               <MenuItem
-                key={index}
+                key={uuidv4()}
                 className="hover:bg-[#cfd8dc]"
                 onClick={() => handleClose(bracket)}
               >

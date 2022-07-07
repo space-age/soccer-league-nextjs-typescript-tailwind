@@ -40,20 +40,18 @@ function TablesRow({ team, index }: Props) {
 
   const temp = () => {
     const form = team.form.map((form, index) => (
-      <>
-        <div
-          key={uuidv4()}
-          className={`mainTable-Form ${
-            form.result === 'L'
-              ? 'bg-[#f44336]'
-              : form.result === 'W'
-              ? 'bg-[#4caf50]'
-              : 'bg-[#616161] '
-          }`}
-        >
-          {form.result}
-        </div>
-      </>
+      <div
+        key={uuidv4()}
+        className={`mainTable-Form ${
+          form.result === 'L'
+            ? 'bg-[#f44336]'
+            : form.result === 'W'
+            ? 'bg-[#4caf50]'
+            : 'bg-[#616161] '
+        }`}
+      >
+        {form.result}
+      </div>
     ))
     return form
   }

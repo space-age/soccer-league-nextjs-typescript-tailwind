@@ -11,20 +11,21 @@ import useAssignments from '../../../hooks/useAssignments'
 import { selectedPlayoffBracket } from '../../../atoms/seasonAtoms'
 import { WeekScheduleList } from '../../../typings'
 import useBracketPlayoffList from '../../../hooks/useBracketPlayoffList'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function PlayoffsBracketsDropdown() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  // const assignments = useAssignments()
+  const assignments = useAssignments()
   const bracketPlayoffsList = useBracketPlayoffList()
   const [bracketSelected, setBracketSelected] = useRecoilState(
     selectedPlayoffBracket
   )
 
-  // useEffect(() => {
-  //   setBracketSelected(assignments?.currentWeekSchedule)
-  // }, [assignments])
+  useEffect(() => {
+    setBracketSelected(assignments?.currentPlayoffBracket)
+  }, [assignments])
 
   const defaultPlayoffBracket = {
     idName: '',
@@ -93,7 +94,7 @@ export default function PlayoffsBracketsDropdown() {
               (bracket, index) =>
                 bracket.pushed && (
                   <MenuItem
-                    key={index}
+                    key={uuidv4()}
                     className="hover:bg-[#cfd8dc]"
                     onClick={() => handleClose(bracket)}
                   >

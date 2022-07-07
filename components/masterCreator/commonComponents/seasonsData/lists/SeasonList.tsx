@@ -12,7 +12,7 @@ import {
   selectedSeason,
 } from '../../../../../atoms/seasonAtoms'
 import { useRecoilState, useResetRecoilState } from 'recoil'
-import { showAddScheduleForm } from '../../../../../atoms/weekScheduleAtoms'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function SeasonList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -80,7 +80,7 @@ export default function SeasonList() {
           ) : (
             seasonList.map((season, index) => (
               <MenuItem
-                key={index}
+                key={uuidv4()}
                 className="hover:bg-[#cfd8dc]"
                 onClick={() => handleClose(season.idName)}
               >

@@ -1,8 +1,13 @@
 import { useState } from 'react'
+import AssignPlayoffBracketContainer from './assignPlayoffBracket/AssignPlayoffBracketContainer'
 import AssignSeasonPlusWeekContainer from './assignSeasonPlusWeek/AssignSeasonPlusWeekContainer'
+import { v4 as uuidv4 } from 'uuid'
 
 function AssignTabsOptionsContainer() {
-  const Tabs = [{ id: '1', name: 'Assign Season and Schedule Week' }]
+  const Tabs = [
+    { id: '1', name: 'Assign Season and Schedule Week' },
+    { id: '2', name: 'Assign Season and Playoff Bracket' },
+  ]
 
   const [currentTab, setCurrentTab] = useState(Tabs[0].id)
 
@@ -17,7 +22,7 @@ function AssignTabsOptionsContainer() {
         <div className="flex  text-lg ">
           {Tabs.map((tab, index) => (
             <button
-              key={index}
+              key={uuidv4()}
               onClick={handlerTabButton}
               id={tab.id}
               className={`w-[30%] rounded-bl-lg
@@ -31,6 +36,9 @@ function AssignTabsOptionsContainer() {
 
         <div className={`${currentTab === '1' ? '' : 'hidden'} mx-3 mt-6`}>
           <AssignSeasonPlusWeekContainer />
+        </div>
+        <div className={`${currentTab === '2' ? '' : 'hidden'} mx-3 mt-6`}>
+          <AssignPlayoffBracketContainer />
         </div>
       </div>
     </div>

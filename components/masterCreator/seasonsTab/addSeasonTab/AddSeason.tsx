@@ -6,6 +6,7 @@ import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { db } from '../../../../firebase'
 import { AddedSeason } from '../../../../typings'
 import ShowAddSeasonModal from './ShowAddSeasonModal'
+import { v4 as uuidv4 } from 'uuid'
 
 function AddSeason() {
   const Default_Division_Name = 'Division 1'
@@ -109,7 +110,7 @@ function AddSeason() {
         )}
         {divisions.map((division, index) => {
           return (
-            <div key={index} className="flex gap-2 tracking-wider">
+            <div key={uuidv4()} className="flex gap-2 tracking-wider">
               <div>
                 <label className="font-semibold">{division.name}</label>
               </div>

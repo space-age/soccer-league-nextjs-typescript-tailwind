@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import useFieldNumberList from '../../../../hooks/useFieldNumberList'
 import useTeamList from '../../../../hooks/useTeamList'
 import useTimesList from '../../../../hooks/useTimesList'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Schedule {
   time: string
@@ -60,7 +61,7 @@ function AddScheduleForm() {
                   index: number
                 ) => (
                   <optgroup
-                    key={index}
+                    key={uuidv4()}
                     label={field.address}
                     className="text-black"
                   >

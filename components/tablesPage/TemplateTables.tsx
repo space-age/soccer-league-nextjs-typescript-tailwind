@@ -1,5 +1,6 @@
 import TemplateTableRow from './TemplateTableRow'
 import * as myConstants from '../../Tables/week1'
+import { v4 as uuidv4 } from 'uuid'
 
 function TemplateTables() {
   return (
@@ -36,7 +37,7 @@ function TemplateTables() {
         </thead>
         <tbody>
           {myConstants.WEEK_2022_05_22.map((team, index) => (
-            <TemplateTableRow team={team} key={team.name} index={index} />
+            <TemplateTableRow team={team} key={uuidv4()} index={index} />
           ))}
         </tbody>
       </table>

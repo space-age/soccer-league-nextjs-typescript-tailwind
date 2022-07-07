@@ -87,12 +87,12 @@ function RecordSchedulesForm() {
           if (list.time === '12 PM') {
             listCounter++
             if (index === scheduleList.length - 1) listCounter = 0
-            return <RecordScores key={index} list={list} />
+            return <RecordScores key={uuidv4()} list={list} />
           }
 
           if (index === scheduleList.length - 1 && listCounter === 0)
             return (
-              <p key={index} className="ml-4 text-xl">
+              <p key={uuidv4()} className="ml-4 text-xl">
                 No Schedules found.
               </p>
             )

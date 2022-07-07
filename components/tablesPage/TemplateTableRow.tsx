@@ -1,4 +1,5 @@
 import { Team } from '../../typings'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
   team: Team
@@ -24,7 +25,7 @@ function TemplateTableRow({ team, index }: Props) {
         <div className=" flex flex-row justify-center gap-2">
           {team.form.map((result, index) => (
             <div
-              key={index}
+              key={uuidv4()}
               className={`mainTable-Form ${
                 result === 'l'
                   ? 'bg-[#f44336]'

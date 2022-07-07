@@ -24,7 +24,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useResetRecoilState } from 'recoil'
 import {
   selectedSeason,
   selectedDivision,
@@ -50,18 +50,11 @@ function MainHead() {
 export default function VerticalTabs() {
   const [value, setValue] = useState(0)
 
-  // const [season, setSeason] = useRecoilState(selectedSeason)
-  // const [division, setDivision] = useRecoilState(selectedDivision)
-  // const [team, setTeam] = useRecoilState(selectedTeam)
-
   const resetSeason = useResetRecoilState(selectedSeason)
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetTeam = useResetRecoilState(selectedTeam)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    // setSeason('') //will restart the season in dropdown selection in all app
-    // setDivision('') //will restart the division in dropdown selection in all app
-    // setTeam('') //will restart the teams in dropdown selection in all app
     resetSeason()
     resetDivision()
     resetTeam()
@@ -125,15 +118,15 @@ export default function VerticalTabs() {
         />
         <Tab
           className={`masterCreator--Tab`}
-          label={`${hide ? 'Assign' : ''}`}
-          icon={<TableChartIcon />}
+          label={`${hide ? 'Playoffs' : ''}`}
+          icon={<EmojiEventsOutlinedIcon />}
           iconPosition="start"
           {...a11yProps(3)}
         />
         <Tab
           className={`masterCreator--Tab`}
-          label={`${hide ? 'Playoffs' : ''}`}
-          icon={<EmojiEventsOutlinedIcon />}
+          label={`${hide ? 'Assign' : ''}`}
+          icon={<TableChartIcon />}
           iconPosition="start"
           {...a11yProps(4)}
         />
@@ -151,10 +144,10 @@ export default function VerticalTabs() {
         <ScheduleTabContainer />
       </TabPanel>
       <TabPanel value={value} index={3} hide={hide}>
-        <AssignTabContainer />
+        <PlayoffsTabContainer />
       </TabPanel>
       <TabPanel value={value} index={4} hide={hide}>
-        <PlayoffsTabContainer />
+        <AssignTabContainer />
       </TabPanel>
     </Box>
   )

@@ -2,6 +2,7 @@ import MuiModal from '@mui/material/Modal'
 
 import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { v4 as uuidv4 } from 'uuid'
 
 function ShowAddSeasonModal() {
   const [showModal, setShowModal] = useRecoilState(modalState)
@@ -30,7 +31,7 @@ function ShowAddSeasonModal() {
           </p>
           <p>Divisions:</p>
           {data?.divisionsName.map((division, index) => (
-            <p key={index} className="pl-8 text-yellow-300">
+            <p key={uuidv4()} className="pl-8 text-yellow-300">
               {division.name}
               {/* <span className="text-yellow-300"> {division.name}</span> */}
             </p>

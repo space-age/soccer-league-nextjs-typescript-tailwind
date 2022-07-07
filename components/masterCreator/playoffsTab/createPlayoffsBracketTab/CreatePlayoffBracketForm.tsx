@@ -164,7 +164,7 @@ function CreatePlayoffBracketForm() {
             />
             {errors.bracketName && (
               <p className=" text-[13px] font-light  text-orange-500">
-                Playoff Bracket Name must contain between 5 and 30 characters.
+                Playoff Bracket Name must contain between 5 and 20 characters.
               </p>
             )}
           </label>

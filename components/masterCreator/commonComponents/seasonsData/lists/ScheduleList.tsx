@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil'
 import useWeeksSchedulesList from '../../../../../hooks/useWeeksSchedulesList'
 import { WeekScheduleList } from '../../../../../typings'
 import { DocumentData } from 'firebase/firestore'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function ScheduleList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -24,7 +25,7 @@ export default function ScheduleList() {
     date: '',
     weekName: '',
   }
-  
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
@@ -74,7 +75,7 @@ export default function ScheduleList() {
           ) : (
             scheduleWeekList.map((schedule, index) => (
               <MenuItem
-                key={index}
+                key={uuidv4()}
                 className="hover:bg-[#cfd8dc]"
                 onClick={() => handleClose(schedule)}
               >

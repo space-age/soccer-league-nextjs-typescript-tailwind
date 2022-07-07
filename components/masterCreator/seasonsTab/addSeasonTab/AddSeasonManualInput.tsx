@@ -14,6 +14,7 @@ import { useRecoilState } from 'recoil'
 import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { db } from '../../../../firebase'
 import { AddedSeason } from '../../../../typings'
+import { v4 as uuidv4 } from 'uuid'
 
 // interface Inputs {
 //   seasonName: string
@@ -102,7 +103,7 @@ function AddSeasonManualInput() {
         </label>
         {divisions.map((division, index) => {
           return (
-            <div key={index} className="flex gap-2 tracking-wider">
+            <div key={uuidv4()} className="flex gap-2 tracking-wider">
               <div>
                 <label className="font-semibold">
                   Division name:

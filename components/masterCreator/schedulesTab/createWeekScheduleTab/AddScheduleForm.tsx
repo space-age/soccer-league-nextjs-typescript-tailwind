@@ -7,12 +7,7 @@ import {
   selectedScheduleWeek,
   selectedSeason,
 } from '../../../../atoms/seasonAtoms'
-import {
-  inputsDisable,
-  showAddScheduleForm,
-  showAddWeekScheduleForm,
-  showListOfSchedules,
-} from '../../../../atoms/weekScheduleAtoms'
+import { showListOfSchedules } from '../../../../atoms/weekScheduleAtoms'
 import { db } from '../../../../firebase'
 import useFieldNumberList from '../../../../hooks/useFieldNumberList'
 import useSchedulesList from '../../../../hooks/useSchedulesList'
@@ -27,13 +22,6 @@ function AddScheduleForm() {
   const timesList = useTimesList()
   const teamList = useTeamList()
   const currentScheduleList = useSchedulesList()
-  // const resetSeason = useResetRecoilState(selectedSeason)
-  // const resetDivision = useResetRecoilState(selectedDivision)
-  // const [disableInput, setDisableInput] = useRecoilState(inputsDisable)
-  // const [showAddSchedulesForm, setShowAddSchedulesForm] =
-  //   useRecoilState(showAddScheduleForm)
-  // const [showAddWeekSchedulesForm, setShowAddWeekSchedulesForm] =
-  //   useRecoilState(showAddWeekScheduleForm)
 
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)
@@ -112,11 +100,6 @@ function AddScheduleForm() {
       scheduleList: [{ time: '', fieldNumber: null, teamA: '', teamB: '' }],
     })
     setShowListSchedules(true) // set to true, will show the lsit of schedules
-    // setDisableInput(false) //enables inputs for add week schedule form
-    // setShowAddSchedulesForm(false) // hides the add schedule form, this component form
-    // setShowAddWeekSchedulesForm(false) //hides the add week schedule form
-    // resetSeason() // resets to default value for the dropdown option for seasons
-    // resetDivision() // resets to default value for the dropdown option for divisions
   }
 
   /*
@@ -150,7 +133,7 @@ function AddScheduleForm() {
       >
         {scheduleList.map((schedule, index) => {
           return (
-            <div key={index} className="flex flex-col">
+            <div key={uuidv4()} className="flex flex-col">
               <div className="grid grid-cols-7 items-center justify-items-center overflow-auto rounded-lg border-2 border-[#00838f] bg-[#cfd8dc]  px-2 text-xl font-semibold shadow-lg ">
                 {/* Field Selection */}
                 <label>
@@ -174,14 +157,14 @@ function AddScheduleForm() {
                         indexField: number
                       ) => (
                         <optgroup
-                          key={indexField}
+                          key={uuidv4()}
                           label={field.address}
                           className="text-black"
                         >
                           {field.fieldNumbers.map(
                             (number: number, indexFieldNumber) => (
                               <option
-                                key={indexFieldNumber}
+                                key={uuidv4()}
                                 className="text-white"
                                 value={number}
                               >
@@ -211,7 +194,7 @@ function AddScheduleForm() {
                       </option>
                       {teamList.map((team, indexTeamA) => (
                         <option
-                          key={indexTeamA}
+                          key={uuidv4()}
                           className="text-white"
                           value={team.name}
                         >
@@ -244,7 +227,7 @@ function AddScheduleForm() {
                       </option>
                       {teamList.map((team, indexTeamB) => (
                         <option
-                          key={indexTeamB}
+                          key={uuidv4()}
                           className="text-white"
                           value={team.name}
                         >
@@ -271,7 +254,7 @@ function AddScheduleForm() {
                     </option>
                     {timesList.map((time: string[], indexTime: number) => (
                       <option
-                        key={indexTime}
+                        key={uuidv4()}
                         className="text-white"
                         value={time}
                       >

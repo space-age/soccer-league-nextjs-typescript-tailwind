@@ -8,6 +8,7 @@ import { db } from '../../../../firebase'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { AddedTeam } from '../../../../typings'
+import { v4 as uuidv4 } from 'uuid'
 
 function AddTeamForm() {
   const [teams, setTeams] = useState([{ name: '', teamExists: false }])
@@ -142,7 +143,7 @@ function AddTeamForm() {
       >
         {teams.map((team, index) => {
           return (
-            <div key={index} className="flex gap-2 tracking-wider">
+            <div key={uuidv4()} className="flex gap-2 tracking-wider">
               <div>
                 <label className="font-semibold">
                   Team name:

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import AddSeason from './addSeasonTab/AddSeason'
 import DeleteSeason from './deleteSeasonTab/DeleteSeason'
+import { v4 as uuidv4 } from 'uuid'
 
 function SeasonsTabsOptionsContainer() {
   const Tabs = [
@@ -21,7 +22,7 @@ function SeasonsTabsOptionsContainer() {
         <div className="flex  text-lg ">
           {Tabs.map((tab, index) => (
             <button
-              key={index}
+              key={uuidv4()}
               onClick={handlerTabButton}
               id={tab.id}
               className={`w-[20%] rounded-bl-lg

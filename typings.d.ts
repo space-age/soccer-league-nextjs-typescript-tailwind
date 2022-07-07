@@ -104,7 +104,7 @@ export interface ScheduleList {
 
 export interface FieldsList {
   address: string
-  fieldNumber: number
+  fieldNumbers: number[]
 }
 
 export interface Assignments {
@@ -114,7 +114,16 @@ export interface Assignments {
     date: string
     idName: string
     weekName: string
+    pushed: boolean
   }
+  currentPlayoffBracket: {
+    date: string
+    idName: string
+    bracketName: string
+    pushed: boolean
+  }
+  currentPlayoffDivision: string
+  currentPlayoffSeason: string
 }
 
 interface Playoff {

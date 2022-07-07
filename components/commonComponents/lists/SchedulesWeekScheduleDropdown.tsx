@@ -11,6 +11,7 @@ import useAssignments from '../../../hooks/useAssignments'
 import useWeeksSchedulesList from '../../../hooks/useWeeksSchedulesList'
 import { selectedScheduleWeek } from '../../../atoms/seasonAtoms'
 import { WeekScheduleList } from '../../../typings'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function SchedulesWeekScheduleDropdown() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -89,7 +90,7 @@ export default function SchedulesWeekScheduleDropdown() {
               (schedule, index) =>
                 schedule.pushed && (
                   <MenuItem
-                    key={index}
+                    key={uuidv4()}
                     className="hover:bg-[#cfd8dc]"
                     onClick={() => handleClose(schedule)}
                   >

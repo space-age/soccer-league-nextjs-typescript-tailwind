@@ -12,6 +12,7 @@ import useFieldNumberList from '../../../../hooks/useFieldNumberList'
 import useTeamList from '../../../../hooks/useTeamList'
 import useTimesList from '../../../../hooks/useTimesList'
 import { ScheduleList } from '../../../../typings'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
   list: ScheduleList | DocumentData
@@ -88,14 +89,14 @@ function EditScheduleForm({ list, handleEditClick }: Props) {
                   indexField: number
                 ) => (
                   <optgroup
-                    key={indexField}
+                    key={uuidv4()}
                     label={field.address}
                     className="text-black"
                   >
                     {field.fieldNumbers.map(
                       (number: number, indexFieldNumber) => (
                         <option
-                          key={indexFieldNumber}
+                          key={uuidv4()}
                           className="text-white"
                           value={number}
                         >
@@ -126,7 +127,7 @@ function EditScheduleForm({ list, handleEditClick }: Props) {
                 </option>
                 {teamList.map((team, indexTeamA) => (
                   <option
-                    key={indexTeamA}
+                    key={uuidv4()}
                     className="text-white"
                     value={team.name}
                   >
@@ -160,7 +161,7 @@ function EditScheduleForm({ list, handleEditClick }: Props) {
                 </option>
                 {teamList.map((team, indexTeamB) => (
                   <option
-                    key={indexTeamB}
+                    key={uuidv4()}
                     className="text-white"
                     value={team.name}
                   >
@@ -187,7 +188,7 @@ function EditScheduleForm({ list, handleEditClick }: Props) {
                 Select
               </option>
               {timesList.map((time: string[], indexTime: number) => (
-                <option key={indexTime} className="text-white" value={time}>
+                <option key={uuidv4()} className="text-white" value={time}>
                   {time}
                 </option>
               ))}

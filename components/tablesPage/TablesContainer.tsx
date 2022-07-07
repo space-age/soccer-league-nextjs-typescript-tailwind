@@ -114,42 +114,57 @@ function TablesContainer() {
 
   return (
     <div className="my-5 overflow-auto rounded-sm border-2 text-black shadow-xl md:m-5 lg:m-7">
-      <table className="mainTable sticky">
-        <thead>
-          <tr className="bg-[#006064] text-white">
-            <th className="hidden lg:table-cell">Position</th>
-            <th className="lg:hidden"></th>
+      {(!weekSchedule?.idName ||
+        weekSchedule?.idName.length === 0 ||
+        weekSchedule === undefined) && (
+        <div>
+          <h2 className="pb-2 text-center font-bold sm:p-2 sm:text-xl md:text-2xl lg:text-3xl">
+            Select a season, division, and week schedule to view table
+          </h2>
+        </div>
+      )}
+      {!(
+        !weekSchedule?.idName ||
+        weekSchedule?.idName.length === 0 ||
+        weekSchedule === undefined
+      ) && (
+        <table className="mainTable sticky">
+          <thead>
+            <tr className="bg-[#006064] text-white">
+              <th className="hidden lg:table-cell">Position</th>
+              <th className="lg:hidden"></th>
 
-            <th className="text-left lg:pr-32 lg:pl-12">Team</th>
+              <th className="text-left lg:pr-32 lg:pl-12">Team</th>
 
-            <th className="hidden lg:table-cell">Played</th>
-            <th className="lg:hidden">Pl</th>
+              <th className="hidden lg:table-cell">Played</th>
+              <th className="lg:hidden">Pl</th>
 
-            <th className="hidden lg:table-cell">Won</th>
-            <th className="lg:hidden">W</th>
+              <th className="hidden lg:table-cell">Won</th>
+              <th className="lg:hidden">W</th>
 
-            <th className="hidden lg:table-cell">Drawn</th>
-            <th className="lg:hidden">D</th>
+              <th className="hidden lg:table-cell">Drawn</th>
+              <th className="lg:hidden">D</th>
 
-            <th className="hidden lg:table-cell">Lost</th>
-            <th className="lg:hidden">L</th>
+              <th className="hidden lg:table-cell">Lost</th>
+              <th className="lg:hidden">L</th>
 
-            <th>GF</th>
-            <th>GA</th>
-            <th>GD</th>
+              <th>GF</th>
+              <th>GA</th>
+              <th>GD</th>
 
-            <th className="hidden md:table-cell">Points</th>
-            <th className="md:hidden">Pts</th>
+              <th className="hidden md:table-cell">Points</th>
+              <th className="md:hidden">Pts</th>
 
-            <th>Form</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tempTeamList.map((team, index) => (
-            <TablesRow team={team} key={uuidv4()} index={index} />
-          ))}
-        </tbody>
-      </table>
+              <th>Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tempTeamList.map((team, index) => (
+              <TablesRow team={team} key={uuidv4()} index={index} />
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   )
 }

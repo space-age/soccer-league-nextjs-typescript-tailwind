@@ -8,6 +8,7 @@ import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined
 import { selectedTeam } from '../../../../../atoms/seasonAtoms'
 import { useRecoilState } from 'recoil'
 import useTeamList from '../../../../../hooks/useTeamList'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function TeamList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -66,7 +67,7 @@ export default function TeamList() {
           ) : (
             teamList.map((team, index) => (
               <MenuItem
-                key={index}
+                key={uuidv4()}
                 className="hover:bg-[#cfd8dc]"
                 onClick={() => handleClose(team.idName)}
               >

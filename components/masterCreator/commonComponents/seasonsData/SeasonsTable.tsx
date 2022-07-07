@@ -1,6 +1,6 @@
 import useTeamList from '../../../../hooks/useTeamList'
-import * as myConstants from '../../../../Tables/week1'
 import SeasonTableRow from './SeasonTableRow'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Props {
   division: string
@@ -101,7 +101,7 @@ function SeasonTable({ division }: Props) {
         </thead>
         <tbody>
           {tempTeamList.map((team, index) => (
-            <SeasonTableRow team={team} key={team.name} index={index} />
+            <SeasonTableRow team={team} key={uuidv4()} index={index} />
           ))}
         </tbody>
       </table>

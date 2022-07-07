@@ -11,8 +11,13 @@ import {
   selectedDivision,
   selectedScheduleWeek,
 } from '../../../atoms/seasonAtoms'
+import { v4 as uuidv4 } from 'uuid'
 
-export default function SchedulesSeasonsDropdown() {
+interface Props {
+  stage: string
+}
+
+export default function SchedulesSeasonsDropdown({ stage }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
@@ -20,9 +25,17 @@ export default function SchedulesSeasonsDropdown() {
   const seasonList = useSeasonList()
   const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
 
-  useEffect(() => {
-    setSeasonSelected(assignments?.currentSeason)
-  }, [assignments])
+  if (stage === 'season') {
+    useEffect(() => {
+      setSeasonSelected(assignments?.currentSeason)
+    }, [assignments])
+  }
+
+  if (stage === 'playoffs') {
+    useEffect(() => {
+      setSeasonSelected(assignments?.currentPlayoffSeason)
+    }, [assignments])
+  }
 
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetWeekSchedule = useResetRecoilState(selectedScheduleWeek)
@@ -82,7 +95,7 @@ export default function SchedulesSeasonsDropdown() {
           ) : (
             seasonList.map((season, index) => (
               <MenuItem
-                key={index}
+                key={uuidv4()}
                 className="hover:bg-[#cfd8dc]"
                 onClick={() => handleClose(season.idName)}
               >
