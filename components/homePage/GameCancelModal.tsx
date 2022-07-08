@@ -40,7 +40,7 @@ function GameCancelModal() {
             Enjoy your Sunday!
           </p>
           <p className="mt-10 text-center text-xl sm:ml-10 sm:text-xl">
-            ( Click anywhere to exit message )
+            ( Click anywhere below to exit message )
           </p>
         </div>
         <div
