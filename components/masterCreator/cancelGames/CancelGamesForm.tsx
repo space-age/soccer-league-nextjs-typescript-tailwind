@@ -53,6 +53,9 @@ function CancelGamesForm() {
             min=""
             className="ml-1 px-1 tracking-wider placeholder:tracking-wider"
             {...register('date', { required: true })}
+            defaultValue={
+              cancelGameData?.date === null ? '' : cancelGameData?.date
+            }
           />
         </label>
         {errors.date && (
