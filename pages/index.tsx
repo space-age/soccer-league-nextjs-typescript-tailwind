@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 // import About from '../components/homePage/About'
 import Banner from '../components/homePage/Banner'
+import GameCancelModal from '../components/homePage/GameCancelModal'
 
 import Header from '../components/homePage/Header'
 
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <main className="relative space-y-6 pl-2 sm:pl-4">
+        {/* <GameCancelModal /> */}
         <Banner />
         {/* <section className="space-y-24">
           {/* About */}

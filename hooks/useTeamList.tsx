@@ -11,6 +11,9 @@ function useTeamList(div = '') {
   const division = useRecoilValue(selectedDivision)
 
   useEffect(() => {
+    if (!season || season?.length === 0) {
+      setList([])
+    }
     if (
       (!season ||
         season?.length === 0 ||

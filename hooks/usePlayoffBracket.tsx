@@ -30,6 +30,7 @@ function usePlayoffBracket(stage = 'Finals') {
       !bracket ||
       bracket.idName.length === 0
     ) {
+      setList([])
       return
     } else
       return onSnapshot(

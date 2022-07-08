@@ -13,7 +13,7 @@ function SheduleWeekListContainer() {
       : false
 
   const title = check
-    ? 'Select a Season, Division, and Week Schedule to view schedules'
+    ? 'Select a Season, Division, and Week Schedule to view week schedules'
     : `${scheduleWeekList.weekName} | ${scheduleWeekList.date}`
 
   return (
@@ -30,7 +30,8 @@ function SheduleWeekListContainer() {
         </h1>
       </div>
 
-      {!check && <ScheduleWeekList />}
+      {/* {!check && <ScheduleWeekList />} */}
+      <ScheduleWeekList />
     </div>
   )
 }

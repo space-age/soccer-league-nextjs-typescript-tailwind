@@ -11,7 +11,7 @@ function Banner() {
     >
       <div
         className="absolute top-0 left-0 -z-10  h-[100vh] w-full  
-    "
+        "
       >
         <Image src={img} layout="fill" objectFit="cover" alt="Soccer Field" />
       </div>

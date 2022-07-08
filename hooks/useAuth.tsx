@@ -8,12 +8,6 @@ import {
 
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { useRecoilState } from 'recoil'
-import {
-  selectedDivision,
-  selectedSeason,
-  selectedTeam,
-} from '../atoms/seasonAtoms'
 import { auth } from '../firebase'
 
 interface IAuth {
@@ -79,15 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .finally(() => setLoading(false))
   }
 
-  const [season, setSeason] = useRecoilState(selectedSeason)
-  const [division, setDivision] = useRecoilState(selectedDivision)
-  const [team, setTeam] = useRecoilState(selectedTeam)
-
   const logout = async () => {
-    setSeason('') //RESTARTS THE DROPDOWN MENU
-    setDivision('') //RESTARTS THE DROPDOWN MENU
-    setTeam('') //RESTARTS THE DROPDOWN MENU
-
     setLoading(true)
 
     signOut(auth)
