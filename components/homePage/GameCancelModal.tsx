@@ -47,7 +47,13 @@ function GameCancelModal() {
           className="absolute top-0 left-0 -z-10  h-[100vh] w-full  
         "
         >
-          <Image src={img} layout="fill" objectFit="cover" alt="Soccer Field" />
+          <Image
+            src={img}
+            layout="fill"
+            objectFit="cover"
+            alt="Soccer Ball with mask on"
+            placeholder="blur"
+          />
         </div>
       </div>
     </MuiModal>
