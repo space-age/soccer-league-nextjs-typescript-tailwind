@@ -124,18 +124,12 @@ function CreateWeekForm() {
               disabled={disableInput}
               placeholder="Week Name"
               className={` ml-2 rounded-md border border-slate-300 px-1 placeholder-slate-400 shadow-sm `}
-              // minLength={MIN_LENGTH_INPUT}
-              // maxLength={MAX_LENGTH_INPUT}
               {...register(`weekName`, {
-                // onChange: (e) => handleInputChange(e),
                 required: true,
-                // value: inputWeekName,
                 minLength: 5,
                 maxLength: 20,
               })}
               type="text"
-              // onChange={(e) => handleInputChange(e)}
-              // value={inputWeekName}
             />
             {errors.weekName && (
               <p className=" text-[13px] font-light  text-orange-500">

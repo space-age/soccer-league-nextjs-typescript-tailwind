@@ -1,12 +1,22 @@
 import MuiModal from '@mui/material/Modal'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import img from '../../images/cancelgame.jpg'
+import { cancelGame, messagedView } from '../../atoms/mainPageAtoms'
+import useGameCancel from '../../hooks/useGameCancel'
 
 function GameCancelModal() {
-  const [showModal, setShowModal] = useState(false)
+  const gameCancelData = useGameCancel()
+  const [showModal, setShowModal] = useRecoilState(cancelGame)
+  const [messageViewed, setMessageViewed] = useRecoilState(messagedView)
+
+  useEffect(() => {
+    setShowModal(gameCancelData?.active)
+  }, [gameCancelData])
 
   const handleClose = () => {
+    setMessageViewed(true)
     setShowModal(false)
   }
 
@@ -23,7 +33,7 @@ function GameCancelModal() {
             All Games have been cancel
           </p>
           <p className="mt-10 text-center text-3xl sm:text-5xl">
-            Schedule Date: 07/07/22
+            Schedule Date: {gameCancelData?.date}
           </p>
 
           <p className="mt-10 text-center text-2xl sm:ml-10 sm:text-3xl">

@@ -7,14 +7,14 @@ import {
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { db } from '../firebase'
-import { Assignments } from '../typings'
+import { GameCancel } from '../typings'
 
-function useAssignments() {
-  const [list, setList] = useState<Assignments | DocumentData>()
+function useGameCancel() {
+  const [list, setList] = useState<GameCancel | DocumentData>()
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, 'More', 'Assignments')
+      const docRef = doc(db, 'More', 'Game Cancel')
       const docSnap = await getDoc(docRef)
       const data = docSnap.data()
       setList(data)
@@ -25,4 +25,4 @@ function useAssignments() {
   return list
 }
 
-export default useAssignments
+export default useGameCancel

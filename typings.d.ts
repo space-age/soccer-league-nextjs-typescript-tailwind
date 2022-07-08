@@ -116,6 +116,10 @@ export interface Assignments {
   currentPlayoffSeason: string
 }
 
+export interface GameCancel {
+  active: boolean | string
+  date: string
+}
 interface Playoff {
   time: string
   fieldNumber: number | null

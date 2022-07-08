@@ -7,6 +7,7 @@ import GroupsIcon from '@mui/icons-material/Groups'
 import EventIcon from '@mui/icons-material/Event'
 import TableChartIcon from '@mui/icons-material/TableChart'
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined'
+import CancelIcon from '@mui/icons-material/Cancel'
 
 import SeasonsTabContainer from '../components/masterCreator/seasonsTab/SeasonsTabContainer'
 import ScheduleTabContainer from '../components/masterCreator/schedulesTab/ScheduleTabContainer'
@@ -31,6 +32,7 @@ import {
   selectedTeam,
 } from '../atoms/seasonAtoms'
 import PlayoffsTabContainer from '../components/masterCreator/playoffsTab/PlayoffsTabContainer'
+import CancelGamesContainer from '../components/masterCreator/cancelGames/CancelGamesContainer'
 
 function a11yProps(index: number) {
   return {
@@ -130,6 +132,13 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(4)}
         />
+        <Tab
+          className={`masterCreator--Tab`}
+          label={`${hide ? 'Cancel' : ''}`}
+          icon={<CancelIcon />}
+          iconPosition="start"
+          {...a11yProps(5)}
+        />
         <ArrowButton hide={hide} handleButton={handleButton} />
         <HomeButton hide={hide} />
         <LogOutButton hide={hide} />
@@ -148,6 +157,9 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={4} hide={hide}>
         <AssignTabContainer />
+      </TabPanel>
+      <TabPanel value={value} index={5} hide={hide}>
+        <CancelGamesContainer />
       </TabPanel>
     </Box>
   )

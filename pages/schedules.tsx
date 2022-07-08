@@ -6,8 +6,12 @@ import SchedulesSeasonsDropdown from '../components/commonComponents/lists/Sched
 import SchedulesDivisionsDropdown from '../components/commonComponents/lists/SchedulesDivisionsDropdown'
 import SchedulesWeekScheduleDropdown from '../components/commonComponents/lists/SchedulesWeekScheduleDropdown'
 import SheduleWeekListContainer from '../components/schedulePage/SheduleWeekListContainer'
+import GameCancelModal from '../components/homePage/GameCancelModal'
+import { useRecoilValue } from 'recoil'
+import { messagedView } from '../atoms/mainPageAtoms'
 
 function SchedulesPage() {
+  const cancelGameMessage = useRecoilValue(messagedView)
   return (
     <div className="h-screen ">
       <Head>
@@ -23,6 +27,7 @@ function SchedulesPage() {
           <SchedulesWeekScheduleDropdown />
         </div>
         <SheduleWeekListContainer />
+        {!cancelGameMessage && <GameCancelModal />}
       </main>
     </div>
   )
