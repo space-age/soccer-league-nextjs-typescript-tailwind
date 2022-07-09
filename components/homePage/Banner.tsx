@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import img from '../../images/home-bg.jpg'
+import img from '../../images/temp1.jpg'
+// import img from '../../images/home-bg.jpg'
 
 function Banner() {
   return (
@@ -10,7 +11,7 @@ function Banner() {
       lg:space-y-4 lg:pb-16"
     >
       <div
-        className="absolute top-0 left-0 -z-10  h-[100vh] w-full  
+        className="absolute top-0 left-0 -z-10  h-[100vh] w-full  brightness-[.8]	
         "
       >
         <Image src={img} layout="fill" objectFit="cover" alt="Soccer Field" />
@@ -30,7 +31,7 @@ function Banner() {
         Located in Menifee, Ca
       </h2>
       <p
-        className="text-shadow-md max-w-xs pt-5 text-xl font-semibold 
+        className=" max-w-xs pt-5 text-xl font-semibold 
       md:max-w-lg md:text-xl 
       lg:max-w-2xl lg:text-2xl"
       >

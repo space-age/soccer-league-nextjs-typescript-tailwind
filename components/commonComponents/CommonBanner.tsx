@@ -26,7 +26,7 @@ function TableBanner({ image, title }: Props) {
         />
       </div>
       <h1
-        className=" pl-5 text-7xl
+        className=" pl-4 text-6xl
       font-semibold 
       capitalize md:text-9xl lg:text-9xl"
       >
