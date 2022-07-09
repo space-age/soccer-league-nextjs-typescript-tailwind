@@ -12,13 +12,13 @@ function BasicTeamSchedule({ list }: Props) {
         <p className="text-[#00acc1]">Field: {list.fieldNumber}</p>
         <p className="text-[#00acc1]">Time: {list.time}</p>
       </div>
-      <div className="grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-5">
         <div className="col-span-2 ml-2 justify-self-start">
           <p className="overflow-hidden text-ellipsis text-[#e0e0e0]">
             {list.teamA}
           </p>
         </div>
-        <div className="flex flex-row gap-3 self-center ">
+        <div className="flex flex-row gap-1 self-center ">
           <p className="self-center text-[#00acc1]">({list.scoredA})</p>
           <p className="self-center text-[#e0e0e0]">vs.</p>
           <p className="self-center text-[#00acc1]">({list.scoredB})</p>
