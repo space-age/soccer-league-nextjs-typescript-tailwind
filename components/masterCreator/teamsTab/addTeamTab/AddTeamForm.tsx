@@ -47,6 +47,7 @@ function AddTeamForm() {
     e: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
+    e.preventDefault()
     const { value } = e.target
     const list = [...teams]
     list[index].name = value
@@ -56,6 +57,12 @@ function AddTeamForm() {
         ? 'z'
         : list[index].name.toUpperCase().trim()
 
+    // console.log(temp.length)
+    // if (temp.length < 5) {
+    //   list[index].teamExists = false
+    //   setTeams(list)
+    //   return
+    // }
     const docSnap = await getDoc(
       doc(db, 'Seasons', season!, 'Divisions', division!, 'Teams', temp)
     )
@@ -142,7 +149,7 @@ function AddTeamForm() {
       >
         {teams.map((team, index) => {
           return (
-            <div key={uuidv4()} className="flex gap-2 tracking-wider">
+            <div key={index} className="flex gap-2 tracking-wider">
               <div>
                 <label className="font-semibold">
                   Team name:
@@ -153,10 +160,10 @@ function AddTeamForm() {
                       team.teamExists === true &&
                       'border-[red] outline-none ring-1 ring-[red]'
                     } ml-2 rounded-md border border-slate-300 px-1 placeholder-slate-400 shadow-sm `}
-                    maxLength={30}
                     {...register(`teams.${index}.name`, {
                       onChange: (e) => handleInputChange(e, index),
                       required: true,
+                      maxLength: 30,
                       // value: team.name,
                     })}
                     type="text"
