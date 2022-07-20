@@ -1,6 +1,6 @@
 function ContactFees() {
   return (
-    <div className="flex flex-col gap-4 bg-[#eeeeee] p-4 pb-6 capitalize text-black md:gap-9 lg:gap-5 lg:p-6">
+    <div className="flex flex-col gap-4 bg-[#eeeeee] p-4 pb-6 capitalize text-black md:gap-9 lg:gap-5 lg:p-3">
       <h2 className="text-2xl font-bold tracking-wider md:text-3xl	">
         Team and Player registration!
       </h2>

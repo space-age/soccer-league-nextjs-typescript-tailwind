@@ -14,7 +14,7 @@ function ContactPage() {
       </Head>
       <Header />
       <main className="relative ">
-        <CommonBanner image={image} title="Contact" />
+        <CommonBanner image={image} title="Contact Us" />
         <Contact />
       </main>
     </div>
