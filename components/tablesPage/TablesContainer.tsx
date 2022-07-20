@@ -160,7 +160,8 @@ function TablesContainer() {
               <th className="hidden md:table-cell">Points</th>
               <th className="md:hidden">Pts</th>
 
-              <th>Form</th>
+              <th className="hidden md:table-cell">Form (Current--Previous)</th>
+              <th className="md:hidden">Form</th>
             </tr>
           </thead>
           <tbody>
