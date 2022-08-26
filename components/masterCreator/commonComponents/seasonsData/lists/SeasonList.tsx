@@ -76,15 +76,29 @@ export default function SeasonList() {
               No Season Found
             </MenuItem>
           ) : (
-            seasonList.map((season, index) => (
-              <MenuItem
-                key={uuidv4()}
-                className="hover:bg-[#cfd8dc]"
-                onClick={() => handleClose(season.idName)}
-              >
-                {season.idName}
-              </MenuItem>
-            ))
+            // Want to exclude season: 'SEASON 1 2022' because using it for demo in main page and do not want any changes to it such as deletion
+            seasonList.map(
+              (season, index) =>
+                season.idName !== 'SEASON 1 2022' && (
+                  <MenuItem
+                    key={uuidv4()}
+                    className="hover:bg-[#cfd8dc]"
+                    onClick={() => handleClose(season.idName)}
+                  >
+                    {season.idName}
+                  </MenuItem>
+                )
+            )
+            // The following is for all seasons to show
+            // seasonList.map((season, index) => (
+            //   <MenuItem
+            //     key={uuidv4()}
+            //     className="hover:bg-[#cfd8dc]"
+            //     onClick={() => handleClose(season.idName)}
+            //   >
+            //     {season.idName}
+            //   </MenuItem>
+            // ))
           )}
         </Menu>
       </div>

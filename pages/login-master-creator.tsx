@@ -43,6 +43,13 @@ function LoginMasterCreator() {
         objectFit="cover"
       />
 
+      <div className="relative mt-24 space-y-8 bg-black/75 py-10 px-6 text-lg md:mt-0 md:max-w-md md:px-14 md:text-2xl  xl:!hidden">
+        <p>
+          For better user experience, Portal was created for screens with width
+          of 1280 pixels and larger
+        </p>
+        <p>Authentication for Portal will appear once screen is large enough</p>
+      </div>
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -50,6 +57,15 @@ function LoginMasterCreator() {
       >
         <h1 className="text-4xl">Sign In</h1>
         <div className="space-y-4">
+          <div className="font-light">
+            <p>For demo purposes use the following:</p>
+            <p className="ml-5">
+              Email: <span className="font-bold">demo@gmail.com</span>
+            </p>
+            <p className="ml-5">
+              Password: <span className="font-bold">GoldenTea@1031</span>
+            </p>
+          </div>
           <label className="inline-block w-full">
             <input
               type="email"
