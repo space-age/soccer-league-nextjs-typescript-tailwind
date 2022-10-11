@@ -28,7 +28,7 @@ function CommonBanner({ image, title }: Props) {
           layout="fill"
           objectFit="cover"
           alt="Soccer Field"
-          // placeholder="blur"
+          placeholder="blur"
           priority
         />
       </div>
