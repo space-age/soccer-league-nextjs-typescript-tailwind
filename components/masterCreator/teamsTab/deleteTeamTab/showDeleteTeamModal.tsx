@@ -12,6 +12,9 @@ import { deleteDoc, doc } from 'firebase/firestore'
 import { useState } from 'react'
 import { db } from '../../../../firebase'
 
+/**
+ * Material UI Modal to display a final warning that the team selected will be deleted permenantly from database.
+ */
 function ShowDeleteTeamModal() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
   const [team, setTeam] = useRecoilState(selectedTeam)
@@ -29,6 +32,9 @@ function ShowDeleteTeamModal() {
     setDeleteComplete(false)
   }
 
+  /**
+   * handler to delete selected team from database
+   */
   const handleDeleteSeason = async () => {
     await deleteDoc(
       doc(

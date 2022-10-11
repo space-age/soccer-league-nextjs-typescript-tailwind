@@ -3,6 +3,10 @@ import { FieldsList } from '../../typings'
 import Field from './Field'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Fields Main Container. Loops thru the array of fields from database and creates a container Field for each field
+ * @returns Multiple Containers of Fields
+ */
 function FieldContainer() {
   const fields = useFieldNumberList()
   return (

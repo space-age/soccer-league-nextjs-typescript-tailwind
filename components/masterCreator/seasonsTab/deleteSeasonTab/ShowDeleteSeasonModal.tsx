@@ -9,6 +9,9 @@ import { db } from '../../../../firebase'
 import { useState } from 'react'
 import useAssignments from '../../../../hooks/useAssignments'
 
+/**
+ * Material UI Modal to display a final warming that the selected season will be deleted permenantly from database
+ */
 function ShowDeleteSeasonModal() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveSeason)
   const [season, setSeason] = useRecoilState(selectedSeason)
@@ -23,8 +26,12 @@ function ShowDeleteSeasonModal() {
     setDeleteComplete(false)
   }
 
+  /**
+   * Handler to delete the document, the selected season from data
+   */
   const handleDeleteSeason = async () => {
     await deleteDoc(doc(db, 'Seasons', data!))
+    // If the current season deleted is the current season assigned, then reset the values of the assignments back to blank
     if (data === assignments?.currentSeason) {
       const listRef = doc(db, 'More', 'Assignments')
       await updateDoc(listRef, {
@@ -38,8 +45,8 @@ function ShowDeleteSeasonModal() {
       })
     }
 
-    setSeason('')
-    setDeleteComplete(true)
+    setSeason('') //resets the selected season
+    setDeleteComplete(true) //will display the message that deletion has been completed
   }
 
   return (

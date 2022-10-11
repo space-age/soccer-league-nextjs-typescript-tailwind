@@ -14,6 +14,9 @@ import { db } from '../../../../firebase'
 import useTeamList from '../../../../hooks/useTeamList'
 import useAssignments from '../../../../hooks/useAssignments'
 
+/**
+ * Material UI Modal to display a final warning to delete week schedule permenantly.
+ */
 function ShowDeleteWeekScheduleModal() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveTeam)
   // const [schedule, setSchedule] = useRecoilState(selectedScheduleWeek)
@@ -37,6 +40,9 @@ function ShowDeleteWeekScheduleModal() {
 
   const teamList = useTeamList()
 
+  /**
+   * Removes the week schedule from the teams that have played in that weeek schedule
+   */
   const removeWeekScheduleFromTeams = async () => {
     teamList.map(async (team) => {
       if (!team.gamesPlayed) return
@@ -69,6 +75,9 @@ function ShowDeleteWeekScheduleModal() {
     })
   }
 
+  /**
+   * Deletes week schedule from the database, and removes the week schedules from the teams
+   */
   const handleDeleteSchedule = async () => {
     await removeWeekScheduleFromTeams()
     await deleteDoc(

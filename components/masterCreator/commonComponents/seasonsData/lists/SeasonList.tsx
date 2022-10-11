@@ -14,6 +14,9 @@ import {
 import { useRecoilState, useResetRecoilState } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button that displays drop-down options of all seasons in the database
+ */
 export default function SeasonList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -28,6 +31,10 @@ export default function SeasonList() {
     setAnchorEl(event.currentTarget)
   }
 
+  /**
+   * Handler for close button. Sets the state to the selected season
+   * @param seasonName
+   */
   function handleClose(seasonName: string) {
     setSeasonSelected(seasonName)
     if (!(!seasonName || seasonName.length === 0)) {

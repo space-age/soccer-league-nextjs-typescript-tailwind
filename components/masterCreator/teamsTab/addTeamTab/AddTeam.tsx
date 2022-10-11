@@ -5,6 +5,10 @@ import DivisionList from '../../commonComponents/seasonsData/lists/DivisionList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import AddTeamForm from './AddTeamForm'
 
+/**
+ * Tab to add a team by selecting a season->division.
+ * Then will display the form to add a team. if division or season have been diselected, form will hide
+ */
 function AddTeam() {
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)

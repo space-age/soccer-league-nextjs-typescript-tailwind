@@ -4,6 +4,10 @@ import CommonBanner from '../components/commonComponents/CommonBanner'
 import image from '../images/fields-bg.jpg'
 import FieldContainer from '../components/fieldsPage/FieldContainer'
 
+/**
+ * /fields page. Displays the fields number and their address
+ * @returns fields number with address
+ */
 function FieldsPage() {
   return (
     <div className="relative h-screen">

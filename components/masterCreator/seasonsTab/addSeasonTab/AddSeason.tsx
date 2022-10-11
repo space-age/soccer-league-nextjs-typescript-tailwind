@@ -8,6 +8,10 @@ import { AddedSeason } from '../../../../typings'
 import ShowAddSeasonModal from './ShowAddSeasonModal'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Container that allows to add a new season with multiple divisions
+ * @returns
+ */
 function AddSeason() {
   const Default_Division_Name = 'Division 1'
   const MAX_NUMBER_DIVISIONS = 2
@@ -25,14 +29,25 @@ function AddSeason() {
     formState: { errors },
   } = useForm<AddedSeason>()
 
+  /**
+   * Handler to remove division.
+   * Creates a temp list of current divisions list, then removes the 2nd index, and sets the tempList to the divisions state
+   * And must unregister the previous division from the form
+   * @param e for event
+   * @param index
+   */
   const handleRemoveButton = (e: any, index: number) => {
     e.preventDefault()
-    const list = [...divisions]
-    list.splice(index, 1)
-    setDivisions(list)
+    const tempList = [...divisions]
+    tempList.splice(index, 1)
+    setDivisions(tempList)
     unregister(`divisionsName.${index}.name`)
   }
 
+  /**
+   * Adds a new division and updates teh divisions state
+   * @param e
+   */
   const handleAddButton = (e: any) => {
     e.preventDefault()
     const list = [...divisions, { name: `Division ${divisions.length + 1}` }]
@@ -42,24 +57,37 @@ function AddSeason() {
   const [finalData, setFinalData] = useRecoilState(submissionData)
   const [showModal, setShowModal] = useRecoilState(modalState)
 
+  /**
+   * Form submission handler.
+   * Checks if submitted season already exists in database, if it does then send an alert,
+   * else create the document with the name of the season and collections under for all divisions entered
+   * @param data
+   */
   const onSubmit: SubmitHandler<AddedSeason> = async (data: AddedSeason) => {
+    // Creates object with the new data submitted by form
     const newData = {
       seasonName: data.seasonName,
       divisionsName: divisions.map((division, index) => {
         return { name: division.name }
       }),
     }
-
+    //Gets the documment from firebase, the name is the new season name
     const docSnap = await getDoc(
       doc(db, 'Seasons', newData.seasonName.toUpperCase())
     )
+
+    // if season name already exists, then alert user
     if (docSnap.exists()) {
       alert('Season Name Found, please enter a different Season Name!')
-    } else {
+    }
+    // Else, create new document
+    else {
+      //had to set season name first or else it will not be modifyable in firebase
       await setDoc(
         doc(db, 'Seasons', newData!.seasonName.toUpperCase().trim()),
         {}
-      ) //had to set season name first or else it will not be modifyable in firebase
+      )
+      // Loops thru divisions array and creates a collection for each division
       newData.divisionsName.map(async (division) => {
         await setDoc(
           doc(
@@ -72,11 +100,13 @@ function AddSeason() {
           {}
         )
       })
-      setFinalData(newData)
-      setShowModal(true)
+      setFinalData(newData) //saves the new data submitted to the state as it will be used for the modal to display its completion
+      setShowModal(true) //sets state to true to show modal with message of completion
     }
 
+    //resets the state back to its default state to be ready for next submission
     setDivisions([{ name: `${Default_Division_Name}` }])
+    // resets the form
     reset({
       seasonName: '',
       divisionsName: [{ name: `${Default_Division_Name}` }],
@@ -93,6 +123,7 @@ function AddSeason() {
         onSubmit={handleSubmit(onSubmit)}
         className="grid-row mt-1 grid gap-3 text-lg"
       >
+        {/* Label for season name */}
         <label className=" font-semibold">
           Season name:
           <input
@@ -108,6 +139,8 @@ function AddSeason() {
             *** Please enter a season name
           </p>
         )}
+
+        {/* Loops thru divisions state to either diplay remove button or not */}
         {divisions.map((division, index) => {
           return (
             <div key={uuidv4()} className="flex gap-2 tracking-wider">
@@ -128,6 +161,7 @@ function AddSeason() {
           )
         })}
 
+        {/* Check if max number division allowed has been reached, display add division button if not */}
         {divisions.length < MAX_NUMBER_DIVISIONS && (
           <button
             onClick={handleAddButton}
@@ -137,6 +171,7 @@ function AddSeason() {
           </button>
         )}
 
+        {/* Message displaying how many divisions allowed */}
         <p className="text-sm">
           *** Max number of divisions allowed per season:{' '}
           <span className="text-lg font-bold text-[#b71c1c]">
@@ -144,6 +179,7 @@ function AddSeason() {
           </span>
         </p>
 
+        {/* Button to submit form and add season */}
         <button
           type="submit"
           className="mt-2 w-[20%] content-start justify-self-start rounded bg-[#00838f] p-2 text-lg font-bold  tracking-wider text-white hover:bg-[#006064]"
@@ -151,6 +187,8 @@ function AddSeason() {
           Add Season
         </button>
       </form>
+
+      {/* If state is true, then will display the modal for completion message */}
       {showModal && <ShowAddSeasonModal />}
     </div>
   )

@@ -13,10 +13,11 @@ interface Props {
   hide: boolean
 }
 
-/*
-  Returns a Logout button,
-    when clicked, it will log out the user and re-direct to the login page
-*/
+/**
+ * Returns a Logout button,
+ *     when clicked, it will log out the user and re-direct to the login page
+ * @param props
+ */
 function LogOutButton(props: Props) {
   const { hide } = props
   const { logout } = useAuth()
@@ -43,7 +44,6 @@ function LogOutButton(props: Props) {
           onClick={handleLogout}
           className={`!absolute !bottom-0 !right-5 !text-3xl !font-bold !normal-case !text-[#fafafa] hover:!text-[#03a9f4]`}
         >
-          {/* <LogoutIcon /> */}
           Log out
         </Button>
       )}

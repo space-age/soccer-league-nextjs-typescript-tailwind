@@ -34,6 +34,11 @@ import {
 import PlayoffsTabContainer from '../components/masterCreator/playoffsTab/PlayoffsTabContainer'
 import CancelGamesContainer from '../components/masterCreator/cancelGames/CancelGamesContainer'
 
+/**
+ * Sets the index of the vertical tab panel selected
+ * @param index
+ * @returns
+ */
 function a11yProps(index: number) {
   return {
     id: `vertical-tab-${index}`,
@@ -41,6 +46,10 @@ function a11yProps(index: number) {
   }
 }
 
+/**
+ * Next js Head as a function
+ * @returns
+ */
 function MainHead() {
   return (
     <Head>
@@ -49,13 +58,29 @@ function MainHead() {
     </Head>
   )
 }
-export default function VerticalTabs() {
+
+/**
+ * ./master-creator page. Portal to create, delete, and modify seasons, division, week schedules, games, and playoffs bracket
+ * Page hold vertial tabs for each option: Seasons, Teams, Schedules, Playoffs, Assign, and Cancel.
+ * Each tab will have a container with the options available for each tab.
+ * Button to navigate back Home, to the home page.
+ * Button to log out the user of the portal
+ *
+ * @returns master creator portal page
+ */
+export default function MasterCreator() {
   const [value, setValue] = useState(0)
 
   const resetSeason = useResetRecoilState(selectedSeason)
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetTeam = useResetRecoilState(selectedTeam)
 
+  /**
+   * When a new tab is selected, the recoil states will reset to their default values
+   * And will set a new value of the current tab selected
+   * @param event
+   * @param newValue
+   */
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     resetSeason()
     resetDivision()
@@ -64,6 +89,11 @@ export default function VerticalTabs() {
   }
 
   const [hide, setHide] = useState(true)
+
+  /**
+   * Handler to set the state hide to its opposite current state
+   * Will either hide or display the vertial tabs options as icons only or icon plus title
+   */
   const handleButton = () => {
     setHide(!hide)
   }
@@ -71,6 +101,9 @@ export default function VerticalTabs() {
   const { user } = useAuth()
   const router = useRouter()
 
+  /**
+   * Check if no user is logged in, push page to /login-master-creator to sign in to portal
+   */
   if (!user) {
     router.push('/login-master-creator')
     return null
@@ -97,6 +130,7 @@ export default function VerticalTabs() {
           !hide && 'p-0 pt-10 '
         }`}
       >
+        {/* Seasons tab */}
         <Tab
           className={`masterCreator--Tab`}
           label={`${hide ? 'Seasons' : ''}`}
@@ -104,6 +138,7 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(0)}
         />
+        {/* Teams tab */}
         <Tab
           className={`masterCreator--Tab`}
           label={`${hide ? 'Teams' : ''}`}
@@ -111,6 +146,7 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(1)}
         />
+        {/* Schedules tab */}
         <Tab
           className={`masterCreator--Tab`}
           label={`${hide ? 'Schedules' : ''}`}
@@ -118,6 +154,7 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(2)}
         />
+        {/* Playoffs tab */}
         <Tab
           className={`masterCreator--Tab`}
           label={`${hide ? 'Playoffs' : ''}`}
@@ -125,6 +162,7 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(3)}
         />
+        {/* Assign tab */}
         <Tab
           className={`masterCreator--Tab`}
           label={`${hide ? 'Assign' : ''}`}
@@ -132,6 +170,7 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(4)}
         />
+        {/* Cancel tab */}
         <Tab
           className={`masterCreator--Tab`}
           label={`${hide ? 'Cancel' : ''}`}
@@ -139,25 +178,38 @@ export default function VerticalTabs() {
           iconPosition="start"
           {...a11yProps(5)}
         />
+        {/* Arrow button to either hide/display vertial tabs */}
         <ArrowButton hide={hide} handleButton={handleButton} />
         <HomeButton hide={hide} />
         <LogOutButton hide={hide} />
       </Tabs>
+
+      {/* Season tab container */}
       <TabPanel value={value} index={0} hide={hide}>
         <SeasonsTabContainer />
       </TabPanel>
+
+      {/* Teams tab container */}
       <TabPanel value={value} index={1} hide={hide}>
         <TeamsTabContainer />
       </TabPanel>
+
+      {/* Schedules tab container */}
       <TabPanel value={value} index={2} hide={hide}>
         <ScheduleTabContainer />
       </TabPanel>
+
+      {/* Playoffs tab container */}
       <TabPanel value={value} index={3} hide={hide}>
         <PlayoffsTabContainer />
       </TabPanel>
+
+      {/* Assign tab container */}
       <TabPanel value={value} index={4} hide={hide}>
         <AssignTabContainer />
       </TabPanel>
+
+      {/* Cancel tab container */}
       <TabPanel value={value} index={5} hide={hide}>
         <CancelGamesContainer />
       </TabPanel>

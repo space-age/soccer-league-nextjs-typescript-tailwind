@@ -1,3 +1,7 @@
+/**
+ * Container for team and player registration fees. Displays one time fees and match day fees.
+ * @returns
+ */
 function ContactFees() {
   return (
     <div className="flex flex-col gap-4 bg-[#eeeeee] p-4 pb-6 capitalize text-black md:gap-9 lg:gap-5 lg:p-3">

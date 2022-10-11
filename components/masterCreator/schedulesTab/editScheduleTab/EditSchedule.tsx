@@ -15,6 +15,11 @@ interface Props {
   list: ScheduleList | DocumentData
 }
 
+/**
+ * Displays the schedule, with the option to edit or remove the schedule
+ * @param list
+ * @returns
+ */
 function EditSchedule({ list }: Props) {
   const [editMode, setEditMode] = useState(false)
   const seasonsData = useRecoilValue(selectedSeason)

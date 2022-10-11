@@ -9,6 +9,9 @@ import AddTeam from './addTeamTab/AddTeam'
 import DeleteTeam from './deleteTeamTab/DeleteTeam'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Container for the Tabs available: Add a team and Delete a team
+ */
 function TeamsTabsOptionsContainer() {
   const Tabs = [
     { id: '1', name: 'Add a Team' },

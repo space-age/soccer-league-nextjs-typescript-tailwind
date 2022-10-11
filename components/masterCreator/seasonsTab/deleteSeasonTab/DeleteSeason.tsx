@@ -7,12 +7,21 @@ import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import ShowRemoveSeasonModal from './ShowDeleteSeasonModal'
 import { useState } from 'react'
 
+/**
+ * Delete a season by selecting from dropdown of all seasons in database
+ * Button to delete selected season, will set modal state to true to display
+ * message to double-check if the selected season is to be deleted
+ */
 function DeleteSeason() {
   const [showModal, setShowModal] = useRecoilState(modalStateRemoveSeason)
   const data = useRecoilValue(selectedSeason)
 
   const [deleteSelected, setDeletedSelected] = useState(true)
 
+  /**
+   * Handler for delete selected season button
+   * Sets the state of deleted selected season and modal to true
+   */
   const handleDeleteSeason = () => {
     if (!data || data.length === 0) {
       setDeletedSelected(false)

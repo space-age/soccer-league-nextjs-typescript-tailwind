@@ -10,6 +10,10 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { AddedTeam } from '../../../../typings'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Form to add a team with input field. Option to add multiple teams in one submission
+ *
+ */
 function AddTeamForm() {
   const [teams, setTeams] = useState([{ name: '', teamExists: false }])
   const season = useRecoilValue(selectedSeason)
@@ -212,6 +216,9 @@ function AddTeamForm() {
 
 export default AddTeamForm
 
+/**
+ * Function saved for a different approach to check for duplicates
+ */
 // const checkForDuplicates = async (data: AddedTeam) => {
 //   const check = []
 //   const docSnaps = await data.teams.map(async (team) => {

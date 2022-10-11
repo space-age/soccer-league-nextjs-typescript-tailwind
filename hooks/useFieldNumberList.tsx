@@ -11,6 +11,10 @@ import { selectedDivision, selectedSeason } from '../atoms/seasonAtoms'
 import { db } from '../firebase'
 import { FieldsList } from '../typings'
 
+/**
+ * Fetches the document "Fields" which holds an array of all fields sorted by the address
+ * @returns array of the fields
+ */
 function useFieldNumberList() {
   const [list, setList] = useState<FieldsList[] | DocumentData>([])
 

@@ -19,6 +19,12 @@ interface Props {
   handleEditClick: () => void
 }
 
+/**
+ * Form to edit schedule: field number, teamA, teamB, and time
+ * @param list
+ * @param handleEditClick
+ * @returns
+ */
 function EditScheduleForm({ list, handleEditClick }: Props) {
   const fieldsList = useFieldNumberList()
   const teamList = useTeamList()

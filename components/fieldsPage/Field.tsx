@@ -6,6 +6,11 @@ interface Props {
   field: FieldsList
 }
 
+/**
+ * Creates a container for the field address and all the field numbers for that address
+ * @param field
+ * @returns container for field address and all the field numbers for that address
+ */
 function Field({ field }: Props) {
   return (
     <div className=" grid w-full  grid-cols-1	justify-items-stretch">

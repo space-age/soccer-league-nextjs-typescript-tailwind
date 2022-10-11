@@ -4,6 +4,10 @@ import useSchedulesList from '../../../../hooks/useSchedulesList'
 import EditSchedule from './EditSchedule'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Container of all schedules under current selected week schedule.
+ * Creates 3 containers inside, with sorting the schedules for game schedules: 8am, 10am, 12pm
+ */
 function EditScheduleList() {
   const scheduleList = useSchedulesList()
   const selectedWeek = useRecoilValue(selectedScheduleWeek)

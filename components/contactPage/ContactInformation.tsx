@@ -2,6 +2,11 @@ import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import LanguageIcon from '@mui/icons-material/Language'
 
+/**
+ * Container for contact us for more information. Displays where we are located,
+ * and 2 contacts with name, language prefered and phone number
+ *
+ */
 function ContactInformation() {
   return (
     <div className="flex flex-col gap-6 bg-[#fafafa] p-4 text-black md:gap-8 lg:gap-6 lg:p-3">

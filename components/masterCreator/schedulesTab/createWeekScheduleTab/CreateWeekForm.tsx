@@ -20,6 +20,9 @@ interface WeekSchedule {
   date: string
 }
 
+/**
+ * First select season->division then display the form to add a week schedule
+ */
 function CreateWeekForm() {
   const scheduleList = useScheduleList()
   const MIN_LENGTH_INPUT = 5
@@ -46,6 +49,10 @@ function CreateWeekForm() {
     formState: { errors },
   } = useForm<WeekSchedule>({ shouldUnregister: true })
 
+  /**
+   * Submission form handler. Creates a document with a uuid name for the week schedule created
+   * @param data
+   */
   const onSubmit: SubmitHandler<WeekSchedule> = async (data: WeekSchedule) => {
     const scheduleUUID = uuidv4()
     const dataWeekName = data.weekName.toUpperCase().trim()

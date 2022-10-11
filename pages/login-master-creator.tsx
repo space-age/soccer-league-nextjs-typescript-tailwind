@@ -12,10 +12,18 @@ interface Inputs {
   password: string
 }
 
+/**
+ * .login-master-creator page. Page displays Sign In functionality to access Portal.
+ * Does not have the capability to sign up as dont want everyone to have access to the Portal
+ * For demo purposes, will give email and password to be able to access Portal temporarily
+ * !!!Important: Sign In container will hide when screen is smaller than 1280px. Because Portal is was
+ * created for larger screens and will be hidden when smaller screens
+ * @returns after sign in, will re-direct user to portal page
+ */
 function LoginMasterCreator() {
   const [login, setLogin] = useState(false)
 
-  const { signIn } = useAuth()
+  const { signIn } = useAuth() //sign In function to log in to portal
 
   const {
     register,
@@ -24,6 +32,12 @@ function LoginMasterCreator() {
     formState: { errors },
   } = useForm<Inputs>()
 
+  /**
+   * After submission, if sign in button was clicked,
+   * then await to sign in with the email and password entered by user
+   * @param email
+   * @param password
+   */
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (login) {
       await signIn(email, password)
@@ -44,6 +58,7 @@ function LoginMasterCreator() {
         priority
       />
 
+      {/* Container will display when screen is smaller than width:1280px */}
       <div className="relative mt-24 space-y-8 bg-black/75 py-10 px-6 text-lg md:mt-0 md:max-w-md md:px-14 md:text-2xl  xl:!hidden">
         <p>
           For better user experience, Portal was created for screens with width
@@ -51,13 +66,17 @@ function LoginMasterCreator() {
         </p>
         <p>Authentication for Portal will appear once screen is large enough</p>
       </div>
+
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="relative mt-24 !hidden space-y-8 bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14  xl:!block"
       >
         <h1 className="text-4xl">Sign In</h1>
+
+        {/* Container for email and password inputs */}
         <div className="space-y-4">
+          {/* For dummy purposes, give a demo email and password to temporarily have access to Portal */}
           <div className="font-light">
             <p>For demo purposes use the following:</p>
             <p className="ml-5">
@@ -67,6 +86,8 @@ function LoginMasterCreator() {
               Password: <span className="font-bold">GoldenTea@1031</span>
             </p>
           </div>
+
+          {/* Email label */}
           <label className="inline-block w-full">
             <input
               type="email"
@@ -81,6 +102,8 @@ function LoginMasterCreator() {
               </p>
             )}
           </label>
+
+          {/* Password label */}
           <label className="inline-block w-full">
             <input
               type="password"
@@ -97,6 +120,7 @@ function LoginMasterCreator() {
           </label>
         </div>
 
+        {/* Button to submitt form and log in */}
         <button
           onClick={() => setLogin(true)}
           className="w-full rounded bg-[#1b5e20] py-3 font-semibold"

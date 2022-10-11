@@ -3,6 +3,9 @@ import AddSeason from './addSeasonTab/AddSeason'
 import DeleteSeason from './deleteSeasonTab/DeleteSeason'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Container for the Tabs available: Add a season and Delete a season
+ */
 function SeasonsTabsOptionsContainer() {
   const Tabs = [
     { id: '1', name: 'Add a Season' },

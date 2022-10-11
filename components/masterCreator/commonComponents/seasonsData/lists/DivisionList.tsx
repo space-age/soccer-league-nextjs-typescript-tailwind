@@ -14,6 +14,9 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import useDivisionList from '../../../../../hooks/useDivisionList'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button that displays drop-down options of all divisions in the database within the selected season
+ */
 export default function DivisionList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

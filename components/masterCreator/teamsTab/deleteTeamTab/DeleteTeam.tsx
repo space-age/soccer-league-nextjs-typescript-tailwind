@@ -11,6 +11,10 @@ import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import TeamList from '../../commonComponents/seasonsData/lists/TeamList'
 import ShowDeleteTeamModal from './showDeleteTeamModal'
 
+/**
+ * Tab to delete a team by selecting a season->division->team.
+ * Then will display a modal for final warning to delete a team
+ */
 function DeleteTeam() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showTeamList, setShowTeamList] = useState(false)

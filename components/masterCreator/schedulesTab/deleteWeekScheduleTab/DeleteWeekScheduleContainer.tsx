@@ -11,6 +11,10 @@ import ScheduleList from '../../commonComponents/seasonsData/lists/ScheduleList'
 import SeasonList from '../../commonComponents/seasonsData/lists/SeasonList'
 import ShowDeleteWeekScheduleModal from './ShowDeleteWeekScheduleModal'
 
+/**
+ * By selecting season->division->week schedule, will unhide button to delete the selected week schedule.
+ * When button is clicekd, will set state of modal to true to display a modal with final warning to delete week schedule permanently.
+ */
 function DeleteWeekScheduleContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showTeamList, setShowTeamList] = useState(false)

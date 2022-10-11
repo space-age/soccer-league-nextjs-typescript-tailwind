@@ -14,6 +14,12 @@ interface Props {
   handleButton: () => void
 }
 
+/**
+ *  Returns the arrow button:
+ * left arrow when not hiding options and right arrow when not hiding options
+ *    When button click, it will toggle the hide value from true/false
+ * @param props
+ */
 function ArrowButton(props: Props) {
   const { hide, handleButton } = props
   return (

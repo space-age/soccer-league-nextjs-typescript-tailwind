@@ -12,6 +12,9 @@ import { WeekScheduleList } from '../../../../../typings'
 import { DocumentData } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button that displays drop-down options of all weeschedules in the database within the selected season->divisions
+ */
 export default function ScheduleList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

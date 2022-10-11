@@ -13,6 +13,11 @@ interface Props {
   hide: boolean
 }
 
+/**
+ * Home button(Link) that display home icon when props hide is false, and when true display the text Home
+ * Onclick of Home Link, will re-direct to home page and reset the recoil values of selected season, division, and team
+ * @param props
+ */
 function HomeButton(props: Props) {
   const { hide } = props
 
@@ -20,6 +25,9 @@ function HomeButton(props: Props) {
   const resetDivision = useResetRecoilState(selectedDivision)
   const resetTeam = useResetRecoilState(selectedTeam)
 
+  /**
+   * Resets the recoil state to their default values
+   */
   const handleLinkClick = () => {
     resetSeason()
     resetDivision()

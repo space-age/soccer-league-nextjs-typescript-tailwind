@@ -1,11 +1,3 @@
-/*
-  This is a functional component. Adds a schedule to firebase as a document and the Id will be the schedule name
-  Also, checks if schedule name is found in the firebase and lets the user know to enter something different,
-  so no overwrites occur.
-  
-  Not using it, but keeping it incase we want to change it so the id is the name
-*/
-
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { ChangeEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -27,6 +19,13 @@ interface WeekSchedule {
   date: string
 }
 
+/*
+  This is a functional component. Adds a schedule to firebase as a document and the Id will be the schedule name
+  Also, checks if schedule name is found in the firebase and lets the user know to enter something different,
+  so no overwrites occur.
+  
+  Not using it, but keeping it incase we want to change it so the id is the name
+*/
 function CreateWeekForm() {
   const scheduleList = useScheduleList()
   const MIN_LENGTH_INPUT = 5

@@ -12,6 +12,10 @@ import ScheduleListContainer from '../addScheduleTab/ScheduleListContainer'
 import EditScheduleList from './EditScheduleList'
 import AddScheduleForm from '../createWeekScheduleTab/AddScheduleForm'
 
+/**
+ * By selecting season->division->week schedule, then display form add schedules.
+ * Also, displays container of all schedules under the week-schedule selected
+ */
 function EditScheduleContainer() {
   const [showDivisionList, setShowDivisionList] = useState(false)
   const [showTeamList, setShowTeamList] = useState(false)

@@ -10,6 +10,9 @@ import { useRecoilState } from 'recoil'
 import useTeamList from '../../../../../hooks/useTeamList'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button that displays drop-down options of all teams in the database within the selected season->division
+ */
 export default function TeamList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

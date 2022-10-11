@@ -17,6 +17,14 @@ import CurrentScheduleList from '../addScheduleTab/CurrentScheduleList'
 import AddScheduleForm from './AddScheduleForm'
 import CreateWeekForm from './CreateWeekForm'
 
+/**
+ * Main container for the tab create week schedule
+ * Displays option to select season then division.
+ * After selection, will display the form to add a week schedule
+ * After submission, will display form to add new schedules
+ * After submission, will display week schedule created with all schedules created,
+ * and give the option to add more schedules or create a new week schedule.
+ */
 function CreateWeekSchedule() {
   const season = useRecoilValue(selectedSeason)
   const division = useRecoilValue(selectedDivision)

@@ -7,6 +7,10 @@ import RecordWeekScoresContainer from './recordWeekScoresTab/RecordWeekScoresCon
 import { v4 as uuidv4 } from 'uuid'
 import PushWeekScheduleContainer from './pushWeekSchedule/PushWeekScheduleContainer'
 
+/**
+ * Container for the Tabs available:
+ *  Create Week Schedule, Delete Week Schedule, Add / Edit Schedules, Record Week Scores, Push Week Schedule
+ */
 function SchedulesTabsOptionsContainer() {
   const Tabs = [
     { id: '1', name: 'Create Week Schedule' },

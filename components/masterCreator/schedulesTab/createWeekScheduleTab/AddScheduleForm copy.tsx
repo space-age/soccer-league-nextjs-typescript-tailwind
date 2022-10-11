@@ -12,6 +12,9 @@ interface Schedule {
   teamB: string
 }
 
+/**
+ * A copy of the component, but it is not used in the application
+ */
 function AddScheduleForm() {
   const fieldsList = useFieldNumberList()
   const timesList = useTimesList()

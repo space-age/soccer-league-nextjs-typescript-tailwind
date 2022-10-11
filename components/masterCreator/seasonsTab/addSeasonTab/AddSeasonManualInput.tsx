@@ -1,11 +1,3 @@
-/*
-  Fully functional component.
-  This component allows user to manually enter a division name
-
-  Needs work to validate if division and season names are already in the DB,
-  so it does not overwrite
-*/
-
 import { valueToPercent } from '@mui/base'
 import { setDoc, doc } from 'firebase/firestore'
 import { ChangeEvent, useState } from 'react'
@@ -21,6 +13,13 @@ import { v4 as uuidv4 } from 'uuid'
 //   divisionsName: { name: string }[]
 // }
 
+/*
+  Fully functional component.
+  This component allows user to manually enter a division name
+
+  Needs work to validate if division and season names are already in the DB,
+  so it does not overwrite
+*/
 function AddSeasonManualInput() {
   const [divisions, setDivisions] = useState([{ name: '' }])
 

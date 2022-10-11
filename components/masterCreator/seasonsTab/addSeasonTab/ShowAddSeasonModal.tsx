@@ -4,6 +4,9 @@ import { modalState, submissionData } from '../../../../atoms/seasonModalAtoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Material UI modal to display message that submission of season and divisions has been completed
+ */
 function ShowAddSeasonModal() {
   const [showModal, setShowModal] = useRecoilState(modalState)
   const data = useRecoilValue(submissionData)
@@ -33,13 +36,9 @@ function ShowAddSeasonModal() {
           {data?.divisionsName.map((division, index) => (
             <p key={uuidv4()} className="pl-8 text-yellow-300">
               {division.name}
-              {/* <span className="text-yellow-300"> {division.name}</span> */}
             </p>
           ))}
         </div>
-        {/* <p className="pt-10 text-sm text-red-400">
-          Click anywhere outside the window to close
-        </p> */}
       </div>
     </MuiModal>
   )

@@ -12,6 +12,11 @@ interface TabPanelProps {
   hide: boolean
 }
 
+/**
+ * Container for the tab panel. If props value is equivilant to the index props,
+ * then will diplay a Box of the children passed in.
+ * @param props
+ */
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, hide, ...other } = props
 

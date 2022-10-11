@@ -5,6 +5,10 @@ import Contact from '../components/contactPage/Contact'
 
 import image from '../images/contact-bg.jpg'
 
+/**
+ * .contact/ page. Displays the contact us information, and team and play registration fees
+ * @returns contact page
+ */
 function ContactPage() {
   return (
     <div className="relative h-screen ">

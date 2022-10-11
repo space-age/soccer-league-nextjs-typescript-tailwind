@@ -12,6 +12,9 @@ import { DocumentData } from 'firebase/firestore'
 import useBracketPlayoffList from '../../../../../hooks/useBracketPlayoffList'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button that displays drop-down options of all playoff brackets in the database within the selected season->division->playoffs-brackets
+ */
 export default function PlayoffBracketList() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

@@ -17,6 +17,11 @@ import { AddedSchedule } from '../../../../typings'
 
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Form to add a schedule under the week schedule created.
+ * Capability to add multiple schedules.
+ * Button to remove schedule created
+ */
 function AddScheduleForm() {
   const fieldsList = useFieldNumberList()
   const timesList = useTimesList()
@@ -70,6 +75,10 @@ function AddScheduleForm() {
     unregister(`scheduleList.${index}.time`)
   }
 
+  /**
+   * Handler for form submission. Creates the schedule
+   * @param data
+   */
   const onSubmit: SubmitHandler<AddedSchedule> = async (data) => {
     data.scheduleList.map(async (schedule) => {
       // const scheduleName = schedule.teamA + ' vs ' + schedule.teamB
@@ -264,6 +273,8 @@ function AddScheduleForm() {
                   </select>
                 </label>
               </div>
+
+              {/* Remove above schedule */}
               {scheduleList.length > 1 && (
                 <button
                   className="m-auto mt-2 w-[25%] content-start rounded bg-[#00838f] px-1 text-base font-semibold  tracking-wider text-white hover:bg-[#006064]"
@@ -276,6 +287,7 @@ function AddScheduleForm() {
           )
         })}
 
+        {/* Container for button to add another schedule and submit schedules */}
         <div className="flex justify-center gap-10">
           <button
             onClick={handleAddButton}
