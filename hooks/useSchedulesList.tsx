@@ -9,6 +9,11 @@ import {
 import { db } from '../firebase'
 import { ScheduleList } from '../typings'
 
+/**
+ * Using the current selected season->divison->week schedule
+ * fetch the lists of all schedules
+ * @returns array of all schedules within selected season->divison->week schedule
+ */
 function useSchedulesList() {
   const [list, setList] = useState<ScheduleList[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)

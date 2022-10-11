@@ -15,6 +15,11 @@ import {
 import { db } from '../firebase'
 import { PlayoffGame } from '../typings'
 
+/**
+ * Fetches the documents inside collection stages
+ * @param stage
+ * @returns array of the documents inside stages collection
+ */
 function usePlayoffBracket(stage = 'Finals') {
   const [list, setList] = useState<PlayoffGame[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)

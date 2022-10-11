@@ -5,6 +5,11 @@ import { selectedDivision, selectedSeason } from '../atoms/seasonAtoms'
 import { db } from '../firebase'
 import { WeekScheduleList } from '../typings'
 
+/**
+ * Using current season and division selected from recoil states,
+ * fetches all weeks schedules names
+ * @returns array of week schedules inside the collection weeks-schedules
+ */
 function useWeeksSchedulesList() {
   const [list, setList] = useState<WeekScheduleList[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)

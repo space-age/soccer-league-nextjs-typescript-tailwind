@@ -2,6 +2,11 @@ import React from 'react'
 import usePlayoffBracket from '../../../../hooks/usePlayoffBracket'
 import FinalsMatches from '../../largerScreens/FinalsMatches'
 
+/**
+ * From the stages in play off bracket, finds the document with name SemiFinals
+ * Creates the matches for the bracket
+ * @returns matches for the semi final bracket
+ */
 function SemiFinalsContainerMobile() {
   const selectedPlayoffBracket = usePlayoffBracket()
 
@@ -9,6 +14,9 @@ function SemiFinalsContainerMobile() {
     (bracket) => bracket.idName === 'SemiFinals'
   )
 
+  /**
+   * Creating the matches for semi final bracket
+   */
   const match1Games = [
     semiFinalsBracket?.match1Game1,
     semiFinalsBracket?.match1Game2,

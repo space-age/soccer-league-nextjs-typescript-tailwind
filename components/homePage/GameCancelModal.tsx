@@ -6,15 +6,30 @@ import img from '../../images/cancelgame.jpg'
 import { cancelGame, messagedView } from '../../atoms/mainPageAtoms'
 import useGameCancel from '../../hooks/useGameCancel'
 
+/**
+ * Modal with the message that games have been cancel for a specific date
+ * Uses Material-UI Modal for the modal
+ * @returns message about cancel game and schedule date
+ */
+
 function GameCancelModal() {
-  const gameCancelData = useGameCancel()
+  const gameCancelData = useGameCancel() //returns the object of game cancel
   const [showModal, setShowModal] = useRecoilState(cancelGame)
   const [messageViewed, setMessageViewed] = useRecoilState(messagedView)
 
+  /**
+   * If the document Game Cancel has been updated,
+   * then set the state to show modal according the active value
+   * */
   useEffect(() => {
     setShowModal(gameCancelData?.active)
   }, [gameCancelData])
 
+  /**
+   * Handler for when modal closes
+   * Sets messagedView state to true, will not display the cancel games message to user again
+   * Sets showModal state to false, will not open(display) the modal
+   */
   const handleClose = () => {
     setMessageViewed(true)
     setShowModal(false)
@@ -53,6 +68,7 @@ function GameCancelModal() {
             objectFit="cover"
             alt="Soccer Ball with mask on"
             placeholder="blur"
+            priority
           />
         </div>
       </div>

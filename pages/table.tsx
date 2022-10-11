@@ -8,6 +8,10 @@ import SchedulesDivisionsDropdown from '../components/commonComponents/lists/Sch
 import SchedulesWeekScheduleDropdown from '../components/commonComponents/lists/SchedulesWeekScheduleDropdown'
 import TablesContainer from '../components/tablesPage/TablesContainer'
 
+/**
+ * /table page. Displays the table, positioning of teams in the table, according the season->division->week schedule chosen
+ * @returns table of team position in the league
+ */
 function TablePage() {
   return (
     <div className="h-screen ">

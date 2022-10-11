@@ -1,11 +1,14 @@
 import Image from 'next/image'
 import img from '../../images/temp1.jpg'
-// import img from '../../images/home-bg.jpg'
+
+/**
+ * Main home page banner
+ * @returns title, located at, and message about website
+ */
 
 function Banner() {
   return (
     <div
-      // bg-gradient-to-b from-white-100/30 to-[#222] h-[44vh]
       className=" flex
       h-[100vh] w-full flex-col justify-center space-y-2 pt-80 pb-5 sm:justify-end sm:pt-0 
       lg:space-y-4 lg:pb-16"
@@ -14,7 +17,13 @@ function Banner() {
         className="absolute top-0 left-0 -z-10  h-[100vh] w-full  brightness-[.8]	
         "
       >
-        <Image src={img} layout="fill" objectFit="cover" alt="Soccer Field" />
+        <Image
+          src={img}
+          layout="fill"
+          objectFit="cover"
+          alt="Soccer Field"
+          priority
+        />
       </div>
       <h1
         className="text-4xl font-extrabold 

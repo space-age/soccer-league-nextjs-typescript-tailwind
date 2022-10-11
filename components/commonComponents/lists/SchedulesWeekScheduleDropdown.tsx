@@ -13,12 +13,16 @@ import { selectedScheduleWeek } from '../../../atoms/seasonAtoms'
 import { WeekScheduleList } from '../../../typings'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button with dropdown options of all week schedules in the database from the selected season and division
+ * @returns dropdown options of all week schedules in database, sorted from highest date to lowest
+ */
 export default function SchedulesWeekScheduleDropdown() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  const assignments = useAssignments()
-  const scheduleWeekList = useWeeksSchedulesList()
+  const assignments = useAssignments() //data from document Assignments inside Firebase
+  const scheduleWeekList = useWeeksSchedulesList() //array of all
   const [weekSelected, setWeekSelected] = useRecoilState(selectedScheduleWeek)
 
   useEffect(() => {
@@ -35,12 +39,16 @@ export default function SchedulesWeekScheduleDropdown() {
     setAnchorEl(event.currentTarget)
   }
 
+  /**
+   * Sets the recoil state weekSelected to the schedule paramater
+   * @param schedule
+   */
   function handleClose(schedule: WeekScheduleList | DocumentData) {
     setWeekSelected(schedule)
     setAnchorEl(null)
   }
 
-  //Sorts the array from highest date to lowestes date
+  //Sorts the array from highest date to lowest date
   scheduleWeekList.sort(function (a, b) {
     return b.date! < a.date! ? -1 : 1
   })

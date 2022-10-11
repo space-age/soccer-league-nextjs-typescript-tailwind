@@ -2,6 +2,11 @@ import React from 'react'
 import usePlayoffBracket from '../../../../hooks/usePlayoffBracket'
 import FinalsMatches from '../../largerScreens/FinalsMatches'
 
+/**
+ * From the stages in play off bracket, finds the document with name QuarterFinals
+ * Creates the matches for the bracket
+ * @returns matches for the quearter final bracket
+ */
 function QuarterFinalsContainerMobile() {
   const selectedPlayoffBracket = usePlayoffBracket()
 
@@ -9,6 +14,9 @@ function QuarterFinalsContainerMobile() {
     (bracket) => bracket.idName === 'QuarterFinals'
   )
 
+  /**
+   * Creating the matches for quarter final bracket
+   */
   const match1Games = [
     quarterFinalsBracket?.match1Game1,
     quarterFinalsBracket?.match1Game2,

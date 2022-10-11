@@ -2,6 +2,11 @@ import React from 'react'
 import usePlayoffBracket from '../../../../hooks/usePlayoffBracket'
 import FinalsMatches from '../FinalsMatches'
 
+/**
+ * From the stages in play off bracket, finds the document with name QuarterFinals
+ * Creates the matches for the bracket
+ * @returns matches for the quearter final bracket
+ */
 function QuarterFinalsContainer() {
   const selectedPlayoffBracket = usePlayoffBracket()
 

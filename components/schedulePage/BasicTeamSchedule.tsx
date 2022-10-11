@@ -5,6 +5,11 @@ interface Props {
   list: ScheduleList | DocumentData
 }
 
+/**
+ * For window size less than 640px, for phone view, display the current schedule data properly for smaller screen
+ * @param list
+ * @returns a container of current schedule data: field number, teamA, teamB, scoredA, scoredB, and game time
+ */
 function BasicTeamSchedule({ list }: Props) {
   return (
     <div className="grid w-full grid-rows-2 items-center justify-self-center overflow-auto bg-[#455a64] px-2  py-3 font-semibold sm:!hidden">

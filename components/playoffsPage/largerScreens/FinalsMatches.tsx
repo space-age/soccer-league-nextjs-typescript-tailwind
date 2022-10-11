@@ -7,6 +7,13 @@ interface Props {
   stage: string
   game: Playoff[]
 }
+/**
+ * Container for the final match
+ * @param match
+ * @param stage
+ * @param game
+ * @returns container for the matches in the stage
+ */
 function FinalsMatches({ match, stage, game }: Props) {
   return (
     <div

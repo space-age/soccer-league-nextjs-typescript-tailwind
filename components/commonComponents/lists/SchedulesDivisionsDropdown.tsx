@@ -16,22 +16,33 @@ interface Props {
   stage: string
 }
 
+/**
+ * A material ui button with dropdown options of all divisions in the database collection "Divisions" inside the current selected season
+ * @param stage {string}
+ * @returns dropdown options of all divisions in database within the current season
+ */
 export default function SchedulesDivisionsDropdown({ stage }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  const assignments = useAssignments()
-  const divisionList = useDivisionList()
+  const assignments = useAssignments() //data from document Assignments inside Firebase
+  const divisionList = useDivisionList() //array of all the documents names(id) inside the collection "Divisions"
 
   const [divisionSelected, setDivisionSelected] =
-    useRecoilState(selectedDivision)
+    useRecoilState(selectedDivision) //state to set the current selected division
 
+  /**
+   * If props stage is season, then set the state divisionSelected to the assignment.currentDivision
+   */
   if (stage === 'season') {
     useEffect(() => {
       setDivisionSelected(assignments?.currentDivision)
     }, [assignments])
   }
 
+  /**
+   * If props stage is playoffs, then set the state divisionSelected to the assignment.currentPlayoffDivision
+   */
   if (stage === 'playoffs') {
     useEffect(() => {
       setDivisionSelected(assignments?.currentPlayoffDivision)
@@ -44,6 +55,11 @@ export default function SchedulesDivisionsDropdown({ stage }: Props) {
     setAnchorEl(event.currentTarget)
   }
 
+  /**
+   * Parameter will be set to the recoil state
+   * If no division selected, reset week schedule to their defaul recoil state
+   * @param divisionName {string}
+   */
   function handleClose(divisionName: string) {
     setDivisionSelected(divisionName)
     if (!divisionName || divisionName.length === 0) {

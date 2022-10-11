@@ -3,6 +3,12 @@ import useSchedulesList from '../../hooks/useSchedulesList'
 import TeamSchedule from './TeamSchedule'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * Creates 3 different containers for 3 different schedules times: 8am, 10am, 12pm
+ * Loops thru the schedules array for each time and if time matches the schedule, then display it in the proper schedule time container
+ * If no schedules found, then display a <p> "No Schedules found"
+ * @returns 3 containers for 3 different schedules times
+ */
 function ScheduleWeekList() {
   const scheduleList = useSchedulesList()
 
@@ -15,6 +21,7 @@ function ScheduleWeekList() {
     }
   })
 
+  // variable to keep count if there is any schedules
   let listCounter = 0
 
   return (

@@ -10,6 +10,9 @@ import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { auth } from '../firebase'
 
+/**
+ * Typescript Interface for context IAuth
+ */
 interface IAuth {
   user: User | null
   signIn: (email: string, password: string) => Promise<void>
@@ -25,6 +28,9 @@ interface AuthProviderProps {
   children: React.ReactNode
 }
 
+/**
+ * Context created with the interface type IAuth
+ */
 const AuthContext = createContext<IAuth>({
   user: null,
   signIn: async () => {},
@@ -33,6 +39,11 @@ const AuthContext = createContext<IAuth>({
   loading: false,
 })
 
+/**
+ *
+ * @param children {AuthProviderProps}
+ * @returns
+ */
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState<User | null>(null)
@@ -41,7 +52,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const router = useRouter()
 
-  //Persisting the user
+  /**
+   * Runs on first render and when firebase auth has been changed. Persisting the user
+   * If there is a user,
+   *     set the user state with the current user, user logged in
+   *     set loading state to false
+   * else
+   *    set user to null, no user found or not logged in
+   *    set loading to true
+   */
   useEffect(
     () =>
       onAuthStateChanged(auth, (user) => {
@@ -60,6 +79,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     [auth]
   )
 
+  /**
+   * Uses firabase function to sign in with emal and password
+   *    Sets user state to the user that sign in
+   *    routes to the page 'master-creator', into the portal main page
+   * @param email {string}
+   * @param password {string}
+   */
   const signIn = async (email: string, password: string) => {
     setLoading(true)
 
@@ -73,6 +99,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .finally(() => setLoading(false))
   }
 
+  /**
+   * Uses firebase signOut function to sign out current user
+   * Then, sets the user to state as null, as there is no user logged in anymore
+   */
   const logout = async () => {
     setLoading(true)
 
@@ -84,6 +114,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       .finally(() => setLoading(false))
   }
 
+  /**
+   * Will only recompute the values when user or loading have been changed
+   */
   const memoedValue = useMemo(
     () => ({
       user,
@@ -94,6 +127,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }),
     [user, loading]
   )
+
+  /**
+   * returns the provider with the value memoedValue which holds the states and functions
+   * if is not at initial loading, returns the children,
+   * _app.tsx will be wrapped with <AuthProvider>, wrapping entire app, therefore children is everything in the app
+   */
   return (
     <AuthContext.Provider value={memoedValue}>
       {!initialLoading && children}
@@ -101,6 +140,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   )
 }
 
+/**
+ * Exports the function to use the AuthContext values and functions inside AuthProvider
+ * @returns the current context values (AuthContext)
+ */
 export default function useAuth() {
   return useContext(AuthContext)
 }

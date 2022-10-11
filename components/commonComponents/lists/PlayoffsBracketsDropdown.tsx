@@ -13,6 +13,11 @@ import { WeekScheduleList } from '../../../typings'
 import useBracketPlayoffList from '../../../hooks/useBracketPlayoffList'
 import { v4 as uuidv4 } from 'uuid'
 
+/**
+ * A material ui button with dropdown options of all playoff bracket
+ * from the selected season->division
+ * @returns dropdown options of all playoff brackets in database within the current season->division
+ */
 export default function PlayoffsBracketsDropdown() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)

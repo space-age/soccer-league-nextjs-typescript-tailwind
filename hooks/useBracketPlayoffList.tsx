@@ -5,6 +5,10 @@ import { selectedDivision, selectedSeason } from '../atoms/seasonAtoms'
 import { db } from '../firebase'
 import { PlayoffsBracket } from '../typings'
 
+/**
+ * Fetches all play off bracket from the selected season->division->playoffs-brackets
+ * @returns array of all playoff brackets found in database
+ */
 function useBracketPlayoffList() {
   const [list, setList] = useState<PlayoffsBracket[] | DocumentData[]>([])
   const season = useRecoilValue(selectedSeason)

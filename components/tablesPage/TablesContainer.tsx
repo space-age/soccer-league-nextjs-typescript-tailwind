@@ -26,9 +26,13 @@ interface Calculations {
   }[]
 }
 
+/**
+ * Creates the table with the current season->division->schedule week chosen.
+ * @returns table of selected season->division->schedule week
+ */
 function TablesContainer() {
   const teamList = useTeamList()
-  const weekSchedule = useRecoilValue(selectedScheduleWeek)
+  const weekSchedule = useRecoilValue(selectedScheduleWeek) //current selected week schedule
 
   /*
     Loop thru team list and create a new array holding the table results

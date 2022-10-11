@@ -2,6 +2,11 @@ import React from 'react'
 import usePlayoffBracket from '../../../../hooks/usePlayoffBracket'
 import FinalsMatches from '../../largerScreens/FinalsMatches'
 
+/**
+ * From the stages in play off bracket, finds the document with name Finals
+ * Creates the matches for the bracket
+ * @returns matches for the final bracket
+ */
 function FinalContainerMobile() {
   const selectedPlayoffBracket = usePlayoffBracket()
 

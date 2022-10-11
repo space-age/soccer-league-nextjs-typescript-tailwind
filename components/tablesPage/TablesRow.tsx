@@ -20,6 +20,13 @@ interface Props {
   index: number
 }
 
+/**
+ * Table row for the props team. Sets the following information in the row:
+ * position, team name, games played, won, drawn and lost, goals in favor and goals against, points, and form
+ * @param team
+ * @param index
+ * @returns table row data of the team
+ */
 function TablesRow({ team, index }: Props) {
   const currentForm = () => {
     if (team.form.length === 0 || !team.form) {

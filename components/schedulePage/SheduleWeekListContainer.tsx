@@ -2,19 +2,29 @@ import { useRecoilValue } from 'recoil'
 import { selectedScheduleWeek } from '../../atoms/seasonAtoms'
 import ScheduleWeekList from './ScheduleWeekList'
 
+/**
+ * Schedule Week List container
+ * Displaying title of current selected schedule week name or a default name
+ * Using ScheduleWeekList container to display all schedules inside the week schedule
+ */
 function SheduleWeekListContainer() {
-  const scheduleWeekList = useRecoilValue(selectedScheduleWeek)
+  const currentScheduleWeek = useRecoilValue(selectedScheduleWeek)
 
+  /**
+   * If current schedule week does not existsm then set to true or else false
+   * It will be a check to determine what to display for title
+   */
   const check =
-    !scheduleWeekList?.idName ||
-    scheduleWeekList?.idName.length === 0 ||
-    scheduleWeekList === undefined
+    !currentScheduleWeek?.idName ||
+    currentScheduleWeek?.idName.length === 0 ||
+    currentScheduleWeek === undefined
       ? true
       : false
 
+  // title of the container depending on the check done on whether ther is a current schedule week selected
   const title = check
     ? 'Select a Season, Division, and Week Schedule to view week schedules'
-    : `${scheduleWeekList.weekName} | ${scheduleWeekList.date}`
+    : `${currentScheduleWeek.weekName} | ${currentScheduleWeek.date}`
 
   return (
     <div

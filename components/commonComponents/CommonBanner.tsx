@@ -1,11 +1,17 @@
 import Image, { StaticImageData } from 'next/image'
 
 interface Props {
-  image: string | StaticImageData
+  image: string | StaticImageData //StaticImageData is the type needed for an imported image
   title: string
 }
 
-function TableBanner({ image, title }: Props) {
+/**
+ * A common banner for all pages that displays an image and title for the page
+ * @param image {string | StaticImageData}
+ * @param title {string}
+ * @returns container with image and title
+ */
+function CommonBanner({ image, title }: Props) {
   return (
     <div
       className="
@@ -23,6 +29,7 @@ function TableBanner({ image, title }: Props) {
           objectFit="cover"
           alt="Soccer Field"
           placeholder="blur"
+          priority
         />
       </div>
       <h1
@@ -36,4 +43,4 @@ function TableBanner({ image, title }: Props) {
   )
 }
 
-export default TableBanner
+export default CommonBanner

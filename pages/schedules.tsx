@@ -10,8 +10,13 @@ import GameCancelModal from '../components/homePage/GameCancelModal'
 import { useRecoilValue } from 'recoil'
 import { messagedView } from '../atoms/mainPageAtoms'
 
+/**
+ * /schedules page. Displays the games schedules after selecting season->divison->week schedule
+ * On first render, displays the latest games week schedules, by which schedule has latest date
+ * @returns week schedule games
+ */
 function SchedulesPage() {
-  const cancelGameMessage = useRecoilValue(messagedView)
+  const cancelGameMessage = useRecoilValue(messagedView) //boolean to check if cancel game message has been viewed
   return (
     <div className="h-screen ">
       <Head>
@@ -27,6 +32,7 @@ function SchedulesPage() {
           <SchedulesWeekScheduleDropdown />
         </div>
         <SheduleWeekListContainer />
+        {/* if cancel game message has not been viewed by user, then display the modal */}
         {!cancelGameMessage && <GameCancelModal />}
       </main>
     </div>

@@ -41,6 +41,7 @@ function LoginMasterCreator() {
         layout="fill"
         className="-z-10  opacity-60 sm:!inline"
         objectFit="cover"
+        priority
       />
 
       <div className="relative mt-24 space-y-8 bg-black/75 py-10 px-6 text-lg md:mt-0 md:max-w-md md:px-14 md:text-2xl  xl:!hidden">

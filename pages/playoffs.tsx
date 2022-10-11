@@ -9,6 +9,10 @@ import PlayoffsBracketsDropdown from '../components/commonComponents/lists/Playo
 import PlayoffContainer from '../components/playoffsPage/largerScreens/PlayoffContainer'
 import PlayoffContainerMobile from '../components/playoffsPage/smallerScreens/PlayoffContainerMobile'
 
+/**
+ * /playoffs page. Displays the playoff bracket for current season->division->playoff bracket
+ * @returns playoff bracket
+ */
 function playoffs() {
   return (
     <div className="h-screen ">

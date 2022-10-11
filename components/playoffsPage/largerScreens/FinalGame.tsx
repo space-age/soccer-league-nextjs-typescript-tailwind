@@ -6,8 +6,18 @@ interface Props {
   game: Playoff
 }
 
+/**
+ * Container for the match with the team names, date, time, field number, and final scored
+ * @param gameNumber
+ * @param game
+ * @returns the details of the match
+ */
 function FinalGame({ gameNumber, game }: Props) {
   let winner = 'none'
+
+  /**
+   * If statements to determine the winnder of the match by comparing the scores
+   */
   if (game?.scoredA && game?.scoredB && game.scoredA! > game.scoredB!) {
     winner = 'teamA'
   }
@@ -17,6 +27,7 @@ function FinalGame({ gameNumber, game }: Props) {
   if (game?.scoredB && game?.scoredA && game.scoredA! === game.scoredB!) {
     winner = 'tied'
   }
+
   return (
     <div>
       <h4 className="my-4 ml-4 text-xl font-bold md:text-2xl">

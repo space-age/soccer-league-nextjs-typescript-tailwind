@@ -9,18 +9,33 @@ interface Props {
   isScrolled: boolean
 }
 
+/**
+ * Basic Menu for smaller screen size such as phones (width:640px or less)
+ * Displays options for links to different pages in the application
+ * @param isScrolled {Props}
+ * @returns menu items for links to different pages in the application
+ */
 export default function BasicMenu({ isScrolled }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const router = useRouter()
 
+  /**
+   * Handler for when user clicks the button with MenuIcon
+   * Sets the state anchorEl to the current event target
+   * @param event {React.MouseEvent<HTMLButtonElement>}
+   */
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  function handleClose(home: string) {
+  /**
+   * Handler to determine the router push page, depending on the page parameter
+   * @param page {string}
+   */
+  function handleClose(page: string) {
     setAnchorEl(null)
-    if (home !== 'null') router.push(`/${home}`)
+    if (page !== 'null') router.push(`/${page}`)
   }
 
   return (
@@ -51,6 +66,7 @@ export default function BasicMenu({ isScrolled }: Props) {
             Schedules
           </MenuItem>
           <MenuItem onClick={() => handleClose('table')}>Tables</MenuItem>
+          {/* Teams page is not available yet */}
           {/* <MenuItem onClick={() => handleClose('teams')}>Teams</MenuItem> */}
           <MenuItem onClick={() => handleClose('playoffs')}>Playoffs</MenuItem>
           <MenuItem onClick={() => handleClose('fields')}>

@@ -17,20 +17,31 @@ interface Props {
   stage: string
 }
 
+/**
+ * A material ui button with dropdown options of all seasons in the database
+ * @param stage {string}
+ * @returns dropdown options of all seasons in database
+ */
 export default function SchedulesSeasonsDropdown({ stage }: Props) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
-  const assignments = useAssignments()
-  const seasonList = useSeasonList()
-  const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason)
+  const assignments = useAssignments() //data from document Assignments inside Firebase
+  const seasonList = useSeasonList() //array of all the documents names(id) inside the collection "Seasons"
+  const [seasonSelected, setSeasonSelected] = useRecoilState(selectedSeason) //state to set the current selected season
 
+  /**
+   * If props stage is season, then set the state seasonSelected to the assignment.currentSeason
+   */
   if (stage === 'season') {
     useEffect(() => {
       setSeasonSelected(assignments?.currentSeason)
     }, [assignments])
   }
 
+  /**
+   * If props stage is playoffs, then set the state seasonSelected to the assignment.currentPlayoffSeason
+   */
   if (stage === 'playoffs') {
     useEffect(() => {
       setSeasonSelected(assignments?.currentPlayoffSeason)
@@ -44,13 +55,17 @@ export default function SchedulesSeasonsDropdown({ stage }: Props) {
     setAnchorEl(event.currentTarget)
   }
 
+  /**
+   * Parameter will be set to the recoil state
+   * If no season selected, reset the division and week schedule to their defaul recoil state
+   * @param seasonName {string}
+   */
   function handleClose(seasonName: string) {
     setSeasonSelected(seasonName)
     if (!seasonName || seasonName.length === 0) {
       resetDivision()
       resetWeekSchedule()
     }
-
     setAnchorEl(null)
   }
 

@@ -3,6 +3,11 @@ import FinalContainer from '../largerScreens/final/FinalContainer'
 import QuarterFinalsContainer from '../largerScreens/quarterFinals/QuarterFinalsContainer'
 import SemiFinalsContainer from '../largerScreens/semiFinals/SemiFinalsContainer'
 
+/**
+ * Container for playoff bracket for smaller screens, width: 640px or below
+ * Contains 3 containers for the stages of playoff brackets: quarter-finals, semi-finals, and final
+ * @returns the 3 containers for the stages of playoff brackets
+ */
 function PlayoffContainerMobile() {
   const [stage, setStage] = useState('quarter')
 

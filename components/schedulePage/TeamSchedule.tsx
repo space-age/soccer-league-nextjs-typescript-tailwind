@@ -6,6 +6,12 @@ interface Props {
   list: ScheduleList | DocumentData
 }
 
+/**
+ * Displays a container of the current schedule data: field number, teamA, teamB, scoredA, scoredB, and game time
+ * If window size is less than 640px, for phone view, display the BasicTeamsSchedule component instead
+ * @param list
+ * @returns a container of current schedule data
+ */
 function TeamSchedule({ list }: Props) {
   return (
     <>
